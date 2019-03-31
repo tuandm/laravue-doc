@@ -70,9 +70,12 @@ The `transition` defines the switching animation between pages, you can modify t
 
 **Different router the same component vue。** In a real work, there are many situations. such as:
 
-![](https://wpimg.wallstcn.com/ac5047c9-cb75-4415-89e3-9386c42f3ef9.jpeg)
+```js
+    { path: 'create', component: () => import('@/views/ArticleForm') },
+    { path: 'edit/:id(\\d+)', component: () => import('@/views/ArticleForm') },
+```
 
-The same component is used to create pages and edit pages. By default, when these two pages are switched, it will not trigger the created or mounted hooks of vue. Officials say that you can do this through the change of watch $route. To tell the truth it's still very troublesome. Later I discovered that I could simply add a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
+Same component is used to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of vue. From the [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes) of `vue-router`, you can do this by watching the  $route. But in the real scenario, it is very unuseful and hard to micro-manage. We can bypass thie behavior by adding a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
 
 ```js
 <router-view :key="key"></router-view>
@@ -86,13 +89,13 @@ computed: {
 ```
 
 ::: tip
-**Or** You can declare two different views like the `editForm` and `createForm` in this project but introduce the same component.
+**Or** You can declare two different views like the `Create` and `Edit` in this project but introduce the same component.
 
-Code：[@/views/form](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/views/form)
+Code：[@/views/form](https://github.com/tuandm/laravue/tree/master/resources/js/views/example)
 :::
 
 ```html
-<!-- create.vue -->
+<!-- Create.vue -->
 <template>
   <article-detail :is-edit='false'></article-detail> //create
 </template>
@@ -100,7 +103,7 @@ Code：[@/views/form](https://github.com/PanJiaChen/vue-element-admin/tree/maste
   import ArticleDetail from './components/ArticleDetail'
 </script>
 
-<!-- edit.vue -->
+<!-- Edit.vue -->
 <template>
    <article-detail :is-edit='true'></article-detail> //edit
 </template>
@@ -109,10 +112,6 @@ Code：[@/views/form](https://github.com/PanJiaChen/vue-element-admin/tree/maste
 </script>
 ```
 
->
-
 ## Mobile
 
-The `element-ui` official position is the desktop-side framework, and for the management of such a complex project in the background, it is impossible to meet the desktop-side and mobile-side interactions through simple adaptation. Therefore, the interaction between the two ends must be different. Make a mobile version of the background, it is recommended to re-do a system.
-
-So, this project will not adapt to the mobile terminal. It just does a simple response and you can modify it yourself.
+The `element-ui` is officially designed for a desktop-side UI library, and for the complex project like enterprise backend application, it is impossible to meet the user experiences in both desktop and mobile. In this project, we are trying to make it works on mobile with the simple responsive layout. You can modify for your mobile version.

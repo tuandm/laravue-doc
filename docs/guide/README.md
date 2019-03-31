@@ -68,6 +68,7 @@ The project is positioned as an enterprise solution and it's highly recommended 
   - BackToTop button
   - CountTo
   - Kanban board
+  - Draggable list
   - Draggable popup dialog
   - And [more...](https://laravue.dev/#/dashboard)
 
@@ -160,7 +161,7 @@ Now you can open Laravel at http://localhost:8000. After login with provided ema
 
 Login page:
 
-![](https://camo.githubusercontent.com/64de5a3b2a9d0914309fe5805b2802d424d373a8/687474703a2f2f646f632e6c6172617675652e636970686572706f6c732e636f6d2f6173736574732f73637265656e73686f742e706e67)
+![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-login.png)
 
 Laravue has already setup for standard components, state management, i18n, global router, linter,.... You can continue exploring other documents for more details on those topics.
 
