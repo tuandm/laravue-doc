@@ -83,11 +83,11 @@ module.exports = {
           },
           {
             text: "Thành phần",
-            items: genNav(deepClone(ComponentNav), "VN")
+            items: genNav(deepClone(ComponentNav), "VI")
           },
           {
             text: "Mở rộng",
-            items: genNav(deepClone(EcosystemNav), "VN")
+            items: genNav(deepClone(EcosystemNav), "VI")
           }
         ],
         sidebar: {
@@ -100,7 +100,7 @@ module.exports = {
             {
               title: "Mở rộng",
               collapsable: false,
-              children: genAdvancedSidebar("/zh")
+              children: genAdvancedSidebar("/vi")
             },
             {
               title: "Các phần khác",
@@ -111,10 +111,7 @@ module.exports = {
               ]
             }
           ],
-          "/vi/feature/component/": getComponentSidebar(
-            deepClone(ComponentNav),
-            "VN"
-          ),
+          "/vi/feature/component/": getComponentSidebar(deepClone(ComponentNav), "VI"),
           "/vi/feature/script/": ["/vi/feature/script/svgo.md"]
         }
       }

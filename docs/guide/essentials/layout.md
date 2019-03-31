@@ -60,8 +60,7 @@ If you don't get familiar with `vue-router`, Please refer to [official document]
 ::: tip Code
 [@/views/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/views/layout/components/AppMain.vue)
 :::
-`<app-main>` is the main content of the view and will be changed for each vue-router request, it uses `<router-view>` to render and be wrapped by `<keep-alive>` in order to be cacheable. 
-Here is a layer of `<keep-alive>` outside the `<app-main/>` is mainly to cache `<router-view/>`, with the `tabs-view` tab navigation of the page, if you do not need to [remove](tags-view.md) it.
+`<app-main>` uses `<router-view>` to render the content which is returned from the main component registering in route item. `<router-view>` is put inside `<keep-alive>` in order to be cacheable. Please check [router and navigration](router-and-nav.md) for more details.
 
 The `transition` defines the switching animation between pages, you can modify the transition animation according to your own needs.
 
