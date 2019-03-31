@@ -1,0 +1,38 @@
+{
+  "name": "laravue-doc",
+  "version": "0.1.0",
+  "description": "Source code for https://doc.laravue.dev",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuandm/laravue-doc.git"
+  },
+  "keywords": [
+    "laravue",
+    "laravel",
+    "vuejs",
+    "admin",
+    "dashboard"
+  ],
+  "author": "Tuan Duong <bacduong@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tuandm/laravue/issues"
+  },
+  "homepage": "https://doc.laravue.dev",
+  "devDependencies": {
+    "@vuepress/plugin-google-analytics": "^1.0.0-alpha.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "vuepress": "0.14.9"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "webpack-dev-middleware": "^3.6.0"
+  }
+}
