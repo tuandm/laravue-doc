@@ -2,21 +2,21 @@
 home: true
 heroImage: /home.png
 title: a
-actionText: Get Started →
+actionText: Bắt đầu →
 actionLink: /vi/guide/
 features:
-  - title: Feature-rich
-    details: Typical templates for enterprise applications and various components
-  - title: Best Practice
-    details: Reasonable framework choice, good engineering practice
-  - title: Up-to-date Technology Stack
-    details: Development using latest version of Laravel, VueJS and other libraries
-  - title: Permission Validation
-    details: Role-based permissions to render sidebar dynamically
-  - title: Globalization
-    details: Built-in industry universal international solution
-  - title: Easy to integrate
-    details: The project works perfectly with any API-based Laravel projects
+  - title: Nhiều chức năng
+    details: Giao diện tiêu chuẩn cho hệ thống quản lý với nhiều thành phần mở rộng
+  - title: Chuẩn mực
+    details: Sử dụng các framework và library hợp lý cùng với tiêu chuẩn cao trong việc xây dựng và phát triển
+  - title: Công nghệ cập nhật
+    details: Luôn luôn sử dụng các version mới nhất từ các công nghệ tiên tiến của Laravel, Vue...
+  - title: Hệ thống quân quyền
+    details: Phân quyền theo chức vụ và tự động hiển thị menu theo quyền hạn
+  - title: Đa ngôn ngữ
+    details: Tích hợp sẵn hệ thống đa ngôn ngữ, chuyển đổi ngôn ngữ linh hoạt
+  - title: Tích hợp dễ dàng
+    details: Thích hợp cho các hệ thống phát triển trên nền tảng API như SaaS, Micro-services
 footer: MIT Licensed | Copyright © 2019 Tuan Duong
 ---
 
