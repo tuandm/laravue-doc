@@ -11,18 +11,6 @@
         <NavLink class="action-button" :item="actionLink"/>
       </p>
 
-      <p v-if="isCN" @click="clickCoding('home')">
-        <a
-          href="https://e.coding.net/?utm_source=panjiachen"
-          target="_blank"
-          style="display: block;"
-        >
-          <img
-            style="width:960px;display: block;"
-            src="https://wpimg.wallstcn.com/08297468-d957-4ed7-a93d-14a12f8849dc.png"
-          >
-        </a>
-      </p>
     </div>
 
     <div class="features" :class="{isCN:isCN}" v-if="data.features && data.features.length">

@@ -29,7 +29,7 @@ The control code of the routing level right now is in `@/permission.js`. If you 
 
 ## Permission directive
 
-Write a permission directive, and can easily and quickly implement button-level permission judgment. [v-permission](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/directive/permission)
+Write a permission directive, and can easily and quickly implement button-level permission judgment. [v-permission](https://github.com/tuandm/laravue/blob/master/resources/js/directive/permission)
 
 **Use**
 

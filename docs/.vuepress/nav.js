@@ -11,16 +11,16 @@ var EcosystemNav = [
   },
   {
     textEN: "Help",
-    textZH: "Hỗ trợ",
+    textVI: "Hỗ trợ",
     items: [
       {
         text: "Git issues",
-        textZH: "Git issues",
+        textVI: "Git issues",
         link: "https://github.com/tuandm/laravue/issues"
       },
       {
         text: "Changelog",
-        textZH: "Lưu trữ",
+        textVI: "Lưu trữ",
         link: "https://github.com/tuandm/laravue/releases"
       }
     ]
@@ -30,41 +30,41 @@ var EcosystemNav = [
 var ComponentNav = [
   {
     text: 'Component',
-    textZH: '组件',
+    textVI: 'Phần mở rộng',
     items: [
       {
         text: 'Rich Text Editor',
-        textZH: '富文本',
+        textVI: 'Trình soạn thảo',
         link: '/feature/component/rich-editor.md'
       },
       {
         text: 'Markdown Editor',
-        textZH: 'Markdown 编辑器',
+        textVI: 'Trình soạn thảo Markdown',
         link: '/feature/component/markdown-editor.md'
       },
       {
         text: 'Svg Icon',
-        textZH: 'Svg Icon 图标',
+        textVI: 'Svg Icon',
         link: '/feature/component/svg-icon.md'
       },
       {
         text: 'Clipboard',
-        textZH: '复制粘贴',
+        textVI: 'Chức năng sao chép',
         link: '/feature/component/clipboard.md'
       },
       {
         text: 'Excel',
-        textZH: 'Excel',
+        textVI: 'Excel',
         link: '/feature/component/excel.md'
       },
       {
         text: 'Pagination',
-        textZH: 'Pagination 分页',
+        textVI: 'Phân trang',
         link: '/feature/component/pagination.md'
       },
       {
         text: 'Tree Table',
-        textZH: 'Tree Table 树形表格',
+        textVI: 'Bảng dạng cây',
         link: '/feature/component/tree-table.md'
       }
     ]

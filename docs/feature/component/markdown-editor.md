@@ -74,4 +74,4 @@ export default {
 
 ## Online Example
 
-[link](https://panjiachen.github.io/vue-element-admin/#/components/markdown)
+[link](https://laravue.dev/#/components/markdown)

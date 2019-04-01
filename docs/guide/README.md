@@ -12,7 +12,7 @@ pageClass: getting-started
 [![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
 [![GitHub stars](https://img.shields.io/github/stars/tuandm/laravue.svg?style=social&label=Stars)](https://github.com/tuandm/laravue)
 
-[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://panjiachen.github.io/vue-element-admin) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
+[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://laravue.dev) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
 
 :::tip
 The project is positioned as an enterprise solution and it's highly recommended to start from scratch. You should start project from simple layout and add components one by one depending on your system. This is to avoid redundant code as this project provides lot of features that you may not use.
@@ -85,7 +85,7 @@ The project is positioned as an enterprise solution and it's highly recommended 
 ## Preparation
 Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org). [Git](https://git-scm.com/) and [composer](https://getcomposer.org/) are required too.
 
-Besides, the project is based on [ES2015+](http://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all API will be served by Laravel. Understanding and learning this knowledge in advance will greatly help the use of this project.
+Besides, the project is based on [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all API will be served by Laravel. Understanding and learning this knowledge in advance will greatly help the use of this project.
 
 ::: tip
 **This project does not support low-level browsers (such as ie). If you need to, please add polyfills yourself.**
@@ -175,7 +175,7 @@ Laravue has already setup for standard components, state management, i18n, globa
 
 The repository of documentation is [laravue-doc](https://github.com/tuandm/laravue-doc) based on [vuepress](https://github.com/vuejs/vuepress) development.
 
-There will be many errors related to spelling or translation from [original project](https://github.com/PanJiaChen/vue-element-admin). It is welcome to point out by issue or pr. My English is not good.
+There will be many errors related to spelling or translation from [original project](https://github.com/PanJiaChen/vue-element-admin). It is welcome to point out by issue or pr. My English is not too good.
 
 This project is still on development to provide more and more awesome features, integrate with high-quality Laravel packages and apply the best practices of development to build an enterprise solution for back office. We are looking forward to your contribution and [feedback](https://github.com/tuandm/laravue/issues).
 

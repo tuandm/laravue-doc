@@ -22,7 +22,7 @@ Permission control is done in `@/permission.js`. All users who do not have permi
 
 ## Request
 
-All the requests in the project will go through the axios instance created in `@/utils/request.js`. [code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)。
+All the requests in the project will go through the axios instance created in `@/utils/request.js`. [code](https://github.com/tuandm/laravue/blob/master/resources/js/utils/request.js)。
 
 You can use the `service.interceptors.response`, the response interceptor to harmonize different status codes according to your actual business or to perform error handling according to custom code. Such as:
 
@@ -92,7 +92,7 @@ Of course there are many errors that cannot be checked by `eslint`, vue also pro
 ![](https://wpimg.wallstcn.com/360e4842-4db5-42d0-b078-f9a84a825546.gif)
 
 ::: tip
-Listening error: [@/errorLog.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/errorLog.js)
+Listening error: [@/errorLog.js](https://github.com/tuandm/laravue/blob/master/resources/js/errorLog.js)
 
-Error display component: [@/components/ErrorLog](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ErrorLog/index.vue)
+Error display component: [@/components/ErrorLog](https://github.com/tuandm/laravue/blob/master/resources/js/components/ErrorLog/index.vue)
 :::

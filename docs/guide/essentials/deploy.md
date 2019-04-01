@@ -81,5 +81,5 @@ export default new Router({
 ```
 
 ::: tip
-Detail see [vue-router document](https://router.vuejs.org/zh-cn/essentials/history-mode.html)
+Detail see [vue-router document](https://router.vuejs.org/guide/essentials/history-mode.html)
 :::

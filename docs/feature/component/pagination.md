@@ -47,7 +47,7 @@ export default {
 |   hidden    | whether to hide                                             |  Boolean  |      false      |
 | auto-scroll | whether to automatically scroll to the top after pagination |  Boolean  |      true       |
 
-Other attributes of the element's `el-pagination` support are also supported. See [Documentation](http://element.eleme.io/#/zh-CN/component/pagination) for details.
+Other attributes of the element's `el-pagination` support are also supported. See [Documentation](http://element.eleme.io/#/en-US/component/pagination) for details.
 
 ## Events
 
@@ -57,6 +57,6 @@ Other attributes of the element's `el-pagination` support are also supported. Se
 
 ## Source Code && Demo
 
-- [Source Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Pagination/index.vue)
+- [Source Code](https://github.com/tuandm/laravue/blob/master/resources/js/components/Pagination/index.vue)
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/table/complex-table)
+- [Online Demo](https://laravue.dev/#/table/complex-table)

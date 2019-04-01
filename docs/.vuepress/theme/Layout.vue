@@ -5,27 +5,12 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
-    <div v-if="isHome&&!isCN" class="home-codefund" id="codefund"></div>
-
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar"/>
 
     <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
     <Sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar">
       <div slot="top" :class="{'load-success':loadSuccess}">
         <div v-if="!isHome" id="codefund" :key="$route.path"></div>
-
-        <a
-          href="https://e.coding.net/?utm_source=panjiachen"
-          target="_blank"
-          v-if="isCN"
-          @click="clickCoding('sidebar')"
-          style="display: block;"
-        >
-          <img
-            style="width:280px;display: block;margin: 10px auto!important;"
-            src="https://wpimg.wallstcn.com/899f911b-b8d2-4c99-982a-182b146766d3.png"
-          >
-        </a>
       </div>
       <slot name="sidebar-bottom" slot="bottom"/>
     </Sidebar>
@@ -68,7 +53,6 @@ export default {
     $route: {
       handler: function(val, oldVal) {
         if (this.$isServer) return
-        if (this.isCN) return
         const { path } = val
       },
       immediate: true
@@ -78,13 +62,16 @@ export default {
     isHome() {
       const page = this.$page
       const { path } = page
-      if (path === '/zh/' || path === '/') {
+      if (path === '/vi/' || path === '/') {
         return true
       }
       return false
     },
     isCN() {
       return this.$lang === 'zh-CN'
+    },
+    isVN() {
+      return this.$lang === 'vi-VN'
     },
     shouldShowNavbar() {
       const { themeConfig } = this.$site

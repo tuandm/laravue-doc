@@ -4,22 +4,19 @@ pageClass: getting-started
 
 # Introduction
 
-[![vue](https://img.shields.io/badge/vue-2.5.10-brightgreen.svg)](https://github.com/vuejs/vue)
-[![element-ui](https://img.shields.io/badge/element--ui-2.3.2-brightgreen.svg)](https://github.com/ElemeFE/element)
-[![Build Status](https://travis-ci.org/PanJiaChen/vue-element-admin.svg?branch=master)](https://travis-ci.org/PanJiaChen/vue-element-admin)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/PanJiaChen/vue-element-admin.svg)](https://github.com/PanJiaChen/vue-element-admin/releases)
-[![donate](https://img.shields.io/badge/%24-donate-ff69b4.svg)](https://panjiachen.github.io/vue-element-admin-site/donate)
-[![GitHub stars](https://img.shields.io/github/stars/PanJiaChen/vue-element-admin.svg?style=social&label=Stars)](https://github.com/PanJiaChen/vue-element-admin)
+[![Laravel](https://img.shields.io/badge/laravel-5.8-brightgreen.svg)](https://laravel.com)
+[![vue](https://img.shields.io/badge/vue-2.6.8-brightgreen.svg)](https://github.com/vuejs/vue)
+[![element-ui](https://img.shields.io/badge/element--ui-2.6.1-brightgreen.svg)](https://github.com/ElemeFE/element)
+[![Build Status](https://gitlab.com/bacduong/laravue/badges/master/build.svg)](https://gitlab.com/bacduong/laravue)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/tuandm/laravue/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
+[![GitHub stars](https://img.shields.io/github/stars/tuandm/laravue.svg?style=social&label=Stars)](https://github.com/tuandm/laravue)
 
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) is a front-end management background integration solution based on Vue 2.0 that uses the Element UI component library. It uses the latest front-end technology stack, provides a typical business model, and provides various components that can help you quickly build enterprise-level back-office product prototypes.
+[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://laravue.dev) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
 
 :::tip
-The project is positioned as a background integration solution and is not suitable for secondary development as a basic template. Because this project integrates a lot of features that you may not use, it will cause a lot of code redundancy. If your project does not pay attention to this issue, you can also directly develop it based on it.
-
-- Integrated Solution: [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-- Basic Template: [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
-- Desktop: [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
+The project is positioned as an enterprise solution and it's highly recommended to start from scratch. You should start project from simple layout and add components one by one depending on your system. This is to avoid redundant code as this project provides lot of features that you may not use.
+- Laravel package: [laravel-core](https://github.com/tuandm/laravue-core)
   :::
 
 <br/>
@@ -32,20 +29,13 @@ The project is positioned as a background integration solution and is not suitab
 - Permission Authentication
   - Page permission
   - Directive permission
-  - Two-step login
-
-- Multi-environment build
-  - dev sit stage prod
 
 - Global Features
   - I18n
-  - Multiple dynamic themes
-  - Dynamic sidebar (supports multi-level routing)
+  - Dynamic sidebar with permissions (supports multi-level routing)
   - Dynamic breadcrumb
-  - Tags-view(Tab page Support right-click operation)
+  - Historical bar using Tags-view with right-click supported
   - Svg Sprite
-  - Mock data
-  - Screenfull
   - Responsive Sidebar
 
 - Editor
@@ -72,122 +62,122 @@ The project is positioned as a background integration solution and is not suitab
 - Components
   - Avatar Upload
   - Back To Top
-  - Drag Dialog
-  - Drag Kanban
-  - Drag List
   - SplitPane
   - Dropzone
   - Sticky
+  - BackToTop button
   - CountTo
+  - Kanban board
+  - Draggable list
+  - Draggable popup dialog
+  - And [more...](https://laravue.dev/#/dashboard)
 
 - Advanced Example
-- Error Log
 - Dashboard
 - Guide Page
 - ECharts
 - Clipboard
-- Markdown to Html
+- Layout elements (Form, Tab, Icons...)
 ```
 
 <br/>
 
 ## Preparation
+Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org). [Git](https://git-scm.com/) and [composer](https://getcomposer.org/) are required too.
 
-You need to install [node](http://nodejs.org/) and [git](https://git-scm.com/) locally. The project is based on [ES2015+](http://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all request data is simulated using [Mock.js](https://github.com/nuysoft/Mock). Understanding and learning this knowledge in advance will greatly help the use of this project.
-
-At the same time supporting a series of tutorial articles, how to build a complete background project from zero, suggest that you read these articles and then come to practice this project. But there's no English version yet.
-
-- [手摸手，带你用 vue 撸后台 系列一(基础篇)](https://juejin.im/post/59097cd7a22b9d0065fb61d2)
-- [手摸手，带你用 vue 撸后台 系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac)
-- [手摸手，带你用 vue 撸后台 系列三 (实战篇)](https://juejin.im/post/593121aa0ce4630057f70d35)
-- [手摸手，带你用 vue 撸后台 系列四(vueAdmin 一个极简的后台基础模板)](https://juejin.im/post/595b4d776fb9a06bbe7dba56)
-- [手摸手，带你封装一个 vue component](https://segmentfault.com/a/1190000009090836)
-- [手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)
-- [手摸手，带你用合理的姿势使用 webpack4（上）](https://juejin.im/post/5b56909a518825195f499806)
-- [手摸手，带你用合理的姿势使用 webpack4（下）](https://juejin.im/post/5b5d6d6f6fb9a04fea58aabc)
+Besides, the project is based on [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all API will be served by Laravel. Understanding and learning this knowledge in advance will greatly help the use of this project.
 
 ::: tip
 **This project does not support low-level browsers (such as ie). If you need to, please add polyfills yourself.**
-
-**Note: This project uses element-ui@2.3.0+ version, so the minimum compatibility with vue@2.5.0+**
 :::
 
 ## Project Structure
 
-This project has built the following templates, and have built a scaffold based on Vue, which should help you prototyping production-ready admin interfaces. It covers almost everything you need.
+This project has built with following structure.
 
 ```bash
-├── build                      // webpack config files
-├── config                     // main project config
-├── src                        // main source code
-│   ├── api                    // api service
-│   ├── assets                 // module assets like fonts,images (processed by webpack)
-│   ├── components             // global components
-│   ├── directive              // global directive
-│   ├── filters                // global filter
-│   ├── icons                  // svg icons
-│   ├── lang                   // i18nlanguage
-│   ├── mock                   // mock data
-│   ├── router                 // router
-│   ├── store                  // store
-│   ├── styles                 // global css
-│   ├── utils                  // global utils
-│   ├── vendor                 // vendor
-│   ├── views                  // views
-│   ├── App.vue                // main app component
-│   ├── main.js                // app entry file
-│   └── permission.js          // permission authentication
-├── static                     // pure static assets (directly copied)
-│   └── Tinymce                // rich text editor
+├── app                        // Laravel app folder
+├── boostrap                   // Laravel boostrap folder
+├── config                     // Laravel boostrap
+│   └── laravue.php            // Configuration file for Laravue project
+├── database                   // Laravel database folder
+├── public                     // Laravel public folder
+│   ├── fonts
+│   │   └── vendor             // Vendor fonts (element-ui...)
+│   └── static                 // Configuration file for Laravue project
+│       └── Tinymce            // rich text editor
+├── resources                  // Laravel resources
+│   ├── js                     // Main laravue source code
+│   │   ├── api                // api service
+│   │   ├── assets             // module assets like fonts,images (processed by webpack)
+│   │   ├── components         // global components
+│   │   ├── directive          // global directive
+│   │   ├── filters            // global filter
+│   │   ├── icons              // svg icons
+│   │   ├── lang               // i18nlanguage
+│   │   ├── router             // router
+│   │   ├── store              // store
+│   │   ├── styles             // global css
+│   │   ├── utils              // global utils
+│   │   ├── vendor             // vendor libraries (excels...)
+│   │   ├── views              // views
+│   │   ├── App.vue            // main app component
+│   │   ├── app.js             // app entry file
+│   │   └── permission.js      // permission authentication
+│   └── views                  // Laravel blade templates
+│       └── laravue.blade.php  // Main view for Laravue application
 ├── .babelrc                   // babel config
 ├── .eslintrc.js               // eslint config
 ├── .gitignore                 // sensible defaults for gitignore
-├── favicon.ico                // favicon ico
-├── index.html                 // index.html template
 └── package.json               // package.json
 ```
 
 ## Getting Started
 
 ```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-element-admin.git
+# Clone the project with composer
+composer create-project tuandm/laravue
+cd laravue
+
+# Migration and DB seeder (after changing your DB settings in .env)
+php artisan migrate --seed
+
+# Generate JWT secret key
+php artisan jwt:secret
 
 # install dependency
 npm install
 
-# develop
-npm run dev
+# Build for development
+npm run dev # or npm run watch
+
+# Start local development server
+php artisan serve
 ```
 
 <br/>
 
-This will automatically open http://localhost:9527.
+Now you can open Laravel at http://localhost:8000. After login with provided email/password, you should be able to see the Laravue dashboard
 
-If you see the following page then you have succeeded.
+Login page:
 
-![](https://wpimg.wallstcn.com/1bc334a6-32a8-4f29-a037-ac3f5ce32588.png)
+![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-login.png)
 
-We have built-in models, standard components, mock data, hot module reloading, state management, i18n, global router, etc. You can continue exploring other documents for more details on those topics.
+Laravue has already setup for standard components, state management, i18n, global router, linter,.... You can continue exploring other documents for more details on those topics.
 
 <br/>
 
 ::: tip
-**Suggestion：** You can use `vue-element-admin` as a toolbox or as an integration solution repository, It is recommended to do secondary development on the basis of `vue-admin-template`, if you need any additional feature, you can copy from `vue-element-admin`.
+**Suggestion：** You should try [laravue-core](https://github.com/tuandm/laravel-core) package if you want to integrate Laravue to your current Laravel projects. Laravue itself will be a good guideline for you.
 :::
 
 ## Contribution
 
-The repository of documentation is [vue-element-admin-site](https://github.com/PanJiaChen/vue-element-admin-site) based on [vuepress](https://github.com/vuejs/vuepress) development.
+The repository of documentation is [laravue-doc](https://github.com/tuandm/laravue-doc) based on [vuepress](https://github.com/vuejs/vuepress) development.
 
-There may be some spelling or translation errors in the course of writing this document. It is welcome to point out by issue or pr. After all, English is not my mother tongue.
+There will be many errors related to spelling or translation from [original project](https://github.com/PanJiaChen/vue-element-admin). It is welcome to point out by issue or pr. My English is not too good.
 
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) is also continuing to iterate, summarize and summarize more features, and summarize the best practices of product templates/components/business scenarios in the middle and back office. This project is also very much looking forward to your participation and [feedback](https://github.com/PanJiaChen/vue-element-admin/issues).
-
-## Donate
-
-If you think this project is useful, you can buy a glass of juice for the author :heart:
-[Donate](/donate/)
+This project is still on development to provide more and more awesome features, integrate with high-quality Laravel packages and apply the best practices of development to build an enterprise solution for back office. We are looking forward to your contribution and [feedback](https://github.com/tuandm/laravue/issues).
 
 ## Browsers Support
 

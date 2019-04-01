@@ -68,14 +68,16 @@ The `transition` defines the switching animation between pages, you can modify t
 
 ## router-view
 
-**Different router the same component vue。** In a real work, there are many situations. such as:
+**Different router the same component vue。** 
+
+In a real work, there are many situations like:
 
 ```js
     { path: 'create', component: () => import('@/views/ArticleForm') },
     { path: 'edit/:id(\\d+)', component: () => import('@/views/ArticleForm') },
 ```
 
-Same component is used to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of vue. From the [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes) of `vue-router`, you can do this by watching the  $route. But in the real scenario, it is very unuseful and hard to micro-manage. We can bypass thie behavior by adding a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
+It uses same component to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of vue. From the [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes) of `vue-router`, you can do this by watching the  $route. But in the real scenario, it is not useful, hard to micro-manage, and easy to cause troubles. We can bypass thie behavior by adding a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
 
 ```js
 <router-view :key="key"></router-view>

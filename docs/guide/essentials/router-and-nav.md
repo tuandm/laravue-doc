@@ -1,8 +1,8 @@
 # Router and Nav
 
-Router and Nav are the key skeleton for organizing a management system.
+Router and Nav are the key skeleton for organizing the system.
 
-This project router and nav are bound together, so you only have to configure the route under `@/router/index.js` and the sidebar nav will be dynamically generated automatically. This greatly reduces the workload of manually editing the sidebar nav. Of course, so you need to follow many conventions in configuring the route.
+This project router and nav are bound together, so you only have to configure the route under `@/router/index.js` and the sidebar nav will be dynamically generated automatically. This greatly reduces the workload of manually editing the sidebar nav. Of course, you have to follow configurations of route item
 
 ## Config
 
@@ -61,7 +61,7 @@ meta: {
   meta: { roles: ['admin','editor'] }, // you can set roles in root nav
   children: [{
     path: 'index',
-    component: _import('permission/index'),
+    component: () => import('permission/index'),
     name: 'permission',
     meta: {
       title: 'permission',
@@ -75,11 +75,11 @@ meta: {
 
 ## Router
 
-There are two types of routes here , `constantRouterMap` and `asyncRouterMap`.
+There are two types of routes here , `constantRoutes` and `asyncRoutes`.
 
-**constantRouterMap:** represents routes that do not require dynamic access, such as login page, 404, general page, and so on.
+**constantRoutes:** represents routes that do not require authorized access such as login page, 404, general pages...
 
-**asyncRouterMap:** represents pages that require dynamic judgment permissions and are dynamically added through `addRouters`. The details will be introduced on the [permission](permission.md).
+**asyncRoutes:** represents pages that require dynamic permissions and are dynamically added through `addRoutes`. The details will be introduced on the [permission](permission.md).
 
 ::: tip
 All routing pages here use the `router lazy loading`, as described in [document](/guide/advanced/lazy-loading.md)
@@ -90,24 +90,24 @@ If you want to know more about browserHistory and hashHistory, please refer to [
 The other configurations are no different from the [vue-router](https://router.vuejs.org/en/) official, so check the documentation for yourself.
 
 ::: warning
-There is one thing to be careful about is that the 404 page must be the last to load, if it is declared in constantRouterMap. Later declared pages will be blocked to 404, see the details of the problem: [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176)
+There is one thing to be careful about is that the 404 page must be the last to load, if it is declared in constantRoutes. Later declared pages will be blocked to 404, see the details of the problem: [addRoutes when you've got a wildcard route for 404s does not work](https://github.com/vuejs/vue-router/issues/1176)
 :::
 
 ## Sidebar
 
 The project sidebar is mainly based on the `el-menu` of element-ui.
 
-Also introduced in the front, the sidebar is generated dynamically by reading the route and combined with the permission judge, but also need to support the infinite nesting of routes, so here is also used to the recursive components.
+Also introduced in the front, the sidebar is generated dynamically by reading the routes and combined with the permission system, but also need to support the infinite nesting of routes, so here is also used to the recursive components.
 
-> Code: [@/views/layout/components/Sidebar](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/views/layout/components/Sidebar)
+> Code: [@/views/layout/components/Sidebar](https://github.com/tuandm/laravue/tree/master/resources/js/views/layout/components/Sidebar)
 
-This also modify many default sidebar styles of `element-ui`. All css can be found in [@/styles/sidebar.scss](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/styles/sidebar.scss) and can be modified to suit your needs.
+This also modify many default sidebar styles of `element-ui`. All css can be found in [@/styles/sidebar.scss](https://github.com/tuandm/laravue/blob/master/resources/js/styles/sidebar.scss) and can be modified to suit your needs.
 
 **Here need to pay attention**. The general sidebar has two forms, `submenu` and`el-menu-item`. One is a nested submenu, the other is a direct link. As shown below:
 
-![](https://wpimg.wallstcn.com/e94739d6-d701-45c8-8c6e-0f4bb10c3b46.png)
+![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/nested-menu.png)
 
-The sidebar has already helped you to make a judgment. When you route a children below the declaration of more than >1 routes, it will automatically become a nested mode. If the sub-route is exactly equal to one, the sub-route is displayed as a root route in the sidebar by default. If you do not want to, you can disable this feature by setting `alwaysShow: true` in the root route. Such as:
+The sidebar has already helped you to create nested menu. If you define more than one route in `children`, it will automaticly become the nested mode. If the `children` has only one route item, root menu will be shown instead. If you do not want to, you can disable this feature by setting `alwaysShow: true` in the root route. Such as:
 
 ```js
 // no submenu, because children.length===1
@@ -132,19 +132,19 @@ The sidebar has already helped you to make a judgment. When you route a children
     icon: 'component'
   },
   children: [
-    { path: 'tinymce', component: ()=>import('components-demo/tinymce'), name: 'tinymce-demo', meta: { title: 'tinymce' }},
-    { path: 'markdown', component: ()=>import('components-demo/markdown'), name: 'markdown-demo', meta: { title: 'markdown' }},
+    { path: 'tinymce', component: () =>import('components-demo/tinymce'), name: 'tinymce-demo', meta: { title: 'tinymce' }},
+    { path: 'markdown', component: () =>import('components-demo/markdown'), name: 'markdown-demo', meta: { title: 'markdown' }},
   ]
 }
 ```
 
 ## Click the sidebar to refresh the current route
 
-Before using the development model of spa(single page application), each time the user clicks the sidebar will request this page again, the user gradually developed the habit of clicking the current route in the sidebar to refresh the view. But now the spa is not the same, the user clicks the currently highlighted route and does not refresh the view, because the vue-router will intercept your routing, it determines your url does not change, so it will not trigger any hook or view changes.[Related issue](https://github.com/vuejs/vue-router/issues/296), the community has also heated discussions on the issue.
+Before using the development model of SPA(Single Page Application), each time the user clicks the sidebar will request this page again, the user gradually developed the habit of clicking the current route in the sidebar to refresh the view. But now the spa is not the same, the user clicks the currently highlighted route and does not refresh the view, because the vue-router will intercept your routing, it determines your URL does not change, so it will not trigger any hook or view changes.There is many discussions related to [this issue](https://github.com/vuejs/vue-router/issues/296).
 
 ![](https://wpimg.wallstcn.com/5d0b0391-ea6a-45f2-943e-aff5dbe74d12.png)
 
-`yyx990803`also said that he wanted to add a way to brighten the view, but later he changed his mind again/(ㄒ o ㄒ)/~~ But demand is here, what should we do? He said it would not trigger anything without changing the current URL, so can I force the trigger? The hack is simple. By changing the url query to trigger the view changes。We listen to each link's click event on the sidebar, each click will push a different query for the router to ensure that the view is refreshed.
+`yyx990803`also said that he wanted to add a way to brighten the view, but later he changed his mind again/(ㄒ o ㄒ)/~~ But demand is here, what should we do? He said it would not trigger anything without changing the current URL, so can I force the trigger? The hack is simple. By changing the URL query to trigger the view changes。We listen to each link's click event on the sidebar, each click will push a different query for the router to ensure that the view is refreshed.
 
 ```js
 clickLink(path) {
@@ -159,15 +159,15 @@ clickLink(path) {
 }
 ```
 
-ps: Don't forget to add a unique `key` to `router-view`, such as `<router-view :key="$route.path"></router-view>`.
+Note: Don't forget to add a unique `key` to `router-view`, such as `<router-view :key="$route.path"></router-view>`.
 
-But there's also a drawback the ugly `query` suffix behind url, such as `xxx.com/article/list?t=1496832345025`
+But there's also a drawback the ugly `query` suffix behind URL, such as `xxx.com/article/list?t=1496832345025`
 
-You can know from the previous issue that there are many other options. In my company project, the solution adopted is to determine whether the currently clicked menu route is consistent with the current route. However, when it is consistent, it will jump to a dedicated Redirect page, which will redirect the route to Go to the page, this will have a refresh effect.
+There is another solution which is to determine whether the currently clicked menu route is consistent with the current route. However, when it is consistent, it will jump to a dedicated Redirect page, which will redirect the route to Go to the page, this will have a refresh effect.
 
 **Example**
 
-![](https://wpimg.wallstcn.com/0dd7f78b-0fb5-4c7d-8236-cee78f960984.jpg)
+![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/change-font.jpg)
 
 Click on the global size switch button shown in the image and you will see that the page of `app-main` has been refreshed. It uses the method of redirecting to the `Redirect` page and then redirecting back to the original page.
 
@@ -184,7 +184,7 @@ The `redirect` page is redirected back to the original page
 
 ```js
 // redirect.vue
-// https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/redirect/index.vue
+// https://github.com/tuandm/laravue/blob/master/resources/js/views/redirect/index.vue
 export default {
   beforeCreate() {
     const { params, query } = this.$route
@@ -201,32 +201,9 @@ export default {
 
 ## Breadcrumb
 
-This project also packages a breadcrumb navigation, which is also dynamically generated by the watch $route change. It is the same with the menu, you can also config it in the routing. You can also add some custom attributes to your business needs in route.meta attr. For example, you can declare `breadcrumb:false` in the route so that it is not displayed in breadcrumb.
+This project also provides a breadcrumb navigation, which is also dynamically generated by watching $route change. It is the same with the menu, you can also config it in the routing. You can also add some custom attributes to your business needs in route.meta attr. For example, you can declare `breadcrumb:false` in the route so that it is not displayed in breadcrumb.
 
-![](https://wpimg.wallstcn.com/4c60b3fc-febd-4e22-9150-724dcbd25a8e.gif)
-
-> Corresponding code: [@/components/Breadcrumb](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/Breadcrumb/index.vue)
-
-## Sidebar scroll problem
-
-Previous versions of scroll were handled with css
-
-```css
-overflow-y: scroll;
-
-::-webkit-scrollbar {
-  display: none;
-}
-```
-
-But hack by css has some problems, in Firefox or other lower versions of the browser will be less beautiful.
-Second, in the case of sidebar collapses, limited to `menu` of`element-ui`, can not be handled in this way.
-
-So the current version uses `el-scrollbar` to handle the sidebar scrolling problem.
-
-::: tip Code
-[@/components/Sidebar](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/layout/components/Sidebar/index.vue)
-:::
+> Corresponding code: [@/components/Breadcrumb](https://github.com/tuandm/laravue/blob/master/resources/js/components/Breadcrumb/index.vue)
 
 ## Sidebar external-link <Badge text="v3.8.2+"/>
 
@@ -240,7 +217,7 @@ E.g.
   "component": Layout,
   "children": [
     {
-      "path": "https://github.com/PanJiaChen/vue-element-admin",
+      "path": "https://github.com/tuandm/laravue",
       "meta": { "title": "externalLink", "icon": "link" }
     }
   ]

@@ -38,4 +38,7 @@ npm install
 
 # develop
 npm run dev # or npm run watch
+
+# Start local development server
+php artisan serve
 ```

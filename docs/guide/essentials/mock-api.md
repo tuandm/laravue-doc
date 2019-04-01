@@ -66,7 +66,7 @@ module.exports = {
 ```
 
 Then create an `axios` instance based on the environment variable to have a different `baseURL`.
-[@/utils/request.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/utils/request.js)
+[@/utils/request.js](https://github.com/tuandm/laravue/blob/master/resources/js/utils/request.js)
 
 ```js
 // create an axios instance

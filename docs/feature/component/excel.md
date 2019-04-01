@@ -4,7 +4,7 @@
 
 Import and export of Excel is implemented by relying on [js-xlsx](https://github.com/SheetJS/js-xlsx).
 
-[Export2Excel.js](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/vendor/Export2Excel.js) is packaged on the on `js-xlsx` to facilitate exporting data.
+[Export2Excel.js](https://github.com/tuandm/laravue/blob/master/resources/js/vendor/Export2Excel.js) is packaged on the on `js-xlsx` to facilitate exporting data.
 
 ### Use
 
@@ -61,12 +61,12 @@ import('@/vendor/Export2Excel').then(excel => {
 })
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/export-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/exportExcel.vue)
+- [Online Demo](https://laravue.dev/#/excel/export-excel)
+- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/exportExcel.vue)
 
 ## Excel Import
 
-Encapsulated [UploadExcel](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/UploadExcel/index.vue) Excel import component, support click and drag upload, also it is also Depends on `js-xlsx`.
+Encapsulated [UploadExcel](https://github.com/tuandm/laravue/blob/master/resources/js/components/UploadExcel/index.vue) Excel import component, support click and drag upload, also it is also Depends on `js-xlsx`.
 
 It provides two callback functions:
 
@@ -100,5 +100,5 @@ It provides two callback functions:
     }
 ```
 
-- [Online Demo](https://panjiachen.github.io/vue-element-admin/#/excel/upload-excel)
-- [Online Code](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/views/excel/uploadExcel.vue)
+- [Online Demo](https://laravue.dev/#/excel/upload-excel)
+- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/uploadExcel.vue)

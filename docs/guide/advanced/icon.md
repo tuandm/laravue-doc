@@ -1,6 +1,6 @@
 # Icon
 
-If you do not find the desired icon in the [Icon](https://github.com/PanJiaChen/vue-element-admin/tree/master/src/icons/svg) of this project, you can select and generate your own business icon library on [iconfont.cn](http://iconfont.cn/)and use it again. Or other svg icon website, download svg and put it in this folder.
+If you do not find the desired icon in the [Icon](https://github.com/tuandm/laravue/blob/master/resources/js/icons/svg) of this project, you can select and generate your own business icon library on [iconfont.cn](http://iconfont.cn/)and use it again. Or other svg icon website, download svg and put it in this folder.
 
 ## Generate icon library code
 
