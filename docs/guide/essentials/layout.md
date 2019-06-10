@@ -5,7 +5,7 @@ Layout is the outermost frame structure of the page and usually includes navigat
 ![Laravue layout](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-layout.jpg)
 
 ::: tip Code
-[@/views/layout](https://github.com/tuandm/laravue/tree/master/resources/js/views/layout)
+[@/layout](https://github.com/tuandm/laravue/tree/master/resources/js/layout)
 :::
 
 `@` is webpack's [alias](https://webpack.js.org/configuration/resolve/#resolve-alias) and point to `resource/js`, this alias can be changed in `webpack.mix.js`.
@@ -18,7 +18,7 @@ Most of the pages in `laravue` extend from `<layout>`, except special pages such
 //No layout
 {
   path: '/401',
-  component: () => import('errorPage/401'),
+  component: () => import('@views/ErrorPage/401'),
 }
 
 //Has layout
