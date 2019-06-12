@@ -1,79 +1,90 @@
-# Permission
+# Roles and Permissions
 
-It has been introduced in detail in this article--[手摸手，带你用 vue 撸后台 系列二(登录权限篇)](https://juejin.im/post/591aa14f570c35006961acac).
+Roles and permission have been introduced in this article [Laravue part 2 - Permissions and Roles](https://dev.to/tuandm/laravue-part-2-acl-authentication-permissions-and-roles-49fe-temp-slug-7192660?preview=9ab5016c9f635b4d2fbf501b9aa55fc4b932c74e05d0d2a31a377384dc536c4b90754b534601c6ccb1cc23aa281b279073040c1eb2a2004b96760f04).
 
-The implementation of this project's permission is: compare the routing table by obtaining the current user's permission, and generate the routing table accessible by the current user with the permission, and dynamically mount it to `router` through `router.addRoutes`.
+## Introduction
+Laravue's permissions system is based on [spatie/laravel-permission](https://github.com/spatie/laravel-permission). As the design, a user can belong to many roles. However, in the scope of demo project, Laravue allows creating user with only one role. You can custom source code to support multi-roles.
 
-But in fact, the business logic of many companies may not be the case. For example, the requirement of many companies is that the permissions of each page are dynamically configured, unlike the default settings in this project. But in fact the principle is the same. For example, you can dynamically configure permissions for each page through a tree control or other presentation, and then store this routing table to the back end. When the user logs in to get `roles`, the front end requests the accessible routing table to the backend according to `roles`, so that the accessible pages are dynamically generated. After that, the router.addRoutes is dynamically mounted to the router. You will find the same. , never change their case.
+![Creating user with only one role can be assigned](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/add-user.png)
 
-Just one more step to map the back-end return routing table with the local components. [issue](https://github.com/PanJiaChen/vue-element-admin/issues/293)
+## How it works
+After logged-in, server returns all the permissions of authenticated user, then generates the routing table accessible by them, and dynamically mount it to `router` through `router.addRoutes`. 
+User's permissions contain the permissons of user's role and extra permissions assigning to that user.
 
-```js
-const map={
- login:require('login/index').default // sync
- login:()=>import('login/index')      // async
-}
-// The map on which you have a server is similar with
-const serviceMap=[
- { path: '/login', component: 'login', hidden: true }
-]
-// After traversing this map, dynamically generate asyncRouterMap
-And replace component with map[component]
-```
-
-Ps: Do not rule out this project will increase the permissions control panel to support true dynamic configuration permissions.
+::: tip permission in UserResource
+[app/Http/Resources/UserResource.php](https://github.com/tuandm/laravue/blob/master/app/Http/Resources/UserResource.php)
+:::
 
 ## Logical modification
 
 The control code of the routing level right now is in `@/permission.js`. If you want to change the logic, you can release the hook `next()` directly in the appropriate judgment logic.
 
-## Permission directive
+## Directives
+Laravue provides [v-permission](https://github.com/tuandm/laravue/blob/master/resources/js/directive/permission) and [v-role](https://github.com/tuandm/laravue/blob/master/resources/js/directive/role) directives to easily and quickly work with roles and permissions.
 
-Write a permission directive, and can easily and quickly implement button-level permission judgment. [v-permission](https://github.com/tuandm/laravue/blob/master/resources/js/directive/permission)
-
-**Use**
+**How to use**
 
 ```html
 <template>
+  <!-- Only user who has 'manage user' or 'list user' permission can see it -->
+  <el-tag v-permission="['manage user', 'list user']">Users</el-tag>
+
+  <!-- Only user who has 'view menu table' permission can see it -->
+  <el-tag v-permission="['view menu table']">Tables</el-tag>
+
   <!-- Admin can see this -->
-  <el-tag v-permission="['admin']">admin</el-tag>
+  <el-tag v-role="['admin']">admin</el-tag>
 
   <!-- Editor can see this -->
-  <el-tag v-permission="['editor']">editor</el-tag>
+  <el-tag v-role="['editor']">editor</el-tag>
 
   <!-- Editor can see this -->
-  <el-tag v-permission="['admin','editor']">Both admin or editor can see this</el-tag>
+  <el-tag v-role="['admin', 'editor']">Both admin or editor can see this</el-tag>
+  <!-- Admin has permission 'manage user' can see this -->  
+  <el-tag v-role="['admin']" v-permission="['manage user']">Manage users</el-tag>
 </template>
 
 <script>
-// Of course you can also register it for the sake of convenience.
+// Of course you have to register them by importing directives
 import permission from '@/directive/permission/index.js'
-export default{
-  directives: { permission }
+import role from '@/directive/role/index.js'
+export default {
+  directives: { permission, role }
 }
 </script>
 ```
 
-**Limitations**
+**Note**
 
-In some cases it is not suitable to use v-permission, such as element Tab component which can only be achieved by manually setting the v-if.
+When using `v-role` and `v-permission` together, it will use AND operation.
 
-You can use the global permission judgment function. The usage is similar to the instruction `v-permission`.
+::: tip Examples
+You can find more examples [here](https://laravue.dev/#/permission/directive)
+:::
+
+### Limitation
+
+In some cases it is not suitable to use `v-permission` or `v-role`, for instance the element Tab component which can only be achieved by manually setting the v-if.
+
+You can use the global permission/role checking methods. The usage is similar to the instruction `v-permission`/`v-role`.
 
 ```html
 <template>
-  <el-tab-pane v-if="checkPermission(['admin'])" label="Admin">Admin can see this</el-tab-pane>
-  <el-tab-pane v-if="checkPermission(['editor'])" label="Editor">Editor can see this</el-tab-pane>
-  <el-tab-pane v-if="checkPermission(['admin','editor'])" label="Admin-OR-Editor">Both admin or editor can see this</el-tab-pane>
+  <el-tab-pane v-if="checkPermission(['manage user'])" label="Manage user">User who has 'manage user' permission can see this</el-tab-pane>
+  <el-tab-pane v-if="checkRole(['admin'])" label="Admin">Admin can see this</el-tab-pane>
+  <el-tab-pane v-if="checkRole(['editor'])" label="Editor">Editor can see this</el-tab-pane>
+  <el-tab-pane v-if="checkRole(['admin','editor'])" label="Admin-OR-Editor">Both admin or editor can see this</el-tab-pane>
 </template>
 
 <script>
-import checkPermission from '@/utils/permission'
+import checkPermission from '@/utils/permission';
+import checkRole from '@/utils/role';
 
 export default{
-   methods: {
-    checkPermission
-   }
+  methods: {
+    checkPermission, 
+    checkRole,
+  }
 }
 </script>
 ```

@@ -24,10 +24,8 @@ Most of the pages in `laravue` extend from `<layout>`, except special pages such
 //Has layout
 {
   path: '/documentation',
-
   // You can choose different layout components - remember to import Layout first
   component: Layout,
-
   // Here the route is displayed in app-main
   children: [{
     path: 'index',
@@ -58,7 +56,7 @@ If you don't get familiar with `vue-router`, Please refer to [official document]
 ## app-main
 
 ::: tip Code
-[@/views/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/views/layout/components/AppMain.vue)
+[@/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/layout/components/AppMain.vue)
 :::
 `<app-main>` uses `<router-view>` to render the content which is returned from the main component registering in route item. `<router-view>` is put inside `<keep-alive>` in order to be cacheable. Please check [router and navigration](router-and-nav.md) for more details.
 
@@ -77,7 +75,7 @@ In a real work, there are many situations like:
     { path: 'edit/:id(\\d+)', component: () => import('@/views/ArticleForm') },
 ```
 
-It uses same component to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of vue. From the [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes) of `vue-router`, you can do this by watching the  $route. But in the real scenario, it is not useful, hard to micro-manage, and easy to cause troubles. We can bypass thie behavior by adding a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
+Same component is used to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of Vue. You can do this by watching the `$route` (see [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes)). But it is not too useful in the real scenario, hard to micro-manage, and easy to cause troubles. We can bypass this behavior by adding a unique key to the `router-view` to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
 
 ```js
 <router-view :key="key"></router-view>
@@ -93,7 +91,7 @@ computed: {
 ::: tip
 **Or** You can declare two different views like the `Create` and `Edit` in this project but introduce the same component.
 
-Code：[@/views/form](https://github.com/tuandm/laravue/tree/master/resources/js/views/example)
+Code：[@/views/articles](https://github.com/tuandm/laravue/tree/master/resources/js/views/articles)
 :::
 
 ```html
