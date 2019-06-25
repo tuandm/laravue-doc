@@ -210,15 +210,15 @@ By default, Laravue provides simple [RESTful API](https://github.com/tuandm/lara
 If you want to have more API for resources, just extend the base class and add yours. Example: https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js
 
 
-## Create Component
+## Create Components
 
-Personally write vue project habits, the global `@/components` will only write some global components, such as rich text, various search components, packaged date components, etc. can be shared components. Each page or module-specific business component is written under the current views. Such as: `@/views/article/components/xxx.vue`. This split greatly reduces maintenance costs.
+To make the code managable and easy to maintain, the global `@/components` will contain global components, such as rich text, various search components, packaged date components, etc.They can be shared across components. Besides, each page or module-specific business component is written under the current views. Such as: `@/views/article/components/LocalComponent.vue`. This separation greatly reduces maintenance costs.
 
 **Remember that the biggest benefit of splitting components is not shared code but maintainability!**
 
 ## Create Style
 
-The page's style and components are the same. The global `@/style` writes a global common style. The style of each page is written under the current `views`. Please remember to add `scoped` or namespace to avoid Causes global style pollution.
+The page's style and components are the same. The global `@/style` writes a global common style. The style of each page is written under the current `views`. Please remember to add `scoped` or namespace to avoid global style pollution.
 
 ```css
 <style>

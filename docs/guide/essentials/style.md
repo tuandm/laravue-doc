@@ -2,7 +2,7 @@
 
 ## CSS Modules
 
-In the code of stylIn the style development process, there are two issues are more prominent:
+There are two main issues of the style development:
 
 - Global pollution —— The selector in the CSS file is global. The same name selector in different files, according to the order in the build generation file, the styles generated later will overwrite the previous ones.
 
@@ -32,20 +32,22 @@ With scoped, the parent component's styles will not leak into child components. 
 
 ## Project Structure
 
-vue-element-admin All global styles are set in the `@/src/styles` directory.
+All global styles are set in the `/resources/js/styles` directory.
 
 ```bash
 ├── styles
 │   ├── btn.scss                 # button css
 │   ├── element-ui.scss          # global custom element-ui style
-│   ├── index.scss               # global common style
+│   ├── element-variables.scss   # global variables for customizing element-ui style
+│   ├── index.scss               # global common style - to sync with vendor (vue-element-admin project)
+│   ├── laravue.scss             # custom common style will be put here
 │   ├── mixin.scss               # global sass mixin
 │   ├── sidebar.scss             # sidebar css
 │   ├── transition.scss          # vue transition animation
 │   └── variables.scss           # global variables
 ```
 
-The common workflow is that the global styles are written in the `src/styles` directory and each page's own style is written in its own `.vue` file.
+Same as Vue components workflow, global styles are written in `/resources/js/styles` directory and each page's own style is written in its own `.vue` file.
 
 ```css
 <style>

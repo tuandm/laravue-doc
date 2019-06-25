@@ -9,10 +9,10 @@ Here to import [vue-count-to](https://github.com/PanJiaChen/vue-countTo) as an e
 Enter the following command in the terminal to complete the installation:
 
 ```bash
-$ npm install vue-count-to --save
+$ npm install vue-count-to --save-dev
 ```
 
-> add `--save` will automatically add dependencies to package.json.
+> add `--save-dev` will automatically add devDependencies to package.json.
 
 <br/>
 
@@ -20,7 +20,7 @@ $ npm install vue-count-to --save
 
 ### Global Registration
 
-**main.js**
+**app.js**
 
 ```js
 import countTo from 'vue-count-to'
