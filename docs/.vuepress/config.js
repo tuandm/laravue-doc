@@ -149,7 +149,6 @@ function genEssentialsSidebar(type = '') {
     '/guide/essentials/style.md',
     '/guide/essentials/api.md',
     '/guide/essentials/import.md',
-    '/guide/essentials/deploy.md'
   ]
   return mapArr.map(i => {
     return type + i
@@ -158,7 +157,6 @@ function genEssentialsSidebar(type = '') {
 
 function genAdvancedSidebar(type = '') {
   const mapArr = [
-    '/guide/advanced/cors.md',
     '/guide/advanced/eslint.md',
     '/guide/advanced/git-hook.md',
     '/guide/advanced/lazy-loading.md',

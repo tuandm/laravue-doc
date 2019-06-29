@@ -6,15 +6,8 @@ When projects are completed, you can build your application only run one command
 
 ```bash
 # build for production environment
-npm run build:prod
-
-# build for test environment
-npm run build:sit
+npm run production
 ```
-
-After the build package is successful, the `dist` folder will be generated in the root directory, which is to build a packaged file, usually static files such as `***.js`, `***.css`, `index.html`, etc. .
-
-If you need a custom build, such as specifying the dist directory, you need to configure it through [config](https://github.com/PanJiaChen/vue-element-admin/blob/master/config/index.js).
 
 ### Environmental variables
 

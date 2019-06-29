@@ -206,9 +206,24 @@ Now switching language between EN and VI will show corresponding text.
 Finally, under the [@/api](https://github.com/tuandm/laravue/blob/master/resources/js/api) folder, create the corresponding api service for this module.
 
 ### RESTful API
-By default, Laravue provides simple [RESTful API](https://github.com/tuandm/laravue/blob/master/resources/js/api/resource.js) which works well with [Laravel's Resource](https://laravel.com/docs/5.8/eloquent-resources). `@/api/resources` offers simple actions for any resources, just provide URI.
-If you want to have more API for resources, just extend the base class and add yours. Example: https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js
+Laravue provides a convenient way to send RESTful requests from frontend to backend which returns [Laravel's Resources](https://laravel.com/docs/5.8/eloquent-resources) as results. `@/api/resources.js` offers simple actions for any resources, just provide URI. For example:
 
+```
+import Resource from '@/api/resource';
+const userResource = new Resource('users');
+...
+userResource
+  .update(userId, userObject)
+  .then(response => {
+    // handle response
+  })
+  .catch(error => {
+    console.log(error);
+  });
+```
+If you want to have more API for resources, just extend the base class and add your extra APIs. Example: [role api](https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js)
+
+See the [Work with API](api.md) for more details.
 
 ## Create Components
 

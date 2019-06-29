@@ -155,7 +155,6 @@ npm run dev # or npm run watch
 # Start local development server
 php artisan serve
 ```
-
 <br/>
 
 Now you can open Laravel at http://localhost:8000. After login with provided email/password, you should be able to see the Laravue dashboard
@@ -171,6 +170,18 @@ Laravue has already setup for standard components, state management, i18n, globa
 ::: tip
 **Suggestion：** You should try [laravue-core](https://github.com/tuandm/laravel-core) package if you want to integrate Laravue to your current Laravel projects. Laravue itself will be a good guideline for you.
 :::
+
+### Build for production
+```
+npm run production
+```
+### Analyze the build file size
+If your build file is large, you can optimize your code by building and analyzing the size distribution of dependent modules using the `webpack-bundle-analyzer`.
+```
+npm run report
+```
+After running you can see the specific size distribution at http://127.0.0.1:8888 (it will automatically open).
+
 
 ## Contribution
 
