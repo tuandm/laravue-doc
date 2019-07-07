@@ -135,7 +135,7 @@ The sidebar has already helped you to create nested menu. If you define more tha
   }],
 },
 
-// has submenu, because children.length=1
+// has submenu, because children.length>1
 {
   path: '/components',
   component: Layout,
