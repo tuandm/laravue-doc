@@ -1,17 +1,18 @@
 # Chart
 
-Managing background charts is also a common requirement. The chart here only recommends ECharts, full-featured, community demo is also rich [gallery](http://gallery.echartsjs.com/explore.html)。
+Charts are very important for an enterprise dashboard which provide a visual reprentation of data in various types, clarify information effectively, allow users to perceive information quicky,.. In `laravue`, we recommend full-featured [ECharts](https://echarts.apache.org/en/index.html).
+You can find many awsome examples from community: http://gallery.echartsjs.com/explore.html
 
-I still have that point of view. Most plug-ins recommend that use vue for packaging by yourself. It's really simple. ECharts supports the import of webpack, you can import the whole ECharts `var echarts = require ('echarts')` However, ECharts is not small, if you use only a small part of the features or chart type, then recommend on-demand import.
+ECharts supports the import of webpack, you can import the whole ECharts `var echarts = require('echarts')`. However, ECharts is not small, if you use only a few features or chart types, then it's recommended to import individually.
 
 ```js
 // Import on demand -- import ECharts main module
-var echarts = require('echarts/lib/echarts')
+var echarts = require('echarts/lib/echarts');
 // Import bar
-require('echarts/lib/chart/bar')
+require('echarts/lib/chart/bar');
 // Import tooltip&title
-require('echarts/lib/component/tooltip')
-require('echarts/lib/component/title')
+require('echarts/lib/component/tooltip');
+require('echarts/lib/component/title');
 
 // Import all ECharts module
 var echarts = require('echarts')
@@ -35,15 +36,15 @@ methods: {
   setOptions() {
     this.chart.setOption({
       title: {
-        text: 'ECharts 入门示例'
+        text: 'ECharts Example'
       },
       tooltip: {},
       xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        data: ["Shirt", "Sweater", "Chiffon Shirt", "Pants", "High Heels", "Socks"]
       },
       yAxis: {},
       series: [{
-        name: '销量',
+        name: 'Volumes',
         type: 'bar',
         data: [5, 20, 36, 10, 10, 20]
       }]
@@ -52,7 +53,9 @@ methods: {
 }
 ```
 
-It's that simple, ECharts is configured, at this point you want to say that my data is obtained remotely, or how do I dynamically change the configuration of ECharts? We can trigger the setOptions method with watch
+ECharts is configured - quite simple.
+
+In case you want to load data remotely (from API for example) then dynamically show on chart, we can trigger the setOptions method with `watch`
 
 ```js
 // The first watch options change Using the depth of vue watcher, options are re-setOption
@@ -72,7 +75,7 @@ watch: {
 }
 ```
 
-In fact, they are all similar, or they must be combined with their own business. There is no difference between using ECharts in peacetime.
+Depends on your business, you can decide to show ECharts in the suitable way.
 
 ## Demo
 
@@ -84,4 +87,4 @@ In fact, they are all similar, or they must be combined with their own business.
 
 ## Others
 
-Of course there are many other libraries in the community, such as [d3](https://github.com/d3/d3) , [Chart.js](https://github.com/chartjs/Chart.js) , [chartist-js](https://github.com/gionkunz/chartist-js). The packaging methods are almost the same, and they are no longer here.
+There are many great libraries for charts, such as [d3](https://github.com/d3/d3), [Chart.js](https://github.com/chartjs/Chart.js), [chartist-js](https://github.com/gionkunz/chartist-js). Integrating them is not too hard.

@@ -182,6 +182,7 @@ npm run report
 ```
 After running you can see the specific size distribution at http://127.0.0.1:8888 (it will automatically open).
 
+![](https://cdn.laravue.dev/webpack-bundle-report.jpg)
 
 ## Contribution
 
