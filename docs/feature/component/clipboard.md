@@ -15,11 +15,11 @@ This project provides two ways to use.
 ```
 
 ```js
-import clip from '@/utils/clipboard.js' // use clipboard directly
+import clip from '@/utils/clipboard.js'; // use clipboard directly
 
 methods: {
   handleCopy(text, event) {
-    clip(text, event)
+    clip(text, event);
   }
 }
 ```
@@ -44,19 +44,19 @@ This project also encapsulates a `v-clipboard`.
 ```
 
 ```js
-import clipboard from '@/directive/clipboard/index.js' // use clipboard by v-directive
+import clipboard from '@/directive/clipboard/index.js'; // use clipboard by v-directive
 
 directives: {
-  clipboard
+  clipboard,
 },
 methods: {
   clipboardSuccess() {
     this.$message({
       message: 'Copy successfully',
       type: 'success',
-      duration: 1500
-    })
-  }
+      duration: 1500,
+    });
+  },
 }
 ```
 

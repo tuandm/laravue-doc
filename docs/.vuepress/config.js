@@ -60,7 +60,7 @@ module.exports = {
               title: "Other",
               collapsable: false,
               children: [
-                "/guide/other/gitter.md",
+                // "/guide/other/gitter.md",
                 "/guide/other/release-notes.md"
               ]
             }
@@ -162,10 +162,10 @@ function genAdvancedSidebar(type = '') {
 //    '/guide/advanced/lazy-loading.md',
     '/guide/advanced/chart.md',
     '/guide/advanced/icon.md',
-    '/guide/advanced/theme.md',
+    // '/guide/advanced/theme.md',
     '/guide/advanced/i18n.md',
     '/guide/advanced/error.md',
-    '/guide/advanced/webpack.md'
+    // '/guide/advanced/webpack.md'
   ]
   return mapArr.map(i => {
     return type + i

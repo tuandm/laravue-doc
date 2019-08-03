@@ -1,18 +1,14 @@
 # Icon
 
-If you do not find the desired icon in the [Icon](https://github.com/tuandm/laravue/blob/master/resources/js/icons/svg) of this project, you can select and generate your own business icon library on [iconfont.cn](http://iconfont.cn/)and use it again. Or other svg icon website, download svg and put it in this folder.
+## Introduction
 
-## Generate icon library code
+`laravue` users 2 types of icons - [Element-UI icons](https://element.eleme.io/#/en-US/component/icon) and [IconFont.cn](http://iconfont.cn). They are listed [here](https://laravue.dev/#/element-ui/icons) 
 
-First, search for and find the icon you need, and collect it into your shopping cart. In the shopping cart, you can add the selected icon to the project (if not, create a new one), and the subsequent generated resources/code are It is based on the dimension of the project.
+If you do not find the desired icon in the [Icons](https://laravue.dev/#/element-ui/icons) of this project, you can search and download your suitable icons on [iconfont.cn](http://iconfont.cn/), then generate and use them. You can also go to other svg icon website, download svg and put it in [this folder](https://github.com/tuandm/laravue/tree/master/resources/js/icons/svg).
 
-> If you already have a design draft, just need to generate the relevant code, you can upload your icon, and then do the above operation.
+## Download and generate icons from [IconFont.cn](http://iconfont.cn)
 
-<img width="600" alt="账户相关布局" src="https://gw.alipayobjects.com/zos/rmsportal/jJQYzRyqVFBBamUOppXH.png" />
-
-<br />
-
-** This project now supports and recommends separate export of svg usage. Download method as shown below:**
+First, search the icon you need, then download
 
 <img width="600" src="https://wpimg.wallstcn.com/1f8b1e56-cfd9-4ef7-a0aa-dfb0c2883aa3.gif" />
 
@@ -30,14 +26,6 @@ After the download is complete, the downloaded .svg file is automatically import
 
 ## Change color
 
-`svg-icon` reads its parent's color `fill: currentColor;' by default.
+`svg-icon` reads its parent's color `fill: currentColor;` by default.
 
-You can change the parent's `color` or change the color of `fill` directly.
-
-:::tip
-If you encounter an incorrect icon color, you can refer to this[issue](https://github.com/PanJiaChen/vue-element-admin/issues/330)
-:::
-
-## Detailed articles
-
-[手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)
+You can change it directly or the the parent's one in [`@/components/SvgIcon/index.vue`](https://github.com/tuandm/laravue/blob/master/resources/js/components/SvgIcon/index.vue)

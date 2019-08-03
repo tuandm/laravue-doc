@@ -4,42 +4,45 @@ sidebarDepth: 3
 
 # Rich text editor
 
-Rich text editor is a core part of management system, but at the same time is a place with lots of problems. In the process of selecting rich texts, I also walked a lot of detours. The common rich text editors in the market are basically used, and the finally chose [Tinymce](https://github.com/tinymce/tinymce).
+Rich text editor is a core part of management system. We have gone through many rich texts and decided using [Tinymce](https://github.com/tinymce/tinymce).
 
-Here is a brief introduction to the reasons why `tinymce` is recommended: `tinymce` is a veteran to do rich text company(Here also recommended `ckeditor`, is also a company that has been doing rich text, the new version is very good), its products have stood the test of the market, and it has detailed documentation and rich configuration. One of the keys to using rich text is to copy formatting. Before using a Korean text rich `summernote`, It wasted me a lot of time, very unfriendly. But `tinymce`'s formatting is pretty good. It also has a value-added feature is powerpaste, it is extremely powerful, support for copying everything from word or any other place. Extensibility is also critical for rich text. I use `tinymce` to write several plug-ins, learning costs and ease of study are good, and very easy to expand. The last point is that the documentation is very good, basically you want to get the configuration item, it has. Tinymce also supports on-demand loading, you can customize plugins through its official build page.
+Reasons
+- `tinymce` is one of the most popular rich texts (with `ckeditor`, is also famous, the new version is very good), widely used in market, and it has detailed documentation and rich configuration. One of the keys to using rich text is to copy formatting. We tried using Korean text rich `summernote` before and tt wasted a lot of time on doing some normal tasks, very unfriendly. But `tinymce`'s formatting is pretty good. It also has a value-added feature is powerpaste which is extremely powerful, support for copying everything from word or any other place. Extensibility is also important and with `tinymce`, writing plugins is easy. The last point is that the documentation is very good, it is easy to get the configuration item or customize plugins though the official website.
 
-Let me analyze some of the other rich texts on the market:
+Lets go though some other rich texts on the market:
 
-- **[summernote](https://github.com/summernote/summernote)** Let me start with a rich text that I definitely would not recommend.It is inconsistent with many recognized default behaviors between others. And only for the use of a dialog feature, they import the bootstrap, A bunch of people protest. Formatting is also very bad. Do not use anyway! Do not use it! Do not use it!
+- **[summernote](https://github.com/summernote/summernote)** We definitely would not recommend. It is inconsistent with many recognized default behaviors between others. For the use of a dialog feature, they import the bootstrap. Formatting is also very bad.
 
-- **[ckeditor](https://github.com/galetahub/ckeditor)** Ckeditor is also a veteran company to do rich text,
-  I used to use it in company project.This year, the 5.0 version of the UI has also become more beautiful, quite good, and it has the richest plugins. It's recommended that you try it.
+- **[ckeditor](https://github.com/galetahub/ckeditor)** Ckeditor is also a good rich text, highly recommended.
 
-- **[quill](https://github.com/quilljs/quill)** Is also a very hot rich text, the skin is very elegant. Writing a plug-in based on it is also very simple. The API design is very cool. The reason I did not choose it was because it was not good for operation picture and was hard to change. If there is no operation of the picture of the user, it is recommended.
+- **[quill](https://github.com/quilljs/quill)** Is also a very hot rich text, the skin is very elegant. Writing a plug-in based on it is also very simple. The API design is very cool. But it is not too convenient for operation picture and hard to change. It's still recommended if there is no operation of the picture
 
-- **[medium-_editor_](https://github.com/yabwe/medium-editor)** The famous medium rich text (unofficial produced), but the degree of completion is still not very good, scalability is not bad. However, I think most users still will not be used medium this way of writing.
+- **[medium-_editor_](https://github.com/yabwe/medium-editor)** The famous medium rich text (unofficial product), is a nice rich text, easy to use, simple and clean, easy to write extensions. If you want to have a light and simple editor, this would be suitable. But in term of rich texts which can handle rich content (complex HTML, embeded media, support HTML mode...), this editor is not recommended.
 
-- **[Squire](https://github.com/neilj/Squire)** A relatively light, rich text, compressed only 11.5kb, relative to other rich text is very small, recommended features is not complicated suggestion.
+- **[Squire](https://github.com/neilj/Squire)** A relatively light, rich text, only 11.5kb after compression, relative to other rich text is very small, recommended features is not complicated suggestion.
 
-- **[UEditor](http://ueditor.baidu.com/website/index.html)** Not used in depth, only a simple project used in the angular1X, but ui really ugly, does not meet the aesthetic today, the official has also been a long time did not go with the new.
+- **[slate](https://github.com/ianstormtaylor/slate)** A completely customizable framework for building rich text editors. Slate lets you build rich, intuitive editors like those in Medium, Dropbox Paper or Google Docs which are becoming table stakes for applications on the web without your codebase getting mired in complexity. This looks cool and potential.
 
-- **[slate](https://github.com/ianstormtaylor/slate)** A completely customizable framework for building rich text editors. Slate lets you build rich, intuitive editors like those in Medium, Dropbox Paper or Google Docs—which are becoming table stakes for applications on the web—without your codebase getting mired in complexity. Looks cool, after a chance I will practice in the project try it.
+Above rich editors are not related to vue, but they are easy to wrap into vue component, and in fact encapsulation vue components is very convenient, flexible and controllable. In addition vue really doesn't have any good rich text, unlike react has [draft](https://github.com/facebook/draft-js) produced by facebook, [editor](https://github.com/ory/editor) produced by ory. Vue doesn't have this product from a big company.
 
-I listed a lot of rich text, but I didn't list any rich text related to vue, mainly because rich text is really more complex than thought. Also said in the previous article, in fact, encapsulation vue components is very convenient, there is no need to use someone else's package of things.
-What kind of vue-quill vue-editor is just a simple package, no difficulty. You might as well encapsulate it yourself, and be a little more flexible and controllable. In addition vue really doesn't have any good rich text, unlike react has [draft](https://github.com/facebook/draft-js) produced by facebook, [editor](https://github.com/ory/editor) produced by ory. Vue doesn't have this product from a big company.
-
-Of course, you can also choose some paid rich text editor, the author's own company has a project in the use of the [froala-editor](https://www.froala.com/wysiwyg-editor). Whether it is beautiful and easy to use are good, the company bought a professional version, $ 349 a year, the price is also very reasonable, but in fact save the cost of developer development may go far beyond the price.
+Of course, you can also choose some paid rich text editors, like [froala-editor](https://www.froala.com/wysiwyg-editor). There are many benefits of using commercial products, in fact, it may save a lot of cost compared to the development price.
 
 ## Tinymce
 
 Here to briefly talk about the use of Tinymce in you own projects.
 
-The current method of using the global reference. Code in: `static/tinymce` (The files in the static directory will not be build by webpack), import in index.html .And make sure it's in the order before your `app.js`!
+The current method of using the global reference. Code in: `public/static/tinymce4.7.5` (The files in the `public/static` directory will not be built by webpack), import directly in blade template file. And make sure it's in the order before your `app.js`!
+```php
+    <script src=/static/tinymce4.7.5/tinymce.min.js></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+```
 
 > The current use of the npm installation 'Tinymce' method is more complex and has some problems (which may be used in the future). :space_invader:
 
 **Usage**
-Because rich text is not suitable for two-way data, so only watch the content changes once, and then will not be watch again. If later you need to change the rich text content.Can be set by `this.refs.xxx.setContent ()`.
+Because rich text is not suitable for two-way data, so only watch the content changes once, and then will not be watch again. If later you need to change the rich text content, you can set by `this.refs.xxx.setContent()`.
 
 The source code is also very simple, any other needs can be modified in `@/components/Tinymce/index.vue`.
 

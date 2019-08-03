@@ -1,6 +1,6 @@
 # Markdown Editor <Badge text="v3.9.3+"/>
 
-Originally used [simplemde-markdown-editor](https://github.com/sparksuite/simplemde-markdown-editor) as the markdown editor, but this library has not been updated and maintained for a long time, and there is also the risk of xss. So after the <Badge text="v3.9.3+"/> version, use [tui.editor](https://github.com/nhnent/tui.editor) as the new editor. All the next documents are Based on tui.editor it. [More Content](https://github.com/nhnent/tui.editor).
+`laravue` uses [tui.editor](https://github.com/nhnent/tui.editor) as the markdown editor. All the next documents are based on tui.editor. [More Content](https://github.com/nhnent/tui.editor).
 
 ## Props
 
@@ -40,8 +40,8 @@ const defaultOptions = {
     'link',
     'divider',
     'code',
-    'codeblock'
-  ]
+    'codeblock',
+  ],
 }
 ```
 
@@ -59,7 +59,7 @@ const defaultOptions = {
   <markdown-editor v-model="content" />
 </template>
 <script>
-import MarkdownEditor from '@/components/MarkdownEditor'
+import MarkdownEditor from '@/components/MarkdownEditor';
 
 export default {
 

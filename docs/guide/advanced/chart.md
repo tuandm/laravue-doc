@@ -15,7 +15,7 @@ require('echarts/lib/component/tooltip');
 require('echarts/lib/component/title');
 
 // Import all ECharts module
-var echarts = require('echarts')
+var echarts = require('echarts');
 ```
 
 [Use ECharts with webpack](https://ecomfe.github.io/echarts-doc/public/en/tutorial.html#Use%20ECharts%20with%20webpack)
@@ -36,21 +36,21 @@ methods: {
   setOptions() {
     this.chart.setOption({
       title: {
-        text: 'ECharts Example'
+        text: 'ECharts Example',
       },
       tooltip: {},
       xAxis: {
-        data: ["Shirt", "Sweater", "Chiffon Shirt", "Pants", "High Heels", "Socks"]
+        data: ['Shirt', 'Sweater', 'Chiffon Shirt', 'Pants', 'High Heels', 'Socks'],
       },
       yAxis: {},
       series: [{
         name: 'Volumes',
         type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }]
-    })
-  }
-}
+        data: [5, 20, 36, 10, 10, 20],
+      }],
+    });
+  },
+},
 ```
 
 ECharts is configured - quite simple.
@@ -62,16 +62,16 @@ In case you want to load data remotely (from API for example) then dynamically s
 watch: {
   options: {
     handler(options) {
-      this.chart.setOption(this.options)
+      this.chart.setOption(this.options);
     },
-    deep: true
+    deep: true,
   },
 }
 // The second only watch data changes trigger ECharts only when the data changes
 watch: {
   seriesData(val) {
-    this.setOptions({series:val})
-  }
+    this.setOptions({series:val});
+  },
 }
 ```
 
@@ -87,4 +87,4 @@ Depends on your business, you can decide to show ECharts in the suitable way.
 
 ## Others
 
-There are many great libraries for charts, such as [d3](https://github.com/d3/d3), [Chart.js](https://github.com/chartjs/Chart.js), [chartist-js](https://github.com/gionkunz/chartist-js). Integrating them is not too hard.
+There are many great libraries for charts, such as [d3](https://github.com/d3/d3), [Chart.js](https://github.com/chartjs/Chart.js), [chartist-js](https://github.com/gionkunz/chartist-js), which are not too hard to integrate to `laravue`.

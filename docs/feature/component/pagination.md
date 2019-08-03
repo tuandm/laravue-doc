@@ -1,6 +1,6 @@
 # Pagination <Badge text="v3.9.2+"/>
 
-Pagination component is mainly based on Element 'el-pagination' for the secondary packaging, and expanded the function of auto-scroll.
+Pagination component is mainly based on Element `el-pagination` for the secondary packaging, and expanded the function of auto-scroll.
 
 ## Basic Usage
 
@@ -23,7 +23,7 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 20
+        limit: 20,
       }
     }
   },

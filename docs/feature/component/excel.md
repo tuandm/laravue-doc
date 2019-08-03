@@ -26,14 +26,10 @@ import('@/vendor/Export2Excel').then(excel => {
     data, //Specific data Required
     filename: 'excel-list', //Optional
     autoWidth: true, //Optional
-    bookType: 'xlsx' //Optional
+    bookType: 'xlsx', //Optional
   })
 })
 ```
-
-:::warning Warning <Badge text="v3.9.1+"/>
-The compatibility code for Bolb has been removed in the later versions of `v3.9.1+`. If you need to be compatible with very low-level browsers, you can manually introduce [blob-polyfill](https://www.npmjs.com/package/blob-polyfill) .
-:::
 
 ### Params
 
@@ -49,20 +45,20 @@ The compatibility code for Bolb has been removed in the later versions of `v3.9.
 
 ```js
 import('@/vendor/Export2Excel').then(excel => {
-  const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-  const data = this.list
+  const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date'];
+  const data = this.list;
   excel.export_json_to_excel({
     header: tHeader, //Header Required
     data, //Specific data Required
     filename: 'excel-list', //Optional
     autoWidth: true, //Optional
-    bookType: 'xlsx' //Optional
-  })
+    bookType: 'xlsx', //Optional
+  });
 })
 ```
 
 - [Online Demo](https://laravue.dev/#/excel/export-excel)
-- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/exportExcel.vue)
+- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/ExportExcel.vue)
 
 ## Excel Import
 
@@ -76,18 +72,18 @@ It provides two callback functions:
 
   ```js
   beforeUpload(file) {
-      const isLt1M = file.size / 1024 / 1024 < 1
+    const isLt1M = file.size / 1024 / 1024 < 1;
 
-      if (isLt1M) {
-        return true
-      }
-
-      this.$message({
-        message: 'Please do not upload files larger than 1m in size.',
-        type: 'warning'
-      })
-      return false
+    if (isLt1M) {
+      return true;
     }
+
+    this.$message({
+      message: 'Please do not upload files larger than 1m in size.',
+      type: 'warning',
+    });
+    return false;
+  }
   ```
 
 - onSuccess
@@ -95,10 +91,10 @@ It provides two callback functions:
 
 ```js
  handleSuccess({ results, header }) {
-      this.tableData = results
-      this.tableHeader = header
-    }
+   this.tableData = results;
+   this.tableHeader = header;
+ }
 ```
 
 - [Online Demo](https://laravue.dev/#/excel/upload-excel)
-- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/uploadExcel.vue)
+- [Online Code](https://github.com/tuandm/laravue/blob/master/resources/js/views/excel/UploadExcel.vue)
