@@ -135,7 +135,7 @@ module.exports = {
       }
     }
   },
-  ga: "UA-46852172-1"
+  ga: "UA-136773850-2"
 };
 
 function genEssentialsSidebar(type = '') {
