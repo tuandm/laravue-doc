@@ -5,8 +5,9 @@ If you are familiar with the `vue-router` then it will be very simple.
 ## Add the route
 First add the route to the `@/router/index.js`. For example:
 
-**Such as: add a `foo` page**
-This code below will create a blank route based on `Layout`
+**add a `foo` page**
+
+The below code will create a blank route based on `Layout`
 
 ```js
 {
@@ -17,7 +18,7 @@ This code below will create a blank route based on `Layout`
   meta: {
     title: 'foo',
     icon: 'star',
-  }
+  },
 }
 ```
 
@@ -49,13 +50,13 @@ Next, you have to add a route to the 'children' below it:
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo.png)
 
-Clicking on this menu will redirect to `/#/foo/index`, and blank page will show (since we do not import the view)
+Clicking on this menu will redirect to `/#/foo/index`, and blank page will show (since we haven't imported the view)
 <br/>
 
 :::tip
 Since `children` only declares one route below, there will be no expansion arrow. If the number of routes under `children` is greater than 1, there will be an expansion arrow, as shown below.
 
-If you want to ignore this automatic decision, you can use `alwaysShow: true`, so that it will ignore the previously defined rule and display the root route. See the [Router and Nav](router-and-nav.md) for details.
+If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it will ignore the previously defined rule and display the root route. See the [Router and Nav](router-and-nav.md) for details.
 
 :::
 
@@ -80,7 +81,7 @@ If you want to ignore this automatic decision, you can use `alwaysShow: true`, s
       name: 'bar',
       meta: { title: 'bar' }, // bar submenu
     },
-  ]
+  ],
 }
 ```
 
@@ -97,7 +98,7 @@ Since we do not declare icon for submenu, there is no icon for `foo/bar` submenu
 If you have a nested Route, such as [@/views/nested](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested),
 Don't forget to manually add an `< router-view >` to the root file of the secondary directory.
 
-Such as: [@/views/nested/menu1/index.vue](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested/menu1/index.vue).
+For example: [@/views/nested/menu1/index.vue](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested/menu1/index.vue).
 
 **Note:** As many `<router-view>` as the level of routes nested.
 
@@ -107,7 +108,7 @@ Such as: [@/views/nested/menu1/index.vue](https://github.com/tuandm/laravue/blob
 
 ## Create View
 
-After adding the route, create a view under the `@/views`. As usual, a router is associated with a view.
+After adding the route, we have to create a view under `@/views` folder. As usual, a router is associated with a view.
 
 If components or utils are only used in this view, it's recommended to create a components/utils folder under this view. It is more convenient for each module to maintain its own `utils` or `components`.
 
@@ -135,7 +136,7 @@ Open `@/views/foo/Foo.vue` and add simple component like this:
         <div class="card card-default">
           <h3 class="card-header">Foo Component</h3>
           <div class="card-body">
-            I'm an foo component.
+            I'm a foo component.
           </div>
         </div>
       </div>
@@ -201,6 +202,10 @@ export default {
 ```
 Now switching language between EN and VI will show corresponding text.
 
+:::tip
+You can see sample code here: [How to create new page](https://github.com/tuandm/laravue/compare/guide/how-to-add-new-page?expand=1)
+:::
+
 ## Create Api
 
 Finally, under the [@/api](https://github.com/tuandm/laravue/blob/master/resources/js/api) folder, create the corresponding api service for this module.
@@ -227,7 +232,7 @@ See the [Work with API](api.md) for more details.
 
 ## Create Components
 
-To make the code managable and easy to maintain, the global `@/components` will contain global components, such as rich text, various search components, packaged date components, etc.They can be shared across components. Besides, each page or module-specific business component is written under the current views. Such as: `@/views/article/components/LocalComponent.vue`. This separation greatly reduces maintenance costs.
+To make the code managable and easy to maintain, the global `@/components` will contain global components, such as rich text, various search components, packaged date components, etc. They can be shared across components. Besides, each page or module-specific business component is written under the current views. Such as: `@/views/article/components/LocalComponent.vue`. This separation greatly reduces maintenance costs.
 
 **Remember that the biggest benefit of splitting components is not shared code but maintainability!**
 
