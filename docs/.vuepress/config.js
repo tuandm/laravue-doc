@@ -24,7 +24,7 @@ module.exports = {
     docsRepo: "tuandm/laravue-doc",
     docsDir: "docs",
     editLinks: true,
-    sidebarDepth: 3,
+    sidebarDepth: 5,
     locales: {
       "/": {
         label: "English",
@@ -32,11 +32,11 @@ module.exports = {
         editLinkText: "Edit this page on GitHub",
         nav: [
           {
-            text: "Guide",
+            text: "Documentation",
             link: "/guide/"
           },
           {
-            text: "Features",
+            text: "Components",
             items: genNav(deepClone(ComponentNav), "EN")
           },
           {
@@ -47,18 +47,25 @@ module.exports = {
         sidebar: {
           "/guide/": [
             {
-              title: "Essentials",
+              title: "Basic",
               collapsable: false,
               children: genEssentialsSidebar()
             },
             {
               title: "Advanced",
-              collapsable: false,
+              collapsable: true,
               children: genAdvancedSidebar()
             },
             {
+              title: "Development guides",
+              collapsable: true,
+              children: [
+                "/guide/development/new-page.md",
+              ]
+            },
+            {
               title: "Other",
-              collapsable: false,
+              collapsable: true,
               children: [
                 // "/guide/other/gitter.md",
                 "/guide/other/release-notes.md"
@@ -78,7 +85,7 @@ module.exports = {
         editLinkText: "Chỉnh sửa trên Github",
         nav: [
           {
-            text: "Hướng dẫn",
+            text: "Tài liệu",
             link: "/vi/guide/"
           },
           {
@@ -86,25 +93,32 @@ module.exports = {
             items: genNav(deepClone(ComponentNav), "VI")
           },
           {
-            text: "Mở rộng",
+            text: "Liên kết",
             items: genNav(deepClone(EcosystemNav), "VI")
           }
         ],
         sidebar: {
           "/vi/guide/": [
             {
-              title: "Hướng dẫn",
+              title: "Cơ bản",
               collapsable: false,
               children: genEssentialsSidebar("/vi")
             },
             {
-              title: "Mở rộng",
-              collapsable: false,
+              title: "Nâng cao",
+              collapsable: true,
               children: genAdvancedSidebar("/vi")
             },
             {
-              title: "Các phần khác",
-              collapsable: false,
+              title: "Hướng dẫn lập trình",
+              collapsable: true,
+              children: [
+                "/vi/guide/development/new-page.md",
+              ]
+            },
+            {
+              title: "Các mục khác",
+              collapsable: true,
               children: [
                 "/vi/guide/other/faq.md",
                 "/vi/guide/other/release-notes.md"
@@ -145,7 +159,6 @@ function genEssentialsSidebar(type = '') {
     '/guide/essentials/router-and-nav.md',
     '/guide/essentials/permission.md',
     '/guide/essentials/tags-view.md',
-    '/guide/essentials/new-page.md',
     '/guide/essentials/style.md',
     '/guide/essentials/api.md',
     '/guide/essentials/import.md',

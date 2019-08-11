@@ -56,7 +56,7 @@ Clicking on this menu will redirect to `/#/foo/index`, and blank page will show 
 :::tip
 Since `children` only declares one route below, there will be no expansion arrow. If the number of routes under `children` is greater than 1, there will be an expansion arrow, as shown below.
 
-If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it will ignore the previously defined rule and display the root route. See the [Router and Nav](router-and-nav.md) for details.
+If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it will ignore the previously defined rule and display the root route. See the [Router and Nav](/guide/essentials/router-and-nav.md) for details.
 
 :::
 
@@ -228,7 +228,7 @@ userResource
 ```
 If you want to have more API for resources, just extend the base class and add your extra APIs. Example: [role api](https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js)
 
-See the [Work with API](api.md) for more details.
+See the [Work with API](/guide/essentials/api.md) for more details.
 
 ## Create Components
 

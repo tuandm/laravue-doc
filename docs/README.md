@@ -11,8 +11,8 @@ features:
     details: Reasonable framework choice, good engineering practice
   - title: Up-to-date Technology Stack
     details: Development using latest version of Laravel, VueJS and other libraries
-  - title: Permission Validation
-    details: Role-based permissions to render sidebar dynamically
+  - title: Powerful ACL
+    details: Roles & permissions management with excellent UI
   - title: Globalization
     details: Built-in industry universal international solution
   - title: Easy to integrate

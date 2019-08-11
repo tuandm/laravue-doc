@@ -7,13 +7,13 @@ Bạn có thể kiểm tra các vấn đề dưới đây trước khi tạo câ
 ## Khác nhau giữa laravue và laravue-core là gì？
 
 *laravue* là một dự án admin dashboard hoàn chỉnh được xây dựng trên Laravel mới nhất, cung cấp các chức năng cần thiết để quản trị. Do đó Laravue thích hợp cho dự án được xây dựng từ đầu.
-*laravue-core* lả package mở rộng cho Laravel, dùng để tích hợp vào một dự án Laravel đang có sẵn - hoặc cũng có thể dùng để "luyện tập" với laravue. Nếu bạn đã quen với laravue, thì sử dụng *laravue-core* với components thích hợp sẽ rất thích hợp cho dự án của bạn.
+*laravue-core* là package mở rộng cho Laravel, dùng để tích hợp vào một dự án Laravel đang có sẵn - hoặc cũng có thể dùng để "luyện tập" với laravue. Nếu bạn đã quen với laravue, thì sử dụng *laravue-core* với components thích hợp sẽ rất thích hợp cho dự án của bạn.
 
 <br/>
 
 ## Nếu có bất kỳ lỗi nào xuất hiện, trước tiên bạn hãy google để tìm xem giải pháp !!!
 
-[google ở đây](http://lmgtfy.com/?q=tìm kiếm vấn đề)
+[google ở đây](http://lmgtfy.com/?q=tìm+kiếm+vấn+đề)
 
 <br/>
 
