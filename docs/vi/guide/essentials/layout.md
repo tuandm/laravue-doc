@@ -1,6 +1,6 @@
 # Layout
 
-Layout is the outermost frame structure of the page and usually includes navigation, sidebars, breadcrumbs and main content. Below image is the basic layout
+Layout là cấu trúc về bố cục của 1 webpage, thường bao gồm các thành phần như là navigation, sidebar, breadcrumbs, phần nội dung chính. Layout cơ bản được mô tả như sau
 
 ![Laravue layout](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-layout.jpg)
 
@@ -8,20 +8,36 @@ Layout is the outermost frame structure of the page and usually includes navigat
 [@/views/layout](https://github.com/tuandm/laravue/tree/master/resources/js/views/layout)
 :::
 
-`@` is webpack's [alias](https://webpack.js.org/configuration/resolve/#resolve-alias) and point to `resource/js`, this alias can be changed in `webpack.mix.js`.
+`@` được gọi là webpack's [alias](https://webpack.js.org/configuration/resolve/#resolve-alias) và nó trỏ vào thư mục `resource/js`. Điều này có nghĩa là khi bạn sử dụng `@` trong source code để import thì webpack sẽ hiểu bạn đang nói tới `resource/js`
+
+```js
+import router from '@/router';
+// tương đương với
+import router from 'resources/js/router';
+```
+
+
+Bạn có thể thay đổi điều này trong  `webpack.config.js`.
+
+```js
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+      '@': path.join(__dirname, '/resources/js'),
+    },
+```
 
 <br>
 
-Most of the pages in `laravue` extend from `<layout>`, except special pages such as: `login`, `401` , etc... You can have multiple layout in the project - just create a layout with placeholder `<app-main>`
+Hầu hết các trang trong `laravue` đều sử dụng `<layout>`, ngoại trừ một số ngoại lệ như: `trang đăng nhập`, `lỗi 401` , v.v... Bạn có thể tạo nhiều layout trong 1 project, chỉ cần đặt `<app-main>` tag vào layout bạn tạo ra.
 
 ```js
-//No layout
+// Không sử dụng Layout
 {
   path: '/401',
-  component: () => import('errorPage/401'),
+  component: () => import('error-page/401'),
 }
 
-//Has layout
+// Sử dụng layout
 {
   path: '/documentation',
 
@@ -37,7 +53,7 @@ Most of the pages in `laravue` extend from `<layout>`, except special pages such
 }
 ```
 
-Laravue uses vue-router [routing nesting](https://router.vuejs.org/guide/essentials/nested-routes.html), therefore adding or modifying a page will only affect the main body of `<app-main>`. Other parts of layout such as `<navbar>`, `<sidebar>`, `<tags-view>` won't be affected.
+Laravue sử dụng vue-router [routing nesting](https://router.vuejs.org/guide/essentials/nested-routes.html), do đó thêm hay chỉnh sửa 1 trang chỉ có tác dụng với phần nội dung trong `<app-main>`. Các phần khác như `<navbar>`, `<sidebar>`, `<tags-view>` sẽ không bị ảnh hưởng.
 
 ```
 /foo                                  /bar
@@ -49,33 +65,51 @@ Laravue uses vue-router [routing nesting](https://router.vuejs.org/guide/essenti
 | +--------------+ |                  | +-------------+ |
 +------------------+                  +-----------------+
 ```
-This describes how `vue-router` works in general. 
 
-If you don't get familiar with `vue-router`, Please refer to [official document](https://router.vuejs.org/) for more details
+Sơ đồ phía trên mô tả cách `vue-router` hoạt động
+
+Nếu bạn chưa quen thuộc với `vue-router`, vui lòng xem [tài liệu chính chủ](https://router.vuejs.org/) để biết thêm chi tiết. Lời khuyên là bạn nên đọc kỹ tài liệu để hiểu rõ cách thức `vue-router` hoạt động và các cấu hình cần thiết.
 
 <br>
 
 ## app-main
 
 ::: tip Code
-[@/views/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/views/layout/components/AppMain.vue)
+[@/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/layout/components/AppMain.vue)
 :::
-`<app-main>` uses `<router-view>` to render the content which is returned from the main component registering in route item. `<router-view>` is put inside `<keep-alive>` in order to be cacheable. Please check [router and navigration](router-and-nav.md) for more details.
 
-The `transition` defines the switching animation between pages, you can modify the transition animation according to your own needs.
+```
+<template>
+  <section class="app-main">
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="cachedViews">
+        <router-view :key="key" />
+      </keep-alive>
+    </transition>
+  </section>
+</template>
+```
+
+`<app-main>` sử dụng `<router-view>` để hiển thị nội dung được trả về từ component đăng ký trong route item. Điều này có nghìa là khi bạn đăng ký một route (tham khảo ở [Tạo một trang mới](/vi/guide/development/new-page.md)), bạn sẽ khai báo component cho route đó, và component này sẽ đưa kết quả cho `<router-view>` và hiển thị trong `<app-main>`.
+
+`<router-view>` được đặt trong tag `<keep-alive>` với mục đích `cache` lại nội dung. Xin vui lòng xem thêm [router and navigration](router-and-nav.md).
+
+`transition` mô tả hiệu ứng khi chuyển trang, bạn có thể chỉnh sửa theo ý bạn (ví dụ fade, slide...)
 
 <br>
 
 ## router-view
 
-**Different router the same component vue。** In a real work, there are many situations. such as:
+**Router khác nhau cho cùng một vue component。** 
+
+Trong thực tế, có nhiều trường hợp giống như sau:
 
 ```js
     { path: 'create', component: () => import('@/views/ArticleForm') },
     { path: 'edit/:id(\\d+)', component: () => import('@/views/ArticleForm') },
 ```
 
-Same component is used to create pages and edit pages. By default, when switching those 2 pages, it will not trigger the created or mounted hooks of vue. From the [official document](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes) of `vue-router`, you can do this by watching the  $route. But in the real scenario, it is very unuseful and hard to micro-manage. We can bypass thie behavior by adding a unique key to the router-view to ensure that the routing hooks are re-rendered when the route is switched. This is much simpler.
+Một component `ArticleForm` xài chung cho `create` và `edit`. Mặc định khi chuyển đổi giữa 2 trang trên, `created` hay `mounted` hooks sẽ không chạy lại bởi vì nó đã được chạy trước đó một lần rồi. Bạn có thể cho các hooks đó chạy lại bằng cách theo dõi `$route` (xem [tài liệu chi tiết](https://router.vuejs.org/guide/essentials/dynamic-matching.html#reacting-to-params-changes)) nhưng nó khá là bât tiện vì nó khó để quản lý code, dễ tạo ra các lỗi. Giải pháp đơn giản là chúng ta có thể gắn 1 chuỗi ngẫu nhiên (hash string) vào `route-view` để chắc chắn các hooks sẽ chạy khi chuyển trang (vì URL đã thay đổi).
 
 ```js
 <router-view :key="key"></router-view>
@@ -89,9 +123,9 @@ computed: {
 ```
 
 ::: tip
-**Or** You can declare two different views like the `Create` and `Edit` in this project but introduce the same component.
+**Hoặc** bạn có thể khởi tạo 2 views khác nhau (ví dụ `Create` hay `Edit`) và render một component với các params khác nhau
 
-Code：[@/views/form](https://github.com/tuandm/laravue/tree/master/resources/js/views/example)
+Code：[@/views/articles](https://github.com/tuandm/laravue/tree/master/resources/js/views/articles)
 :::
 
 ```html
@@ -112,6 +146,6 @@ Code：[@/views/form](https://github.com/tuandm/laravue/tree/master/resources/js
 </script>
 ```
 
-## Mobile
+## Layout cho điện thoại
 
-The `element-ui` is officially designed for a desktop-side UI library, and for the complex project like enterprise backend application, it is impossible to meet the user experiences in both desktop and mobile. In this project, we are trying to make it works on mobile with the simple responsive layout. You can modify for your mobile version.
+`element-ui` được thiết kế chủ yếu dành cho máy tính, sử dụng trong các dự án phức tạp như ứng dụng doanh nghiệp hay các hệ thống quản trị. Điều này không đơn giản để phục vụ cho người dùng trên điện thoại. Với `Laravue`, chúng tôi cố gắng điều chỉnh reponsive layout ở mức tối đa có thể, nhưng chúng tôi không bảo đảm sẽ làm cho mọi người hài lòng khi sử dụng trên điện thoại.

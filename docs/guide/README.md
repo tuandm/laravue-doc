@@ -5,8 +5,8 @@ pageClass: getting-started
 # Introduction
 
 [![Laravel](https://img.shields.io/badge/laravel-5.8-brightgreen.svg)](https://laravel.com)
-[![vue](https://img.shields.io/badge/vue-2.6.8-brightgreen.svg)](https://github.com/vuejs/vue)
-[![element-ui](https://img.shields.io/badge/element--ui-2.6.1-brightgreen.svg)](https://github.com/ElemeFE/element)
+[![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
+[![element-ui](https://img.shields.io/badge/element--ui-2.11.1-brightgreen.svg)](https://github.com/ElemeFE/element)
 [![Build Status](https://gitlab.com/bacduong/laravue/badges/master/build.svg)](https://gitlab.com/bacduong/laravue)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/tuandm/laravue/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
@@ -45,9 +45,8 @@ The project is positioned as an enterprise solution and it's highly recommended 
   - JSON Editor
 
 - Excel
-  - Export Excel
+  - Import/Export Excel
   - Export zip
-  - Upload Excel
   - Visualization Excel
 
 - Table
@@ -84,12 +83,12 @@ The project is positioned as an enterprise solution and it's highly recommended 
 <br/>
 
 ## Preparation
-Your machine need to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org). [Git](https://git-scm.com/) and [composer](https://getcomposer.org/) are required too.
+Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org). [Git](https://git-scm.com/) and [composer](https://getcomposer.org/) are required too.
 
-Besides, the project is based on [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all API will be served by Laravel. Understanding and learning this knowledge in advance will greatly help the use of this project.
+Besides, the project is based on [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Understanding and learning this knowledge in advance will greatly help the use of this project.
 
 ::: tip
-**This project does not support low-level browsers (such as ie). If you need to, please add polyfills yourself.**
+**This project does not support low-level browsers (such as IE). If you need to, please add polyfills yourself.**
 :::
 
 ## Project Structure

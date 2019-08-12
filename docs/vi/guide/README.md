@@ -2,41 +2,42 @@
 pageClass: getting-started
 ---
 
-# Introduction
+# Giới thiệu
 
 [![Laravel](https://img.shields.io/badge/laravel-5.8-brightgreen.svg)](https://laravel.com)
-[![vue](https://img.shields.io/badge/vue-2.6.8-brightgreen.svg)](https://github.com/vuejs/vue)
-[![element-ui](https://img.shields.io/badge/element--ui-2.6.1-brightgreen.svg)](https://github.com/ElemeFE/element)
+[![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
+[![element-ui](https://img.shields.io/badge/element--ui-2.11.1-brightgreen.svg)](https://github.com/ElemeFE/element)
 [![Build Status](https://gitlab.com/bacduong/laravue/badges/master/build.svg)](https://gitlab.com/bacduong/laravue)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/tuandm/laravue/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
 [![GitHub stars](https://img.shields.io/github/stars/tuandm/laravue.svg?style=social&label=Stars)](https://github.com/tuandm/laravue)
 
-[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://laravue.dev) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
+[Laravue](https://laravue.dev) là giao diện quản trị được phát triển trên nền tảng Laravel, sử dụng thư viện [vue-element-admin](http://laravue.dev) và nhiều tính năng tích hợp sẵn. Với sự hỗ trợ mạnh từ Laravel, Laravue là một giải pháp toàn diện cho một ứng dụng quản trị doanh nghiệp.
 
 :::tip
-The project is positioned as an enterprise solution and it's highly recommended to start from scratch. You should start project from simple layout and add components one by one depending on your system. This is to avoid redundant code as this project provides lot of features that you may not use.
-- Laravel package: [laravel-core](https://github.com/tuandm/laravue-core)
-  :::
+Dự án này được xây dựng cho giải pháp toàn diện, cho nên Laravue nên được sử dụng từ khi bắt đầu dự án bằng cách tạo ra các layout đơn giản từ đầu và phát triển từ từ các tính năng phù hợp với yêu cầu hệ thống. Điều này sẽ tránh làm cho source code bị dư thừa vì Laravue có rất nhiều các tính năng mà doanh nghiệp của bạn chưa hoặc không dùng đến.
+- Package cho Laravel : [laravel-core](https://github.com/tuandm/laravue-core)
+:::
 
 <br/>
 
-## Features
+## Chức năng chính
 
 ```
 - Login / Logout
 
-- Permission Authentication
-  - Page permission
-  - Directive permission
+- ACL - Quản lý quyền truy cập
+  - Quản lý người dùng
+  - Quản lý nhóm và quyền hạn theo nhóm
+  - Hỗ trợ directives cho quyền và nhóm (v-permission/v-role)
 
-- Global Features
-  - I18n
-  - Dynamic sidebar with permissions (supports multi-level routing)
-  - Dynamic breadcrumb
-  - Historical bar using Tags-view with right-click supported
+- Tính năng chung
+  - I18n (đa ngôn ngữ)
+  - Sidebar linh hoạt theo quyền hạn người dùng
+  - Breadcrumb động
+  - Lịch sử truy cập (sử dụng Tags-view), hỗ trở right-click
   - Svg Sprite
-  - Responsive Sidebar
+  - Responsive layout
 
 - Editor
   - Rich Text Editor
@@ -44,18 +45,17 @@ The project is positioned as an enterprise solution and it's highly recommended 
   - JSON Editor
 
 - Excel
-  - Export Excel
+  - Export/Upload Excel
   - Export zip
-  - Upload Excel
   - Visualization Excel
 
-- Table
-  - Dynamic Table
-  - Drag And Drop Table
-  - Tree Table
-  - Inline Edit Table
+- Bảng dữ liệu
+  - Bảng dữ liệu động
+  - Bảng dữ liệu hỗ trợ kéo thả
+  - Bảng dữ liệu dạng cây
+  - Bảng dữ liệu hỗ trợ chỉnh sửa trực tiếp (inline-editing)
 
-- Error Page
+- Trang thông báo lỗi
   - 401
   - 404
 
@@ -70,30 +70,30 @@ The project is positioned as an enterprise solution and it's highly recommended 
   - Kanban board
   - Draggable list
   - Draggable popup dialog
-  - And [more...](https://laravue.dev/#/dashboard)
+  - And more... (https://laravue.dev/#/dashboard)
 
-- Advanced Example
+- Các ví dụ tham khảo
 - Dashboard
 - Guide Page
-- ECharts
+- Biểu đồ (ECharts)
 - Clipboard
 - Layout elements (Form, Tab, Icons...)
 ```
 
 <br/>
 
-## Preparation
-Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org). [Git](https://git-scm.com/) and [composer](https://getcomposer.org/) are required too.
+## Yêu cầu hệ thống
+Để chạy được Laravue, máy của bạn phải chạy được [Laravel](https://laravel.com/docs/5.8/installation) mới nhất [Node.js](https://nodejs.org). Ngoài ra, bạn cũng phải biết về [Git](https://git-scm.com/) và [composer](https://getcomposer.org/).
 
-Besides, the project is based on [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element), all API will be served by Laravel. Understanding and learning this knowledge in advance will greatly help the use of this project.
+Bên cạnh đó, Laravue sử dụng [ES2015+](https://babeljs.io/docs/en/learn/), [vue](https://vuejs.org), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Nếu bạn đã có sẵn kiến thức cơ bản về những thư viện này, nó sẽ giúp cho các bạn tiếp cận Laravue dễ dàng hơn.
 
 ::: tip
-**This project does not support low-level browsers (such as ie). If you need to, please add polyfills yourself.**
+**Laravue không hỗ trợ cho các trình duyệt cũ như IE 8... Bạn có thể thêm polyfills trong trường hợp cần thiết.**
 :::
 
-## Project Structure
+## Cấu trúc của dự án
 
-This project has built with following structure.
+Laravue được tổ chức theo phân cấp thư mục như bên dưới: (Laravel cơ bản và resources cho VueJS/ElementUI)
 
 ```bash
 ├── app                        // Laravel app folder
@@ -132,7 +132,7 @@ This project has built with following structure.
 └── package.json               // package.json
 ```
 
-## Getting Started
+## Bắt đầu
 
 ```bash
 # Clone the project with composer
@@ -157,31 +157,33 @@ php artisan serve
 
 <br/>
 
-Now you can open Laravel at http://localhost:8000. After login with provided email/password, you should be able to see the Laravue dashboard
+Bạn đã có thể dùng trình duyệt mở Laravue ở http://localhost:8000 (hoặc tại port mà câu lệnh `php artisan serve` trả về). Sau khi đăng nhập với email và mật khẩu có sẵn, bạn sẽ nhìn thấy toàn bộ ứng dụng.
 
-Login page:
+Trang đăng nhập:
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-login.png)
 
-Laravue has already setup for standard components, state management, i18n, global router, linter,.... You can continue exploring other documents for more details on those topics.
+Laravue đã cài đặt sẵn các components tiêu chuẩn, quản lý [state](https://vuejs.org/v2/guide/state-management.html), đa ngôn ngữ, định tuyến (https://router.vuejs.org/),... Bạn có thể đọc thêm về các components đó ở tài liệu chi tiết.
 
 <br/>
 
 ::: tip
-**Suggestion：** You should try [laravue-core](https://github.com/tuandm/laravel-core) package if you want to integrate Laravue to your current Laravel projects. Laravue itself will be a good guideline for you.
+**Đề nghị：** Bạn nên sử dụng [laravue-core](https://github.com/tuandm/laravel-core) package nếu bạn muốn đem Laravue vào trong các dự án Laravel có sẵn, và Laravue khi đó sẽ trở thành tài liệu rất hữu ích.
 :::
 
-## Contribution
+## Đóng góp và cộng đồng
 
-The repository of documentation is [laravue-doc](https://github.com/tuandm/laravue-doc) based on [vuepress](https://github.com/vuejs/vuepress) development.
+Tài liệu này được open-source tại [laravue-doc](https://github.com/tuandm/laravue-doc) dựa trên [vuepress](https://github.com/vuejs/vuepress).
 
-There will be many errors related to spelling or translation from [original project](https://github.com/PanJiaChen/vue-element-admin). It is welcome to point out by issue or pr. My English is not too good.
+Laravue vẫn đang được phát triển để cung cấp nhiều tình năng hay, tích hợp các package Laravel chất lượng và hữu ích, đồng thời áp dụng các chuẩn mực tốt nhất trong lập trình để phát triển một giải pháp toàn diện cho doanh nghiệp. Chúng tôi mong đợi sẽ có nhiều đóng góp từ cộng đồng để dự án ngày một hoàn thiện hơn. Mọi ý kiến đóng góp xin gởi về email [bacduong@gmail.com] hoặc tạo trực tiếp tại [github issues](https://github.com/tuandm/laravue/issues).
 
-This project is still on development to provide more and more awesome features, integrate with high-quality Laravel packages and apply the best practices of development to build an enterprise solution for back office. We are looking forward to your contribution and [feedback](https://github.com/tuandm/laravue/issues).
 
-## Browsers Support
+::: tip
+**Chúng tôi mong muốn Laravue không chỉ là một giải pháp cho quản trị doanh nghiệp, mà còn là nơi hướng dẫn mọi người lập trình với Laravel/VueJS qua các ví dụ trực quan nhằm hỗ trợ cộng đồng lập trình viên Laravel**
+:::
+## Trình duyệt
 
-Modern browsers and Internet Explorer 10+.
+Các trình duyệt hiện đại và Internet Explorer 10+.
 
 <!-- prettier-ignore -->
 | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |

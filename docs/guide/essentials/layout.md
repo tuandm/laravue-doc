@@ -8,7 +8,14 @@ Layout is the outermost frame structure of the page and usually includes navigat
 [@/layout](https://github.com/tuandm/laravue/tree/master/resources/js/layout)
 :::
 
-`@` is webpack's [alias](https://webpack.js.org/configuration/resolve/#resolve-alias) and point to `resource/js`, this alias can be changed in `webpack.mix.js`.
+`@` is webpack's [alias](https://webpack.js.org/configuration/resolve/#resolve-alias) and point to `resource/js`, this alias can be changed in `webpack.config.js`.
+
+```js
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+      '@': path.join(__dirname, '/resources/js'),
+    },
+```
 
 <br>
 
@@ -66,9 +73,9 @@ The `transition` defines the switching animation between pages, you can modify t
 
 ## router-view
 
-**Different router the same component vue。** 
+**Different routers for the the same vue component.** 
 
-In a real work, there are many situations like:
+There are many situations like:
 
 ```js
     { path: 'create', component: () => import('@/views/ArticleForm') },
