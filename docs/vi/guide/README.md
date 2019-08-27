@@ -15,7 +15,7 @@ pageClass: getting-started
 [Laravue](https://laravue.dev) là giao diện quản trị được phát triển trên nền tảng Laravel, sử dụng thư viện [vue-element-admin](http://laravue.dev) và nhiều tính năng tích hợp sẵn. Với sự hỗ trợ mạnh từ Laravel, Laravue là một giải pháp toàn diện cho một ứng dụng quản trị doanh nghiệp.
 
 :::tip
-Dự án này được xây dựng cho giải pháp toàn diện, cho nên Laravue nên được sử dụng từ khi bắt đầu dự án bằng cách tạo ra các layout đơn giản từ đầu và phát triển từ từ các tính năng phù hợp với yêu cầu hệ thống. Điều này sẽ tránh làm cho source code bị dư thừa vì Laravue có rất nhiều các tính năng mà doanh nghiệp của bạn chưa hoặc không dùng đến.
+Laravue được xây dựng cho một giải pháp toàn diện, vì vậy Laravue nên được sử dụng từ khi bắt đầu dự án bằng cách tạo ra các layout đơn giản từ đầu và phát triển từ từ các tính năng phù hợp với yêu cầu hệ thống. Điều này sẽ tránh làm cho source code bị dư thừa vì Laravue có rất nhiều các tính năng mà doanh nghiệp của bạn chưa hoặc không dùng đến.
 - Package cho Laravel : [laravel-core](https://github.com/tuandm/laravue-core)
 :::
 
@@ -181,6 +181,7 @@ Laravue vẫn đang được phát triển để cung cấp nhiều tình năng 
 ::: tip
 **Chúng tôi mong muốn Laravue không chỉ là một giải pháp cho quản trị doanh nghiệp, mà còn là nơi hướng dẫn mọi người lập trình với Laravel/VueJS qua các ví dụ trực quan nhằm hỗ trợ cộng đồng lập trình viên Laravel**
 :::
+
 ## Trình duyệt
 
 Các trình duyệt hiện đại và Internet Explorer 10+.
@@ -189,3 +190,10 @@ Các trình duyệt hiện đại và Internet Explorer 10+.
 | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img class="no-margin" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
 | --------- | --------- | --------- | --------- |
 | IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
+
+
+## Lưu ý
+:::tip Lưu ý
+**Chúng tôi cố gắng tránh dịch các thuật ngữ chuyên ngành tiếng anh để bảo đảm sự trong sáng của tài liệu (ví dụ responsive layout hay component...), vì vậy rất mong các bạn thông cảm và cùng tìm hiểu thêm ý nghĩa của các thuật ngữ - điều này sẽ giúp cho các bạn rất nhiều trong quá trình tiếp cận thuật ngữ chuyên ngành.**
+:::
+

@@ -26,7 +26,7 @@
   "homepage": "https://doc.laravue.dev",
   "devDependencies": {
     "husky": "^1.3.1",
-    "lint-staged": "^8.2.0",
+    "lint-staged": "^8.2.1",
     "prettier": "^1.18.2",
     "vuepress": "0.14.9"
   },

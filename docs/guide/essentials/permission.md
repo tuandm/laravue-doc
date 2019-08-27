@@ -1,6 +1,7 @@
 # Roles and Permissions
-
+<!---
 Roles and permission have been introduced in this article [Laravue part 2 - Permissions and Roles](https://dev.to/tuandm/laravue-part-2-acl-authentication-permissions-and-roles-49fe-temp-slug-7192660?preview=9ab5016c9f635b4d2fbf501b9aa55fc4b932c74e05d0d2a31a377384dc536c4b90754b534601c6ccb1cc23aa281b279073040c1eb2a2004b96760f04).
+-->
 
 ## Introduction
 Laravue's permissions system is based on [spatie/laravel-permission](https://github.com/spatie/laravel-permission). As the design, a user can belong to many roles. However, in the scope of demo project, Laravue allows creating user with only one role. You can custom source code to support multi-roles.
@@ -38,7 +39,7 @@ Laravue provides [v-permission](https://github.com/tuandm/laravue/blob/master/re
   <!-- Editor can see this -->
   <el-tag v-role="['editor']">editor</el-tag>
 
-  <!-- Editor can see this -->
+  <!-- Admin or Editor can see this -->
   <el-tag v-role="['admin', 'editor']">Both admin or editor can see this</el-tag>
   <!-- Admin has permission 'manage user' can see this -->  
   <el-tag v-role="['admin']" v-permission="['manage user']">Manage users</el-tag>
