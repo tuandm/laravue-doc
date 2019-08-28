@@ -1,5 +1,7 @@
 # Tags View
 
+![](https://cdn.laravue.dev/tags-view.jpg)
+
 This is one of interesting features. It allows to visit previous views with historical navigation bar implemented by [tags](https://element.eleme.io/#/en-US/component/tag)
 
 This is implemented as a combination of `keep-alive` and `router-view`.
@@ -49,6 +51,7 @@ Make sure that the two names are the same. Remember not to write duplicates or m
 For details, see
 [issue](https://github.com/vuejs/vue/issues/6938#issuecomment-345728620).
 
+<!--
 ## Cache is not suitable for the scene
 
 Currently cached solutions are not suitable for certain services, such as the article details page such as `/article/1`、`/article/2`, their routes are different but the corresponding components are the same, so their component name is the same, As mentioned earlier, the `keep-alive` :include can only be cached based on the component name, so this is a problem. There are two solutions for this issue:
@@ -59,6 +62,7 @@ Currently cached solutions are not suitable for certain services, such as the ar
 
 - Use a browser cache scheme such as localStorage, you have to control the cache yourself.
 
+-->
 ## Affix
 
 If the Affix attribute is added to the route, the current `tag` will be fixed in `tags-view` (cannot be removed).

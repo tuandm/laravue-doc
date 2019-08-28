@@ -1,12 +1,10 @@
 # Tags View
 
-This feature is to respond to people's needs. In fact, I do not use this feature in company projects or personal projects. In the past, those traditional back-end frameworks often included this feature. Since most of the previous back-end projects were in the form of multiple pages, the navigation feature of the tags view still has some basic meaning. Most of them are based on the iframe.
+![](https://cdn.laravue.dev/tags-view.jpg)
 
-However, with the development of the times, the background projects are almost all spa (single page web application single page development), and it is obviously not appropriate to use the previous way to implement the navigation of the tags.
+Đây là một tính năng khá là thú vị dùng để liệt kê các trang đã vào - tương tự lịch sử truy cập của browser - được hiển thị dưới dạng tabs. Chức năng này được hiện thực bởi [tags](https://element.eleme.io/#/en-US/component/tag)
 
-So the current plan is:
-
-Use a combination of `keep-alive` and `router-view` .
+Về kỹ thuật, chức năng này là sự kết hợp của `keep-alive` và `router-view`.
 
 Code: `@/layout/components/AppMain.vue`
 
@@ -16,21 +14,18 @@ Code: `@/layout/components/AppMain.vue`
 </keep-alive>
 ```
 
-The actual action of the tags view navigation is equivalent to another nav display mode. In fact, it is a router-link, and click to jump to the corresponding page. Then we are listening to changes in the route `$route` to determine if the current page needs to be reloaded or cached.
+Trên thực tế, tags view hoạt động giống như hiển thị một view khác khi được click vào. Trên thực tế, nó là `router-link` và khi click vào, nó sẽ load view tương ứng. Chúng ta sẽ lắng nghe thay đổi của `$route` để quyết định sử dụng trang hiện tại từ cache hay phải load lại.
 
 ## visitedViews && cachedViews
 
-The current tag-view maintains two arrays.
+Tags view quản lý 2 array:
 
-- visitedViews : The page the user has visited is a collection of tag arrays displayed in the tags bar navigation.
-- cachedViews : The actual keep-alive route. You can set whether or not you want to cache the route by configuring the route with `meta.noCache`.
-  [Configuration Document](router-and-nav.md)
+- visitedViews : Tất cả các trang mà user đã duyệt, được lưu trong một array và hiển thị dạng tag bar.
+- cachedViews : Các route được cache lại (`keep-alive`). Bạn có thể cấu hình cho 1 route được cache hay không bằng `meta.noCache`. [Xem thêm Router and Nav](router-and-nav.md)
 
-## Precautions
+## Lưu ý
 
-Because keep-alive and router-view are strongly coupled, and it is not difficult to find the keep-alive include default is to match the component's name, it is necessary to look at the document and source code when writing the routing component corresponding to the routing router and route.
-
-Make sure the name of both is exactly the same. (Keep in mind that the naming of the name is as unique as possible. Remember not to duplicate the naming of some components, or to refer to the last memory overflow issue recursively.)
+`keep-alive` và `router-view` liên kết rất chặt chẽ. Hãy chắn chắn rằng bạn sử dụng cùng 1 tên cho 2 thành phần này. Tên của các views/components nên là duy nhất, tránh trùng lặp vì sẽ gây ra nhiều lỗi - ví dụ leak memory.
 
 **DEMO:**
 
@@ -51,24 +46,25 @@ export default {
 }
 ```
 
-Make sure that the two names are the same. Remember not to write duplicates or mistakes. By default, if you do not write name, it will not be cached.
-
-For details, see
+Tên khai báo giống nhau (createForm), và không được trùng lặp (khai báo ở chỗ khác). *Nếu bạn không cung cấp tên cho view, nó sẽ không được cache*
+Chi tiết ở đây: 
 [issue](https://github.com/vuejs/vue/issues/6938#issuecomment-345728620).
 
-## Cache is not suitable for the scene
+<!--
+## Một số trường hợp không nên cache.
 
-Currently cached solutions are not suitable for certain services, such as the article details page such as `/article/1`、`/article/2`, their routes are different but the corresponding components are the same, so their component name is the same, As mentioned earlier, the `keep-alive` include can only be cached based on the component name, so this is a problem. There are currently two solutions:
+Hiện tại giải pháp cache không thực sự thích hợp cho một số thành phần, ví dụ trang article chi tiết `/article/1`, `article/2`. Các trang này khác nhau nhưng sử dụng chung các components (bản chất là 1 page nhưng khác param truyền vào). Như đã nói ở trên `keep-alive` 
+Currently cached solutions are not suitable for certain services, such as the article details page such as `/article/1`、`/article/2`, their routes are different but the corresponding components are the same, so their component name is the same, As mentioned earlier, the `keep-alive` :include can only be cached based on the component name, so this is a problem. There are two solutions for this issue:
 
-- Instead of using keep-alive's include, keep-alive caches all components directly. This way, it supports the aforementioned business situation.
-  To [@/layout/components/AppMain.vueAppMain.vue](https://github.com/tuandm/laravue/blob/master/resources/js/views/layout/components/AppMain.vue) remove the `include` related code. Of course, using keep-alive directly also has disadvantages. He can't dynamically delete the cache. You can only help it to set a maximum cache instance limit.
+- Instead of using keep-alive's :include, keep-alive caches all components directly. This way, it supports the aforementioned business situation.
+  To [@/layout/components/AppMain.vue](https://github.com/tuandm/laravue/blob/master/resources/js/layout/components/AppMain.vue) remove the `:include` related code. Of course, using keep-alive directly also has disadvantages. It can't dynamically delete the cache. You can only help it to set a maximum cache instance limit.
   [issue](https://github.com/vuejs/vue/issues/6509)
 
-- Use a browser cache scheme such as localStorage, own to control the cache.
+- Use a browser cache scheme such as localStorage, you have to control the cache yourself.
+-->
+## Cố định Tags view
 
-## Affix <Badge text="v3.10.0+"/>
-
-If the Affix attribute is added to the route, the current `tag` will be fixed in `tags-view` (cannot be deleted).
+Nếu thuộc tính `affix` được sử dụng cho route, `tag` hiện tại sẽ cố định (fixed, hay pinned) trên `tags-view` (không thể bị xóa).
 
 ![](https://user-images.githubusercontent.com/8121621/52840303-cd5c9280-3133-11e9-928f-e2825eaab51b.png)
 
@@ -93,12 +89,12 @@ If the Affix attribute is added to the route, the current `tag` will be fixed in
   }
 ```
 
-## Remove
+## Gỡ bỏ Tags view
 
-In fact, keep-alive [source code](<(https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)>) is not complicated, but the logic is still quite around. Before the vue author himself fixed a bug, he was not careful, he made two versions to fix it, so if there is no user who needs the navigation bar, it is recommended Remove this feature.
+Trên thực tế, `keep-alive` [source code](<(https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)>) không quá phức tạp, nhưng logic thì hơi lằng nhằng. Bạn có thể xóa nó bằng cách sau:
 
-First find
-`@/layout/components/AppMain.vue` and remove `keep-alive`
+Đầu tiên, tìm đến file
+`@/layout/components/AppMain.vue` và xóa `keep-alive`
 
 ```html
 <template>
@@ -110,4 +106,4 @@ First find
 </template>
 ```
 
-Remove the entire file `@/layout/components/TagsView.vue`. Then, remove the reference to `TagsView` in `@/layout/components/index` and in `@/layout/Layout.vue`. Finally, remove the file `@/store/modules/tagsView`.
+Xóa file `@/layout/components/TagsView.vue`, sau đó xóa reference đến `TagsView` trong `@/layout/components/index` và `@/layout/Layout.vue`. Sau đó, xóa file `@/store/modules/tags-view.js`.

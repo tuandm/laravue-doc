@@ -4,7 +4,7 @@ Router và navigation là thành phần quan trọng để tổ chức hệ th�
 
 Trong dự án này, router và navigation đi chung với nhau. Bạn chỉ cần cấu hình router ở `@/router/index.js` rồi menu ở sidebar sẽ tự động được tạo ra. Điều này rất tiện lợi và giảm thời gian chỉnh sửa sidebar navigation. Dĩ nhiên bạn sẽ phải cấu hình theo đúng yêu cầu của 1 route
 
-## Config
+## Cấu hình
 
 Sau đây là các tùy chọn cho một route
 

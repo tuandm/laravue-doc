@@ -2,13 +2,12 @@
 
 ## CSS Modules
 
-In the code of stylIn the style development process, there are two issues are more prominent:
+Khi làm việc với css style, thường có 2 vấn đề chính:
 
-- Global pollution —— The selector in the CSS file is global. The same name selector in different files, according to the order in the build generation file, the styles generated later will overwrite the previous ones.
+- Global pollution - gọi nôm na là đụng độ selector. Selector trong các file CSS là biến toàn cục, nếu bạn dùng chung selector ở các file khác nhau, khi compile các selector này sẽ ghi đè lên nhau.
+- Selector complex - gọi nôm na là selector phức tạp. Vấn đề này khá dễ hiểu, đại loại là selector nhiều tầng nhiều lớp. Thực chất lý do phát sinh vấn đề này là khi chúng ta giải quyết vấn đề đụng độ selector bằng cách chia lớp hay giới hạn các components theo tên gọi hay tiền tố, điều này giúp cho các members trong team dễ thêm bớt css class ứng với components của mình đang làm, vô hình dung làm css class càng lúc càng dài và cuối cùng là khó quản lý.
 
-- Selector complex —— In order to avoid the above problems, we have to be careful when writing styles, the name of the class will be marked with a range of restrictions, multi-person development is also very easy to lead to the chaos of the naming style. The classnames getting longer and longer. Eventually, it's hard to maintain.
-
-Fortunately vue provides us with [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) can easily solve the above problem. As the name suggests, it adds a scoped concept to css.
+May mắn là Vue cung cấp cho chúng ta khái niệm [scoped](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles) để giải quyết vấn đề trên. Giống như tên gọi, Vue thêm khái niệm `scoped` vào css.
 
 ```css
 /* Compile before */
@@ -22,30 +21,32 @@ Fortunately vue provides us with [scoped](https://vue-loader.vuejs.org/guide/sco
 }
 ```
 
-If you add `<style scoped>` the css will only effect in the current component。For detailed documentation, see [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
+Nếu bạn sử dụng `<style scoped>` ở vue component, css chỉ có tác dụng với component đó。Bạn có thể xem thêm tài liệu về [vue-loader](https://vue-loader.vuejs.org/guide/scoped-css.html#mixing-local-and-global-styles)
 
 ::: tip
-With scoped, the parent component's styles will not leak into child components. However, a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. This is by design so that the parent can style the child root element for layout purposes.
+Với scoped, styles của component cha sẽ không ảnh hưởng đến các components con trừ root node. Root node của component con sẽ nhận style scoped của cả component cha và của chính nó. Thiết kế này giúp component cha có thể tác động đến style của root note  component con cho mục đích tổ chức layout.
 :::
 
 <br/>
 
-## Project Structure
+## Tổ chức style trong dự án
 
-vue-element-admin All global styles are set in the `@/src/styles` directory.
+Các style toàn cục được khai báo trong thư mục `/resources/js/styles`.
 
 ```bash
 ├── styles
 │   ├── btn.scss                 # button css
 │   ├── element-ui.scss          # global custom element-ui style
-│   ├── index.scss               # global common style
+│   ├── element-variables.scss   # global variables for customizing element-ui style
+│   ├── index.scss               # global common style - to sync with vendor (vue-element-admin project)
+│   ├── laravue.scss             # custom common style will be put here
 │   ├── mixin.scss               # global sass mixin
 │   ├── sidebar.scss             # sidebar css
 │   ├── transition.scss          # vue transition animation
 │   └── variables.scss           # global variables
 ```
 
-The common workflow is that the global styles are written in the `src/styles` directory and each page's own style is written in its own `.vue` file.
+Tương tự cách thức làm việc của Vue components, styles toàn cục được viết trong `/resources/js/styles` và mỗi page sẽ tự định nghĩa style riêng của mình trong file `.vue`.
 
 ```css
 <style>
@@ -59,7 +60,7 @@ The common workflow is that the global styles are written in the `src/styles` di
 
 ## Custom element-ui style
 
-Now let's talk about how to override the element-ui style. Because element-ui style we are import in the global, so you can't add `scoped` to a page if you want to overwrite it, but you want to override only the element style of this page, you can add a class in its parent, using the namespace to solve this problem.
+Bây giờ chúng ta sẽ nói về việc thay đổi style của thư viện `element-ui`. Vì `element-ui` style được import toàn cục, nên bạn không thể thay đổi nó bằng `scoped` trong các trang con, nhưng bạn có thể ghi đè style của element bằng cách thêm 1 css class vào component cha, rồi dùng namespace để giải quyết..
 
 ```css
 .article-page {
@@ -71,21 +72,20 @@ Now let's talk about how to override the element-ui style. Because element-ui st
 }
 ```
 
-**Of course, you can also use the deep selectors as described below.**
+**Bạn có thể sử dụng deep selectors.**
 
 ## Deep Selectors
 
-**Parent component changes child component style.**
+**Component cha thay đổi style của component con.**
 
-If you want a selector in scoped styles to be "deep", i.e. affecting child components, you can use the >>> combinator:
+Nếu bạn muốn 1 selector trong `scoped` style là "deep", ví dụ ảnh hưởng components con, bạn có thể dùng `>>>`:
 
 ```css
 <style scoped>
 .a >>> .b { /* ... */ }
 </style>
 ```
-
-Will be compiled into
+Sẽ được compile thành
 
 ```css
 .a[data-v-f3f3eg9] .b {
@@ -93,7 +93,7 @@ Will be compiled into
 }
 ```
 
-Some pre-processors, such as SASS, may not be able to parse >>> properly. In those cases you can use the /deep/ combinator instead - it's an alias for >>> and works exactly the same.
+Một vài pre-processors, ví dụ SASS, có thể không parse `>>>` chính xác, bạn có thể dùng `/deep/` để thay thế
 
 ```css
 .xxx-container >>> .el-button{
@@ -101,11 +101,11 @@ Some pre-processors, such as SASS, may not be able to parse >>> properly. In tho
 }
 ```
 
-[Official document](https://vue-loader.vuejs.org/en/features/scoped-css.html)
+[Tài liệu chính chủ](https://vue-loader.vuejs.org/en/features/scoped-css.html)
 
 ## Postcss
 
-Let's talk about the configuration of postcss. After the new version of the [vue-cli webpack template](https://github.com/vuejs-templates/webpack) initialization, there is a default `.postcssrc.js` in the root directory. By default, `vue-loader` will read the configuration of postcss from it, so here directly to change the configuration file on it. The configuration is the same as [postcss](https://github.com/postcss/postcss).
+Tiếp theo sẽ là cấu hình của `postcss`. Sau khi phiên bản mới của [vue-cli webpack template](https://github.com/vuejs-templates/webpack) ra đời, nó sử dụng file `.postcssrc.js` trong thư mục root. Mặc định `vue-loader` sẽ đọc thông số cấu hình của postcss từ file này. Vì vậy chúng ta có thể cấu hình postcss trực tiếp ở đây. Thông số tương tự [postcss](https://github.com/postcss/postcss).
 
 ```javascript
 //.postcssrc.js
@@ -123,19 +123,19 @@ module.exports = {
   ]
 ```
 
-As described in the previous code, autoprefixer reads the configuration parameters of browserslist under package.json.
+Với cấu hình ở trên, autoprefixer sẽ đọc các thông số của browserslist trong file package.json.
 
-- `> 1%` Compatible with browser with global usage above 1%
-- `last 2 versions` Compatible with the last two versions of each browser
-- `not ie <= 8` Not compatible ie8 and below
+- `> 1%` Tương thích với tất cả browers mà có thị phần sử dụng > 1%
+- `last 2 versions` Tương thích với 2 phiên bản mới nhất trên mỗi loại browser
+- `not ie <= 8` Không chơi với ie8 và ie cũ hơn
 
-More detail [browserslist](https://github.com/ai/browserslist)
+Thông tin chi tiết ở [browserslist](https://github.com/ai/browserslist)
 
-`postcss` has many other features [to explore by yourself](https://www.postcss.parts/)
+`postcss` có rất nhiều tính năng, bạn có thể [khám phá thêm](https://www.postcss.parts/)
 
 ## Mixin
 
-This project does not set to automatically inject sass mixin to the global, so you need to manually introduce the mixin.
+Mixin không được import tự động, bạn phải tự làm lấy trong file vue/js.
 
 ```scss
 <style rel="stylesheet/scss" lang="scss">
@@ -143,5 +143,4 @@ This project does not set to automatically inject sass mixin to the global, so y
 </style>
 ```
 
-If you need to automatically inject mixin global, you can use
-[sass-resources-loader](https://github.com/shakacode/sass-resources-loader).
+Nếu bạn muốn tự động hóa công đoạn này, bạn có thể dùng [sass-resources-loader](https://github.com/shakacode/sass-resources-loader).
