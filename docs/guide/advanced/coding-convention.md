@@ -11,9 +11,9 @@ Great tools make good work! In Laravue, we highly recommend to use :
 ## Javascript/Vue - ESLint
 In Laravue, JS/Vue coding standard follows [Airbnb JavaScript Style](https://github.com/airbnb/javascript) and [official VueJS Style](https://vuejs.org/v2/style-guide/).
 
-### Config
+### Settings
 
-All configuration files are in [.eslintrc.js](https://github.com/tuandm/laravue/blob/master/.eslintrc.js).
+All configuration rules are in [.eslintrc.js](https://github.com/tuandm/laravue/blob/master/.eslintrc.js).
 The basic eslint rules of this project are based on [the official eslint](https://eslint.org/docs/rules/) and [eslint-plugin-vue](https://eslint.vuejs.org/) with some minor changes.
 
 ### Some important points
@@ -44,7 +44,7 @@ Below are some important rules applying for JS/Vue files inside `resources/js`.
 
 #### Indentation
 
-Laravue use 2 spaces indentation (https://eslint.org/docs/rules/indent)
+Laravue uses 2 spaces indentation (https://eslint.org/docs/rules/indent)
 ```
     'indent': [2, 2, {
       'SwitchCase': 1

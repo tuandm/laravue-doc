@@ -43,6 +43,7 @@ In `/routes/api.php`, when we define API routes for one resource with `Router::a
 Route::apiResource('permissions', 'PermissionController')
 ```
 
+Double check generated routes with predefined [Resource Controller](https://laravel.com/docs/master/controllers#resource-controllers) named PermissionController which was generated with command `php artisan make:controller PermissionController --resource`
 ```
 $php artisan route:list
 ...

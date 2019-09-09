@@ -1,26 +1,27 @@
-# Import Third-party Modules
+# Làm việc với thư viện khác
 
-In addition to the element-ui components and the business components built into the scaffolding, sometimes we also need to import other external components.
+Với `laravue`, chúng tôi mong muốn cung cấp các thư viện cần thiết cho một hệ thống quản trị tiêu chuẩn, nhưng đôi khi (và thường xuyên) trong quá trình phát triển ứng dụng, việc thêm các thư viện hữu ích khác là điều cần thiết.
 
-Here to import [vue-count-to](https://github.com/PanJiaChen/vue-countTo) as an example to introduce.
+Trong ví dụ sau đây, chúng ta sẽ thử import thư viện [vue-count-to](https://github.com/PanJiaChen/vue-countTo), 1 ứng dụng nhỏ nhỏ để "đếm" tới một số nào đó.
 
-## Install dependence
+## Cài đặt thư viện
 
-Enter the following command in the terminal to complete the installation:
+Để cài đặt 1 thư viện frontend (Vue/JS/CSS...) vào Laravue, bạn sử dụng command sau:
 
 ```bash
-$ npm install vue-count-to --save
+$ npm install vue-count-to --save-dev
 ```
 
-> add `--save` will automatically add dependencies to package.json.
+> `--save-dev` sẽ khai báo thư viện trên vào devDependencies trong file package.json.
 
 <br/>
 
-## Usage
+## Cách dùng
+Tùy vào hướng dẫn của thư viện các bạn muốn sử dụng để đưa vào `laravue`, trong bài viết này chúng tôi sẽ lấy `vue-count-to` làm ví dụ.
 
-### Global Registration
+### Khai báo component toàn cục (global scope)
 
-**main.js**
+**app.js**
 
 ```js
 import countTo from 'vue-count-to'
@@ -33,7 +34,7 @@ Vue.component('countTo', countTo)
 </template>
 ```
 
-### Local Registration
+### Khai báo component cục bộ (local scope)
 
 ```html
 <template>
@@ -58,6 +59,5 @@ export default {
 
 <br/>
 
-## Use Any Javascript Library With Vue.js
-
-[Use Any Javascript Library With Vue.js](https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/)
+## Sử dụng thư viện Javascript với VueJS
+Sử dụng thư viện Javascript với VueJS khá là dễ dàng, bạn có thể xem thêm ở bài viết này: https://vuejsdevelopers.com/2017/04/22/vue-js-libraries-plugins/
