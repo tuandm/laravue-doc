@@ -6,7 +6,7 @@ When projects are completed, you can build your application only run one command
 
 ```bash
 # build for production environment
-npm run production
+yarn run production
 ```
 
 ### Environmental variables
@@ -33,7 +33,7 @@ const baseURL = process.env.BASE_API,
 If your build file is large, you can optimize your code by building and analyzing the size distribution of dependent modules using the `webpack-bundle-analyzer`.
 
 ```bash
-npm run build:prod --report
+yarn run report
 ```
 
 After running you can see the specific size distribution at http://127.0.0.1:8888

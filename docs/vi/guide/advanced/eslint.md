@@ -89,5 +89,5 @@ You can also configure `eslint-loader` to let you know if you have any errors in
 ## Auto fix
 
 ```bash
-npm run lint -- --fix
+yarn run lint -- --fix
 ```

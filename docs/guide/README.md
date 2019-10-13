@@ -145,11 +145,11 @@ php artisan migrate --seed
 # Generate JWT secret key
 php artisan jwt:secret
 
-# install dependency
-npm install
+# Install dependency - we recommend using Yarn instead of NPM since we get errors while using NPM
+yarn install
 
 # Build for development
-npm run dev # or npm run watch
+yarn run dev # or yarn run watch
 
 # Start local development server
 php artisan serve
@@ -172,16 +172,29 @@ Laravue has already setup for standard components, state management, i18n, globa
 
 ### Build for production
 ```
-npm run production
+yarn run production
 ```
+
 ### Analyze the build file size
 If your build file is large, you can optimize your code by building and analyzing the size distribution of dependent modules using the `webpack-bundle-analyzer`.
 ```
-npm run report
+yarn run report
 ```
 After running you can see the specific size distribution at http://127.0.0.1:8888 (it will automatically open).
 
 ![](https://cdn.laravue.dev/webpack-bundle-report.jpg)
+
+
+With current demo, the minified sizes are:
+```
+      /css/app.css   215 KiB       0  [emitted]         /js/app
+        /js/app.js   2.9 MiB       0  [emitted]  [big]  /js/app
+   /js/manifest.js  1.46 KiB       1  [emitted]         /js/manifest
+     /js/vendor.js  4.17 MiB       2  [emitted]  [big]  /js/vendor
+```
+After compress with nginx:
+![](https://cp5.sgp1.digitaloceanspaces.com/zoro/laravue-cdn/js-sizes.png)
+
 
 ## Contribution
 

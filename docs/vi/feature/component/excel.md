@@ -13,8 +13,8 @@ Since `Export2Excel` depends not only on `js-xlsx` but also on `file-saver` and 
 So you first need to install the following command:
 
 ```bash
-npm install xlsx file-saver -S
-npm install script-loader -S -D
+yarn install xlsx file-saver -S
+yarn install script-loader -S -D
 ```
 
 Since `js-xlsx` size is still very large, the export function is not a very common function, so lazy loading is recommended when using it. The method of use is as follows:

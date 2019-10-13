@@ -111,7 +111,7 @@ People and team have their own code specification, it is good to create their ow
 ## Auto fix
 
 ```bash
-npm run lint -- --fix
+yarn run lint -- --fix
 ```
 
 ## PHP - PSR

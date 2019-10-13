@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "axios": "^0.18.1",
-    "webpack-dev-middleware": "^3.7.0"
+    "webpack-dev-middleware": "^3.7.2"
   }
 }

@@ -146,10 +146,10 @@ php artisan migrate --seed
 php artisan jwt:secret
 
 # install dependency
-npm install
+yarn install
 
 # Build for development
-npm run dev # or npm run watch
+yarn run dev # or yarn run watch
 
 # Start local development server
 php artisan serve
@@ -170,6 +170,32 @@ Laravue đã cài đặt sẵn các components tiêu chuẩn, quản lý [state]
 ::: tip
 **Đề nghị：** Bạn nên sử dụng [laravue-core](https://github.com/tuandm/laravel-core) package nếu bạn muốn đem Laravue vào trong các dự án Laravel có sẵn, và Laravue khi đó sẽ trở thành tài liệu rất hữu ích.
 :::
+
+
+### Build for production
+```
+yarn run production
+```
+
+### Kiểm tra kích thước build files
+Nếu bạn cảm thấy ứng dụng quá nặng (vendor.js, app.js quá lớn), bạn có thể kiểm tra lại bằng `webpack-bundle-analyzer` để optimize.
+```
+yarn run report
+```
+Sau khi chạy command ở trên, trình duyệt sẽ tự động mở lên ở địa chỉ http://127.0.0.1:8888 và hiện report về kích thước các module js đang sử dụng.
+
+![](https://cdn.laravue.dev/webpack-bundle-report.jpg)
+
+Với bảng demo hiện tại, kích thước file js sau khi minifying:
+```
+      /css/app.css   215 KiB       0  [emitted]         /js/app
+        /js/app.js   2.9 MiB       0  [emitted]  [big]  /js/app
+   /js/manifest.js  1.46 KiB       1  [emitted]         /js/manifest
+     /js/vendor.js  4.17 MiB       2  [emitted]  [big]  /js/vendor
+```
+Và sau khi "nén" với nginx:
+![](https://cp5.sgp1.digitaloceanspaces.com/zoro/laravue-cdn/js-sizes.png)
+
 
 ## Đóng góp và cộng đồng
 

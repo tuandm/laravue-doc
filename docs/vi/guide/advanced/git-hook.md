@@ -22,7 +22,7 @@ The most effective solution is to put the `Lint` check locally. The common pract
 [husky](https://github.com/typicode/husky) or [pre-commit](https://github.com/observing/pre-commit) do `Lint` before committing locally. Here we use `husky`.
 
 ```bash
-npm install husky -D -S
+yarn install husky -D -S
 ```
 
 Then modify package.json to add configuration:
@@ -48,7 +48,7 @@ But there is a problem. This is that I may only change one file for this commit.
 To solve the above pain points, you need to use [lint-staged](https://github.com/okonet/lint-staged). It will only check the parts that you submitted or you modified.
 
 ```bash
-npm install lint-staged -D -S
+yarn install lint-staged -D -S
 ```
 
 Then, modify the package.json configuration:

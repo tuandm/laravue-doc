@@ -9,7 +9,7 @@ Trong ví dụ sau đây, chúng ta sẽ thử import thư viện [vue-count-to]
 Để cài đặt 1 thư viện frontend (Vue/JS/CSS...) vào Laravue, bạn sử dụng command sau:
 
 ```bash
-$ npm install vue-count-to --save-dev
+$ yarn install vue-count-to --save-dev
 ```
 
 > `--save-dev` sẽ khai báo thư viện trên vào devDependencies trong file package.json.

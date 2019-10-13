@@ -17,7 +17,7 @@ By asking git hooks processing `lint` check before push, we will save lot of tim
 ## husky
 
 ```bash
-npm install husky -D -S
+yarn install husky -D -S
 ```
 
 Then modify package.json to add configuration:
@@ -43,7 +43,7 @@ By applying `husky` on git hooks, we can run eslint everytime we use git command
 To solve the above pain points, you need to use [lint-staged](https://github.com/okonet/lint-staged). It will only check the parts that you submitted or you modified.
 
 ```bash
-npm install lint-staged -D -S
+yarn install lint-staged -D -S
 ```
 
 Then, modify the package.json configuration:

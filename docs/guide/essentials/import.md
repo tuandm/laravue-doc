@@ -9,7 +9,7 @@ Here to import [vue-count-to](https://github.com/PanJiaChen/vue-countTo) as an e
 Enter the following command in the terminal to complete the installation:
 
 ```bash
-$ npm install vue-count-to --save-dev
+$ yarn install vue-count-to --save-dev
 ```
 
 > add `--save-dev` will automatically add devDependencies to package.json.

@@ -33,11 +33,11 @@ php artisan migrate --seed
 # Generate JWT secret key
 php artisan jwt:secret
 
-# install dependency
-npm install
+# Install dependency
+yarn install
 
 # develop
-npm run dev # or npm run watch
+yarn run dev # or yarn run watch
 
 # Start local development server
 php artisan serve

@@ -117,7 +117,7 @@ Bạn và team bạn cũng có thể tạo ra các quy chuẩn riêng cho mình 
 
 Lệnh dưới đây sẽ tìm tất cả các chỗ chưa theo đúng rules eslint và "cố gắng sửa chửa":
 ```bash
-npm run lint -- --fix
+yarn run lint -- --fix
 ```
 
 ## PHP - PSR
