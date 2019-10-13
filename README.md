@@ -1,7 +1,8 @@
 # Laravue Docs
 
-Source code for [Laravue](https://laravue.dev).
-Documentation: https://doc.laravue.dev.
+Source code for the [Laravue documentation](https://doc.laravue.dev).
+Demo site: https://laravue.dev.
+Repository: https://github.com/tuandm/laravue
 
 ## Install vuepress
 ```
