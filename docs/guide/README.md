@@ -4,9 +4,9 @@ pageClass: getting-started
 
 # Introduction
 
-[![Laravel](https://img.shields.io/badge/laravel-5.8-brightgreen.svg)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/laravel-6.2-brightgreen.svg)](https://laravel.com)
 [![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
-[![element-ui](https://img.shields.io/badge/element--ui-2.11.1-brightgreen.svg)](https://github.com/ElemeFE/element)
+[![element-ui](https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg)](https://github.com/ElemeFE/element)
 [![Build Status](https://gitlab.com/bacduong/laravue/badges/master/build.svg)](https://gitlab.com/bacduong/laravue)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/tuandm/laravue/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
@@ -174,6 +174,15 @@ Laravue has already setup for standard components, state management, i18n, globa
 ```
 yarn run production
 ```
+
+### Change the path
+Laravue can be easily moved to subfolder like `/admin` or `/administrator` by changing `LARAVUE_PATH` in `.env` file (ex: `LARAVUE_PATH=admin`). If it's empty, dashboard will be shown as the root folder, else the Laravel default landing page will show instead and it will have a link to go to Laravue dashboard:
+
+![Landing page](https://cdn.laravue.dev/landing-page.png)
+
+::: warning
+Changing .env requires running `yarn run ...` again to be affected.
+:::
 
 ### Analyze the build file size
 If your build file is large, you can optimize your code by building and analyzing the size distribution of dependent modules using the `webpack-bundle-analyzer`.

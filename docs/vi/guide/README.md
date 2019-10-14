@@ -4,9 +4,9 @@ pageClass: getting-started
 
 # Giới thiệu
 
-[![Laravel](https://img.shields.io/badge/laravel-5.8-brightgreen.svg)](https://laravel.com)
+[![Laravel](https://img.shields.io/badge/laravel-6.2-brightgreen.svg)](https://laravel.com)
 [![vue](https://img.shields.io/badge/vue-2.6.10-brightgreen.svg)](https://github.com/vuejs/vue)
-[![element-ui](https://img.shields.io/badge/element--ui-2.11.1-brightgreen.svg)](https://github.com/ElemeFE/element)
+[![element-ui](https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg)](https://github.com/ElemeFE/element)
 [![Build Status](https://gitlab.com/bacduong/laravue/badges/master/build.svg)](https://gitlab.com/bacduong/laravue)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/tuandm/laravue/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/tuandm/laravue.svg)](https://github.com/tuandm/laravue/releases)
@@ -176,6 +176,15 @@ Laravue đã cài đặt sẵn các components tiêu chuẩn, quản lý [state]
 ```
 yarn run production
 ```
+
+### Thay đổi đường dẫn
+Bạn có thể thay đổi đường dẫn cho Laravue dashboard bằng cách khai báo trong `.env`, ví dụ `LARAVUE_PATH=admin`. Nếu `LARAVUE_PATH` để trống, Laravue sẽ hiện thị tại trang chủ, nếu `LARAVUE_PATH` có giá trị, thì trang landing page mặc định của Laravel sẽ xuất hiện với đường dẫn vào Laravue dashboard
+
+![Landing page](https://cdn.laravue.dev/landing-page.png)
+
+::: warning
+Changing .env requires running `yarn run ...` again to be affected.
+:::
 
 ### Kiểm tra kích thước build files
 Nếu bạn cảm thấy ứng dụng quá nặng (vendor.js, app.js quá lớn), bạn có thể kiểm tra lại bằng `webpack-bundle-analyzer` để optimize.
