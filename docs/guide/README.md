@@ -16,7 +16,7 @@ pageClass: getting-started
 
 :::tip
 The project is positioned as an enterprise solution and it's highly recommended to start from scratch. You should start project from simple layout and add components one by one depending on your system. This is to avoid redundant code as this project provides lot of features that you may not use.
-- Laravel package: [laravel-core](https://github.com/tuandm/laravue-core)
+- Laravel package: [laravue-core](https://github.com/tuandm/laravue-core)
   :::
 
 <br/>

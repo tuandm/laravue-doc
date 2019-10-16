@@ -16,7 +16,7 @@ pageClass: getting-started
 
 :::tip
 Laravue được xây dựng cho một giải pháp toàn diện, vì vậy Laravue nên được sử dụng từ khi bắt đầu dự án bằng cách tạo ra các layout đơn giản từ đầu và phát triển từ từ các tính năng phù hợp với yêu cầu hệ thống. Điều này sẽ tránh làm cho source code bị dư thừa vì Laravue có rất nhiều các tính năng mà doanh nghiệp của bạn chưa hoặc không dùng đến.
-- Package cho Laravel : [laravel-core](https://github.com/tuandm/laravue-core)
+- Package cho Laravel : [laravue-core](https://github.com/tuandm/laravue-core)
 :::
 
 <br/>
