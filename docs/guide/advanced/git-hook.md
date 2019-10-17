@@ -4,13 +4,14 @@ Experiened developers will always keep following coding standards on their mind 
 What are the beneifts of using Lint?
 - Fewer bugs
 - With higher development efficiency, Lint can easily find low-level, obvious errors.
-- Higher readability
+- Improve code quality
+- Readability and consistency
 
-We placed `lint` check in `CI` (Continuous Integration) before:
+Before, `lint` check was a part of CI (Continuous Integration):
 
 > Push Code --> Run CI find problem(remote) --> Fix in local --> Push Again --> Pass CI(remote)
 
-But there is a problem with this. Our `CI` (continuous integration) often doesn't just do `Lint` work, it also has many other tasks, which leads to a special waste of time. Our CI usually threw syntax errors from `lint` check after runnng other heavy tasks which took minutes. Obvously this working model is not too effective.
+But there is a problem with this setup. Our `CI` (continuous integration) often doesn't just do `Lint` work, it also has many other tasks, which leads to a special waste of time. Our CI usually threw syntax errors from `lint` check after runnng other heavy tasks which took minutes. Obvously this working model is not too effective.
 
 By asking git hooks processing `lint` check before push, we will save lot of time for CI processing which is super expensive. There are some useful tools to do this, like [husky](https://github.com/typicode/husky) or [pre-commit](https://github.com/observing/pre-commit). Laravue uses `husky`.
 
@@ -59,7 +60,7 @@ Then, modify the package.json configuration:
   }
 ```
 
-With above configurtion, system will verify the code you submitted matches the `eslint` ([ESLint](coding-convention.md#javascript-vue-eslint)) rules, before your local `commit` executes. If it is passed, it will continue with `git commit` normally, else, it will automatically execute `eslint --fix` to try to help you fix it automatically. If the repair is successful, it will help you to submit the repaired code. If it fails, it will prompt you have an error, and you have to fix errors yourself and run `git commit` again.
+With above configurtion, system will verify the code you submitted matches the `eslint` ([ESLint](coding-convention.md#javascript-vue-eslint)) rules, before your local `commit` executes. If it is passed, it will continue with `git commit` normally, else, it will execute `eslint --fix` to try fixing it automatically. If the repair is successful, it continues summitting the repaired code or . If the repair can not be done, it will prompt you about the errors, and you have to fix them yourself and run `git commit` again.
 
 ## Conclution
 

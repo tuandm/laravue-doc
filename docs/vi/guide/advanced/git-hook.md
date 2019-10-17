@@ -1,73 +1,70 @@
 # Git Hooks
+Lập trình viên có kinh nghiệm (senior level) thường sẽ giữ các tiêu chuẩn trong quá trình code, nhưng điều này tương đối khó khăn đối với các lập trình viên mới vào nghề. Do vậy Code Linting (Lint) rất quan trong để bảo đảm sự thống nhất trong các tiêu chuẩn về code.
 
-Programmers with basic engineering literacy will focus on coding specifications, and Code Linting (Lint) is an important means of ensuring code specification consistency.
+Vậy sử dụng Lint có lợi ích gì?
+- Giảm lỗi: Lint sẽ kiểm tra và "dự đoán" 1 số lỗi có thể xảy ra.
+- Phát hiện các lỗi đơn giản như syntax hay các lỗi thấy được liền (ví dụ undefined hay type mismatched...)
+- Nâng cao chất lượng code
+- Readability and consistency: Tính dễ đọc và đồng nhất.
 
-What are the benefits of using Lint? In my opinion, it has at least the following three points:
+Trước đây, `lint` được tích hợp trong CI (Continuous Integration):
 
-- Fewer bugs
-- With higher development efficiency, Lint can easily find low-level, obvious errors.
-- Higher readability
+> Push Code --> Run CI find problem(remote) --> Fix in local --> Push Again --> Pass CI(remote)
 
-Many times our `lint` check is placed in the continuous integration phase.
+Nhưng điều này không thực sự hợp lý khi mà `CI` không chỉ đơn giản là chạy `lint` mà còn chạy nhiều tác vụ khác và tốn thời gian. Vì vậy `lint` nên được thực thi chỗ khác để giảm tải cho CI.
 
-> Push Code --> Run CI find problem(remote) --> Fixed in local --> Push Again --> Pass CI(remote)
-
-But there is a problem with this. Our `CI` (continuous integration) often doesn't just do `Lint` work, it also has many other tasks, which leads to a special waste of time, often it may take a few minutes after you In order to know that there is a problem, or sometimes you have not found that your `CI` did not pass.
-
-Common process: write the code locally, submit, start running lint, find the failure to pass, modify the code locally, submit again, wait for the result of CI, and repeat the previous operation if there are any problems.
+Bằng cách sử dụng *git hooks* để chạy `link` trước khi push code, chúng ta có thể tiết kiệm thời gian cho CI. Có một vài công cụ khá tiện dụng để làm điều này, ví dụ [husky](https://github.com/typicode/husky) hay [pre-commit](https://github.com/observing/pre-commit). Ở Laravue, chúng tôi sử dụng `husky`.
 
 ## husky
 
-The most effective solution is to put the `Lint` check locally. The common practice is to use
-[husky](https://github.com/typicode/husky) or [pre-commit](https://github.com/observing/pre-commit) do `Lint` before committing locally. Here we use `husky`.
-
+Cài đặt husky bằng lệnh sau: 
 ```bash
 yarn install husky -D -S
 ```
 
-Then modify package.json to add configuration:
+Sau đó thêm đoạn code vào file package.json:
 
 ```json
 {
   "scripts": {
-    "precommit": "eslint src/**/*.js"
+    "precommit": "eslint resources/**/*.js"
   }
 }
 ```
 
-Finally try Git commit and you will receive feedback soon:
+Bây giờ chúng ta có thể kiểm tra lệnh `git commit` để thấy husky hoạt động như thế nào.
 
 ```
 git commit -m "Keep calm and commit"
 ```
 
-But there is a problem. This is that I may only change one file for this commit. For example, I changed the file of `foo.js`, but it will still check all the `.js` files under `src`. Very unfriendly. The problem is that I submitted the code I wrote, but I need to solve the other people code problem before.
+Sau khi tích hợp `husky` vào git hooks, `eslint` sẽ được chạy khi chúng ta xài git commands (commit, push). Nhưng lúc này `eslint` sẽ kiểm tra tất cả các file `*.js` trong thư mục `resources` (kể cả thư mục con). Điều này là không cần thiết vì chúng ta chỉ cần kiểm tra những đoạn code được thay đổi cuối cùng (code để commit) vì các code cũ đã được chính `husky` kiểm tra trong các commit trước rồi. Để giải quyết vấn đề này, chúng ta sử dụng `lint-staged`
 
 ## lint-staged
 
-To solve the above pain points, you need to use [lint-staged](https://github.com/okonet/lint-staged). It will only check the parts that you submitted or you modified.
+[lint-staged](https://github.com/okonet/lint-staged) dùng để kiểm tra những đoạn code mà chúng ta đang thay đổi và commit. Để cài đặt `lint-staged` chúng ta chạy lệnh sau:
 
 ```bash
 yarn install lint-staged -D -S
 ```
 
-Then, modify the package.json configuration:
+Sau đó thay đổi file package.json: :
 
 ```json
 "precommit": "lint-staged"
-
+...
 "lint-staged": {
-    "src/**/*.{js,vue}": [
+    "resources/**/*.{js,vue}": [
       "eslint --fix",
       "git add"
     ]
   }
 ```
 
-As configured above, Verify that the code you submitted matches the `eslint`( [ESLint](eslint.md) ) rule of your local configuration, before your local `commit`. If it is met, the submission is successful. If it doesn't match, it will automatically execute `eslint --fix` to try to help you fix it automatically. If the repair is successful, it will help you to submit the repaired code. If it fails, it will prompt you have an error, and you will be able to submit the code after you fix it.
+Với tùy chỉnh ở trên, hệ thống sẽ kiểm tra code mà bạn đang submit theo `eslint` theo các rules của ([ESLint](coding-convention.md#javascript-vue-eslint)). Nếu các rules đều được đáp ứng, hệ thống sẽ tiếp tục chạy `git commit` như bình thường, nếu có 1 rule nào đó không thỏa mãn, hệ thống sẽ cố gắng sửa chữa bằng cách chạy `eslint --fix` xong rồi tiếp tục submit code. Nếu `eslint --fix` không sửa được lỗi, hệ thống sẽ trả về thông báo kèm theo lỗi chi tiết, lúc này các bạn sẽ phải tự fix rồi chạy `git commit` lại.
 
-## SumUp
+## Tổng kết
 
-The best `lint` specification process is to recommend team members to configure `eslint` in their own editor, configure and enable the `eslint-loader` error in webpack, so the editor can help you fix some simple formatting errors and remind you of some places that don't meet the `lint` specification. And prompt you for errors on the command line. See the details [ESLint](eslint.md)。
+Quy trình tốt nhất là đề nghị mọi người trong dự án cấu hình `eslint` vào IDE/editor của họ, cài đặt `eslint-loader` trong webpack để IDE/editor có thể giúp lập trình viên chỉnh sửa một số lỗi đơn giản về syntax, formatting,... nhắc nhở một số code không đúng với rule `lint` cũng như thông báo các lỗi ở command line. Các bạn có thể xem chi tiết hơn ở [ESLint](coding-convention.md#javascript-vue-eslint).
 
-But this is not mandatory. Some team members or newly arrived interns are not configured in the editor or ignore the error in the command line. In this case, you need to configure the mandatory checker of `precommit` to ensure that All code submitted to the remote repository is team compliant.
+Điều này nên được khuyến khích, nhưng không cần phải bắt buộc vì các lập trình viên mới thường không có thói quen cấu hình IDE/editor hoặc không quan sát command line. Lúc này chúng ta nên cài trực tiếp `eslint` vào `precommit` hook để bảo đảm code commit lên phải theo đúng các tiêu chuẩn của dự án.
