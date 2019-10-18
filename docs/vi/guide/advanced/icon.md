@@ -1,43 +1,29 @@
 # Icon
 
-If you do not find the desired icon in the [Icon](https://github.com/tuandm/laravue/blob/master/resources/js/icons/svg) of this project, you can select and generate your own business icon library on [iconfont.cn](http://iconfont.cn/)and use it again. Or other svg icon website, download svg and put it in this folder.
+## Introduction
 
-## Generate icon library code
+`laravue` sử dụng 2 hệ thống icons - [Element-UI icons](https://element.eleme.io/#/en-US/component/icon) và [IconFont.cn](http://iconfont.cn). Bạn có thể xem ở [đây](https://laravue.dev/#/element-ui/icons) 
 
-First, search for and find the icon you need, and collect it into your shopping cart. In the shopping cart, you can add the selected icon to the project (if not, create a new one), and the subsequent generated resources/code are It is based on the dimension of the project.
+Nếu bạn không tìm thấy icons như mong muốn, bạn có thể tìm kiếm vài tải về từ trang [iconfont.cn](http://iconfont.cn/), xong rồi generate và sử dụng như các icon có sẵn. Bạn cũng có thể tìm kiếm svg icon ở các website khác, tải về rồi [thư mục này](https://github.com/tuandm/laravue/tree/master/resources/js/icons/svg).
 
-> If you already have a design draft, just need to generate the relevant code, you can upload your icon, and then do the above operation.
+## Download và generate icons từ website [IconFont.cn](http://iconfont.cn)
 
-<img width="600" alt="账户相关布局" src="https://gw.alipayobjects.com/zos/rmsportal/jJQYzRyqVFBBamUOppXH.png" />
+> Laravue được phát triển dựa trên frontend framework [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) của tác giả người Trung Quốc PanJiaChen. Cho nên trong quá trình phát triển cũng như tài liệu hướng dẫn chúng tôi cố gắng giữ nguyên những đóng góp của tác giả, ví dụ một số minh hoa có tiếng Trung. Mong các bạn thông cảm.
 
-<br />
-
-** This project now supports and recommends separate export of svg usage. Download method as shown below:**
+Đầu tiên các bạn tìm và tải icon mong muốn vào thư mục `@/icons/svg`, icon sẽ được generate tự động (build bằng `yarn run...`)
 
 <img width="600" src="https://wpimg.wallstcn.com/1f8b1e56-cfd9-4ef7-a0aa-dfb0c2883aa3.gif" />
 
 <br />
 
-After the download is complete, the downloaded .svg file is automatically imported after it is placed in the `@/icons/svg` folder.
-
-## How to use
+## Hướng dẫn sử dụng
 
 ```js
-<svg-icon icon-class="password" /> //Icon-class is the icon's name usage
+<svg-icon icon-class="password" /> // icon-class là tên của icon
 ```
 
 [Component](/feature/component/svg-icon.md)
 
-## Change color
+## Thay đổi màu
 
-`svg-icon` reads its parent's color `fill: currentColor;' by default.
-
-You can change the parent's `color` or change the color of `fill` directly.
-
-:::tip
-If you encounter an incorrect icon color, you can refer to this[issue](https://github.com/PanJiaChen/vue-element-admin/issues/330)
-:::
-
-## Detailed articles
-
-[手摸手，带你优雅的使用 icon](https://juejin.im/post/59bb864b5188257e7a427c09)
+Mặc định =`svg-icon` thừa kế màu từ parent `fill: currentColor;`. Bạn có thể thay đổi trực tiếp thuộc tính này ở component con, hoặc component cha (có tác dụng cho tất cả các component con) ở [`@/components/SvgIcon/index.vue`](https://github.com/tuandm/laravue/blob/master/resources/js/components/SvgIcon/index.vue)
