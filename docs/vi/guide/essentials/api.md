@@ -1,6 +1,6 @@
 # Hướng dẫn về API
 
-Làm việc với API trong Laravue khá là dễ dàng. Laravue sử dụng [Laravel API Resources](https://laravel.com/docs/5.8/eloquent-resources) để tạo RESTful API phía backend và [RESTful Request](https://github.com/tuandm/laravue/blob/master/resources/js/api/resource.js) đơn giản phía frontend. 
+Làm việc với API trong Laravue khá là dễ dàng. Laravue sử dụng [Laravel API Resources](https://laravel.com/docs/6.x/eloquent-resources) để tạo RESTful API phía backend và [RESTful Request](https://github.com/tuandm/laravue/blob/master/resources/js/api/resource.js) đơn giản phía frontend. 
 
 ## Luồng thực hiện API từ phía frontend
 
