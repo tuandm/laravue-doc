@@ -168,7 +168,7 @@ Laravue đã cài đặt sẵn các components tiêu chuẩn, quản lý [state]
 <br/>
 
 ::: tip
-**Đề nghị：** Bạn nên sử dụng [laravue-core](https://github.com/tuandm/laravel-core) package nếu bạn muốn đem Laravue vào trong các dự án Laravel có sẵn, và Laravue khi đó sẽ trở thành tài liệu rất hữu ích.
+**Đề nghị：** Bạn nên sử dụng [laravue-core](https://github.com/tuandm/laravue-core) package nếu bạn muốn đem Laravue vào trong các dự án Laravel có sẵn, và Laravue khi đó sẽ trở thành tài liệu rất hữu ích.
 :::
 
 

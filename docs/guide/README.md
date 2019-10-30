@@ -167,7 +167,7 @@ Laravue has already setup for standard components, state management, i18n, globa
 <br/>
 
 ::: tip
-**Suggestion：** You should try [laravue-core](https://github.com/tuandm/laravel-core) package if you want to integrate Laravue to your current Laravel projects. Laravue itself will be a good guideline for you.
+**Suggestion：** You should try [laravue-core](https://github.com/tuandm/laravue-core) package if you want to integrate Laravue to your current Laravel projects. Laravue itself will be a good guideline for you.
 :::
 
 ### Build for production
