@@ -166,6 +166,7 @@ function genEssentialsSidebar(type = '') {
     '/guide/essentials/style.md',
     '/guide/essentials/api.md',
     '/guide/essentials/import.md',
+    '/guide/essentials/hot-reload.md',
   ]
   return mapArr.map(i => {
     return type + i
