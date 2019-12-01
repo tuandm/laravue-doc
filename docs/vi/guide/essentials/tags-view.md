@@ -2,9 +2,9 @@
 
 ![](https://cdn.laravue.dev/tags-view.jpg)
 
-Đây là một tính năng khá là thú vị dùng để liệt kê các trang đã vào - tương tự lịch sử truy cập của browser - được hiển thị dưới dạng tabs. Chức năng này được hiện thực bởi [tags](https://element.eleme.io/#/en-US/component/tag)
+Đây là một tính năng khá là thú vị dùng để liệt kê các trang đã truy cập - tương tự lịch sử truy cập của browser - được hiển thị dưới dạng tabs. Chức năng này được hiện thực bởi [tags](https://element.eleme.io/#/en-US/component/tag)
 
-Về kỹ thuật, chức năng này là sự kết hợp của `keep-alive` và `router-view`.
+Về mặt kỹ thuật, chức năng này sử dụng `keep-alive` kết hợp với `router-view`.
 
 Code: `@/layout/components/AppMain.vue`
 
@@ -14,18 +14,18 @@ Code: `@/layout/components/AppMain.vue`
 </keep-alive>
 ```
 
-Trên thực tế, tags view hoạt động giống như hiển thị một view khác khi được click vào. Trên thực tế, nó là `router-link` và khi click vào, nó sẽ load view tương ứng. Chúng ta sẽ lắng nghe thay đổi của `$route` để quyết định sử dụng trang hiện tại từ cache hay phải load lại.
+Trên thực tế, tags view là danh sách các `router-link`, khi được click vào thì nó sẽ load view tương ứng. Hệ thống sẽ kiểm tra để quyết định sử dụng trang hiện tại từ cache hay phải load lại.
 
 ## visitedViews && cachedViews
 
 Tags view quản lý 2 array:
 
-- visitedViews : Tất cả các trang mà user đã duyệt, được lưu trong một array và hiển thị dạng tag bar.
+- visitedViews : Tất cả các trang mà user đã duyệt, được lưu trong một array và hiển thị dạng tags bar.
 - cachedViews : Các route được cache lại (`keep-alive`). Bạn có thể cấu hình cho 1 route được cache hay không bằng `meta.noCache`. [Xem thêm Router and Nav](router-and-nav.md)
 
 ## Lưu ý
 
-`keep-alive` và `router-view` liên kết rất chặt chẽ. Hãy chắn chắn rằng bạn sử dụng cùng 1 tên cho 2 thành phần này. Tên của các views/components nên là duy nhất, tránh trùng lặp vì sẽ gây ra nhiều lỗi - ví dụ leak memory.
+`keep-alive` và `router-view` có mối quan hệ rất chặt chẽ. Hãy chắn chắn rằng bạn sử dụng cùng 1 tên cho 2 thành phần này. Tên của các views/components nên là duy nhất, tránh trùng lặp vì sẽ gây ra nhiều lỗi - ví dụ leak memory.
 
 **DEMO:**
 
@@ -53,8 +53,7 @@ Chi tiết ở đây:
 <!--
 ## Một số trường hợp không nên cache.
 
-Hiện tại giải pháp cache không thực sự thích hợp cho một số thành phần, ví dụ trang article chi tiết `/article/1`, `article/2`. Các trang này khác nhau nhưng sử dụng chung các components (bản chất là 1 page nhưng khác param truyền vào). Như đã nói ở trên `keep-alive` 
-Currently cached solutions are not suitable for certain services, such as the article details page such as `/article/1`、`/article/2`, their routes are different but the corresponding components are the same, so their component name is the same, As mentioned earlier, the `keep-alive` :include can only be cached based on the component name, so this is a problem. There are two solutions for this issue:
+Hiện tại giải pháp cache không thực sự thích hợp cho một số component, ví dụ trang article chi tiết `/article/1`, `article/2`. Các trang này khác nhau nhưng sử dụng chung các components (bản chất là 1 page nhưng khác param truyền vào). Như đã nói ở trên `<keep-alive :include...>` sẽ cache dựa trên component name, điều này sẽ gây ra lỗi: article/1 sẽ được cache và article/2 dùng lại cache.
 
 - Instead of using keep-alive's :include, keep-alive caches all components directly. This way, it supports the aforementioned business situation.
   To [@/layout/components/AppMain.vue](https://github.com/tuandm/laravue/blob/master/resources/js/layout/components/AppMain.vue) remove the `:include` related code. Of course, using keep-alive directly also has disadvantages. It can't dynamically delete the cache. You can only help it to set a maximum cache instance limit.
@@ -91,7 +90,7 @@ Nếu thuộc tính `affix` được sử dụng cho route, `tag` hiện tại s
 
 ## Gỡ bỏ Tags view
 
-Trên thực tế, `keep-alive` [source code](<(https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)>) không quá phức tạp, nhưng logic thì hơi lằng nhằng. Bạn có thể xóa nó bằng cách sau:
+Trên thực tế, `keep-alive` [source code](<(https://github.com/vuejs/vue/blob/dev/src/core/components/keep-alive.js)>) không quá phức tạp, nhưng logic thì hơi bị lằng nhằng. Bạn có thể xóa nó bằng cách sau:
 
 Đầu tiên, tìm đến file
 `@/layout/components/AppMain.vue` và xóa `keep-alive`

@@ -21,9 +21,7 @@ Now you can start Laravue as usual:
 yarn run watch
 ```
 
-Laravue app will be opened automatically at http://localhost:3000
-
-Now, you can see the page is reloaded once saving your changes on JS/Vue files.
+Laravue app will be opened automatically and the page is reloaded once saving your changes on JS/Vue files.
 
 Please visit the [official document](https://laravel.com/docs/6.x/mix#browsersync-reloading) for more detail.
 
@@ -61,7 +59,7 @@ export default {
   @import '../styles/index.scss';
 </style>
 ```
-and also remove app.scss compilation from your mix.config.js.
+and also remove app.scss compilation from your `webpack.mix.js`.
 
 For more detail, please check [this thread](https://github.com/JeffreyWay/laravel-mix/issues/2228)
 

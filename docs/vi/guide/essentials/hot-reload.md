@@ -1,50 +1,52 @@
 # Auto Reloading
-Auto reloading is the functionality to reload webpage automatically when there are some JS/Vue files changed without pressing "Reload" button (F5/Cmd + R/...)
 
-There are some ways to setup this tool in Laravue
+Auto reloading là chức năng cho phép browser tự động refresh webpage khi có sự thay đổi ở JS/Vue files. Chức năng này rất tiện lợi và giúp tăng tốc độ phát triển sản phẩm.
 
-## With Browsersync
-[BrowserSync](https://browsersync.io/) can automatically monitor your files for changes, and inject your changes into the browser without requiring a manual refresh.
+Có một số cách để config auto reloading cho Laravue
 
-You have to install `browser-sync` and `browser-sync-webpack-plugin`
+## Dùng Browsersync
+[BrowserSync](https://browsersync.io/) có thể tự động kiểm tra thay đổi ở các files và cập nhật thay đổi đó vào browser mà không cần phải refresh bằng tay.
+
+Để có thể dùng Browsersync, bạn phải cài đặt `browser-sync` và `browser-sync-webpack-plugin`
 ```
 yarn add browser-sync browser-sync-webpack-plugin --save-dev
 ```
 
-Then add this line to your webpack.mix.js
+Sau đó thêm vào file `webpack.mix.js` dòng sau:
 ```
 mix.browserSync(YOUR_VHOST_NAME);
 ```
 
-Now you can start Laravue as usual:
+- YOUR_VHOST_NAME là vhost name bạn cấu hình cho Laravue app (`http://localhost:8000/` nếu bạn xài local development server với `php artisan serve`)
+
+Bây giờ bạn có thể bắt đầu Laravel như bình thường
 ```
 yarn run watch
 ```
 
-Laravue app will be opened automatically at http://localhost:3000
+Laravue sẽ tự động được mở lên và webpage sẽ reload nếu có thay đổi ở JS/Vue files.
 
-Now, you can see the page is reloaded once saving your changes on JS/Vue files.
+Bạn có thể xem thêm [tài liệu chính chủ](https://laravel.com/docs/6.x/mix#browsersync-reloading).
 
-Please visit the [official document](https://laravel.com/docs/6.x/mix#browsersync-reloading) for more detail.
+## Dùng Hot Module Replacemen
+> Hot Module Replacement (HMR - hay Hot Reloading) cho phép browser không chỉ tự động refresh khi có thay đổi ở JavaScript mà công cụ này còn giữ nguyên trạng thái hiện tại của webpage (ví dụ như khi đang điền thông tin form, hay state của variable bị thay đổi).
 
-## With Hot Module Replacement
-> Hot Module Replacement (HMR - or Hot Reloading) allows you to, not just refresh the page when a piece of JavaScript is changed, but it will also maintain the current state of the component in the browser. As an example, consider a simple counter component. When you press a button, the count goes up. Imagine that you click this button a number of times, and then update the component file. Once you do, the webpage will refresh to reflect your change, but the count will remain the same. It won't reset. This is the beauty of hot reloading!
-
-
-### With built-in development server
-By default, you can start hot reloading module by running this command:
+### HMR với built-in development server
+HMR được hỗ trợ mặc định với Laravel và built-in development server, bạn có thể dùng command sau để sử dụng HMR
 ```
 yarn run hot
 ```
-Then start built-in development server with 
+
+Sau đó mở server bằng
 ```
 php artisan serve
 ```
-Now you can open http://localhost:8000. In console you can see as image below
+
+Bây giờ nếu bạn mở Laravue tại http://localhost:8000, ở browser console bạn sẽ thấy như sau:
 
 ![](https://cdn.laravue.dev/hot-reload.png)
 
-Note: You can see there is a `manifest.js:786 Uncaught TypeError: Cannot read property 'call' of undefined` error on the console, but it can be ignored since index.scss is compiled by default by webpack and it linked as resource in mix.config.js. To fix this, you can import `index.scss` directly in `@resources/js/views/App.vue`:
+Lưu ý: Ở browser console sẽ xuất hiện error `manifest.js:786 Uncaught TypeError: Cannot read property 'call' of undefined`, tuy nhiên bạn có thể bỏ qua lỗi này do index.scss được compile bởi webpack và link trực tiếp trong mix.config.js không thông qua Vue components. Nếu bạn muốn sửa lỗi này, bạn có thể import `index.scss` trực tiếp vào `@resources/js/views/App.vue`:
 ```vuejs
 <template>
   <div id="app">
@@ -61,13 +63,12 @@ export default {
   @import '../styles/index.scss';
 </style>
 ```
-and also remove app.scss compilation from your mix.config.js.
+Đồng thời xóa dòng khai báo`app.scss` trong `webpack.mix.js`
+Bạn có thể tìm hiểu thêm ở [đây](https://github.com/JeffreyWay/laravel-mix/issues/2228)
 
-For more detail, please check [this thread](https://github.com/JeffreyWay/laravel-mix/issues/2228)
+### HMR với vhosts (Nginx/Apache...)
 
-### With vhosts (Nginx/Apache...)
-
-If you use default hot loading (`yarn run hot`) with vhosts, you will get CORS because Laravel mix serve "hot" resources via http://localhost:8080 by default. You can ask Laravel mix serve resources by other hostname by adding these line to your `webpack.mix.js`:
+Nếu bạn đã cài đặt webserver riêng cho bạn (không xài `php artisan serve`) và cấu hình Laravue với vhost, sau khi chạy `yarn run hot` bạn sẽ gặp lỗi CORS do mặc định Laravel-mix sẽ phục vụ "hot resources" thông qua http://localhost:8080 trong khi Laravue app thì chạy trên vhost. Bạn có thể cấu hình để Laravel-mix phục vụ "hot resources" ở hostname khác bằng cách thêm những dòng sau vào `webpack.mix.js`:
 
 ```
   mix.options({
@@ -78,13 +79,13 @@ If you use default hot loading (`yarn run hot`) with vhosts, you will get CORS b
   });
 ```
 
-## With LiveReload
-### Install webpack-livereload-plugin
+## Với LiveReload
+### Cài đặt webpack-livereload-plugin
 ```
 yarn add webpack-livereload-plugin@1 --save-dev
 ```
-### Configure webpack.config.js
-Open `webpack.config.js` file, add `LiveReloadPlugin()` to `plugins` as below:
+### Cấu hình webpack.config.js
+Mở file `webpack.config.js`, thêm `LiveReloadPlugin()` vào `plugins` như sau:
 ```js
 ...
 var LiveReloadPlugin = require('webpack-livereload-plugin');
@@ -93,20 +94,20 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 let plugins = [new LiveReloadPlugin()];
 ```
 
-### Install LiveReload.js to blade template
-Open `resources/views/laravue.blade.php`, add LiveReload.js before closing </body> tag
+### Cài đặt LiveReload.js vào blade template
+Mở `resources/views/laravue.blade.php`, thêm LiveReload.js trước khi đóng tag </body>
 ```
     @if(config('app.env') == 'local')
         <script src="http://localhost:35729/livereload.js"></script>
     @endif
 ```
 
-Now you can start Laravue app by:
+Bây giờ bạn có thể chạy Laravue app bằng:
 ```
 yarn run watch
 ```
 
-LiveReload will automatically monitor your files and refresh the page when necessary.
+LiveReload sẽ tự động quan sát các files và refresh webpage khi cần thiết.
 
 
 
