@@ -1,13 +1,12 @@
-# Create New Page
+# Tạo trang mới
 
-If you are familiar with the `vue-router` then it will be very simple.
+Nếu bạn đã quen thuộc với `vue-router` thì việc tạo một trang mới ở `laravue` khá là đơn giản.
 
-## Add the route
-First add the route to the `@/router/index.js`. For example:
+## Tạo route
 
-**add a `foo` page**
+Đầu tiên, chúng ta sẽ tạo 1 route vào file `@/router/index.js`. Ví dụ:
 
-The below code will create a blank route based on `Layout`
+**Tạo trang `foo`**
 
 ```js
 {
@@ -23,10 +22,10 @@ The below code will create a blank route based on `Layout`
 ```
 
 ::: tip Icon
-Laravue offers 2 icon set (IconFont and ElementUI). You can see all icons [here](https://laravue.dev/#/element-ui/icons), and document [here](/guide/advanced/icon.md)
+Laravue cung cấp 2 loại icon (IconFont và ElementUI). Bạn có thể xem tất cả icon ở [đây](https://laravue.dev/#/element-ui/icons), và tài liệu chi tiết ở [đây](/guide/advanced/icon.md)
 :::
 
-Next, you have to add a route to the 'children' below it: 
+Tiếp theo, chúng ta phải thêm 1 route và `children`:
 ```js
 {
   path: '/foo',
@@ -46,18 +45,17 @@ Next, you have to add a route to the 'children' below it:
 }
 ```
 
-**The sidebar will show `foo` menu like this**
+**Lúc này sidebar sẽ hiển thị `foo` menu giống như sau**
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo.png)
 
-Clicking on this menu will redirect to `/#/foo/index`, and blank page will show (since we haven't imported the view)
+Click vào menu này sẽ redirect tới `/#/foo/index` và hiển thị trang trắng (vì chúng ta chưa khai báo view). Icon cho submenu cũng không hiển thị vì nó chưa được khai báo.
 <br/>
 
 :::tip
-Since `children` only declares one route below, there will be no expansion arrow. If the number of routes under `children` is greater than 1, there will be an expansion arrow, as shown below.
+Vì `children` chỉ chứa một route, nên menu không hiển thị theo dạng cha-con, bạn cần phải tạo nhiều hơn 1 route con để có thể thấy nó như ví dụ dưới đây.
 
-If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it will ignore the previously defined rule and display the root route. See the [Router and Nav](/guide/essentials/router-and-nav.md) for details.
-
+Trong trường hợp bạn vẫn muốn hiển thị dạng menu cha-con khi chỉ có 1 route, bạn có thể xài `alwaysShow: true`. Xem thêm ở [Router and Navigation](/guide/essentials/router-and-nav.md) để biết thêm chi tiết.
 :::
 
 ```js
@@ -87,34 +85,27 @@ If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo-bar.png)
 
-**The sidebar will show submenu `foo/bar` below menu `foo`.**
-
-Since we do not declare icon for submenu, there is no icon for `foo/bar` submenu. Clicking on submenu will show blank page, because no view is declared.
-
 <br/>
 
 ## Nested Routes
 
-If you have a nested Route, such as [@/views/nested](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested),
-Don't forget to manually add an `< router-view >` to the root file of the secondary directory.
+Nếu bạn có nested route, ví dụ [@/views/nested](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested), đừng quên thêm `<router-view>` vào layout thứ 2 (sử dụng cho các route con của nested route).
 
-For example: [@/views/nested/menu1/index.vue](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested/menu1/index.vue).
+Ví dụ: [@/views/nested/menu1/index.vue](https://github.com/tuandm/laravue/blob/master/resources/js/views/nested/menu1/index.vue).
 
-**Note:** As many `<router-view>` as the level of routes nested.
+**Note:** Mỗi cấp của nested route sẽ có thêm một `<router-view>`.
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/nested.png)
 
 <br/>
 
-## Create View
+## Tạo view
 
-After adding the route, we have to create a view under `@/views` folder. As usual, a router is associated with a view.
-
-If components or utils are only used in this view, it's recommended to create a components/utils folder under this view. It is more convenient for each module to maintain its own `utils` or `components`.
+Sau khi tạo route, chúng ta sẽ tiếp tục tạo file view ở thư mục `@/views`. Nếu các component hay util (các hàm tiện ích phục vụ cho component) chỉ sử dụng trong 1 view nào đó, thì chúng nên được chứa trong thư mục thuộc view đó. Điều này giúp thuận tiện hơn trong việc quản lý source code của 1 view và các "tiện ích" phục vụ cho riêng nó.
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/view-components.png)
 
-Lets create a `foo` folder in `views`, with 2 view files as below: 
+Chúng ta sẽ tạo thư mục `foo` trong `@views`, với 2 file như sau:
 
 ```bash
 ├── app                        
@@ -126,7 +117,7 @@ Lets create a `foo` folder in `views`, with 2 view files as below:
 │               └── Bar.vue    // Bar view
 ```
 
-Open `@/views/foo/Foo.vue` and add simple component like this:
+Chỉnh sửa file `@/views/foo/Foo.vue` để thêm component đơn giản như sau:
 
 ```
 <template>
@@ -154,7 +145,7 @@ export default {
 
 ```
 
-Then we have to import this Foo component to route. Back to `@/router/index.js` to edit foo route
+Sau đó chúng ta sẽ khai báo Foo component với route bằng cách chỉnh sửa foo route trong `@/router/index.js`:
 ```js
 {
   path: '/foo',
@@ -175,17 +166,17 @@ Then we have to import this Foo component to route. Back to `@/router/index.js` 
 }
 ```
 
-Save and reload the page, clicking on foo menu will show Foo component.
+Sau khi lưu file và reload page, click vào `foo` menu sẽ hiển thị Foo component.
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo-component.png)
 
-You can try to create Bar component and import to bar submenu. Seems easy.
+Bạn có thể tiếp tục tạo Bar component và import vào bar submenu.
 
 <br/>
 
 ## I18n
 
-Now we have foo menu on the sidebar, but switching language doesn't change `foo` text to selected language. To add translation, we need to add translated text to `@/lang/en.js` and other lang files, such as `@/lang/vi.js`, under `router` section.
+Bây giờ chúng ta đã có foo menu ở sidebar, nhưng khi chúng ta chuyển ngôn ngữ thì `foo` vẫn không thay đổi. Để làm được điều này, chúng ta cần thêm phần dịch cho `foo` vào `@/lang/en.js` và các file ngôn ngữ khác (ví dụ `@/lang/vi.js`) ở phần `router`.
 
 ```js
 // @/lang/en.js
@@ -200,56 +191,8 @@ export default {
     ...
     foo: 'Foo in VI',
 ```
-Now switching language between EN and VI will show corresponding text.
+Bây giờ khi các bạn chuyển qua ngôn ngữ tiếng Việt, foo menu sẽ hiển thị là `Foo in VI`, tương tự `Foo` cho tiếng Anh.
 
 :::tip
-You can see sample code here: [How to create new page](https://github.com/tuandm/laravue/compare/guide/how-to-add-new-page?expand=1)
+Bạn có thể xem code ví dụ cho tài liệu này ở: [How to create new page](https://github.com/tuandm/laravue/compare/guide/how-to-add-new-page?expand=1)
 :::
-
-## Create Api
-
-Finally, under the [@/api](https://github.com/tuandm/laravue/blob/master/resources/js/api) folder, create the corresponding api service for this module.
-
-### RESTful API
-Laravue provides a convenient way to send RESTful requests from frontend to backend which returns [Laravel's Resources](https://laravel.com/docs/5.8/eloquent-resources) as results. `@/api/resources.js` offers simple actions for any resources, just provide URI. For example:
-
-```
-import Resource from '@/api/resource';
-const userResource = new Resource('users');
-...
-userResource
-  .update(userId, userObject)
-  .then(response => {
-    // handle response
-  })
-  .catch(error => {
-    console.log(error);
-  });
-```
-If you want to have more API for resources, just extend the base class and add your extra APIs. Example: [role api](https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js)
-
-See the [Work with API](/guide/essentials/api.md) for more details.
-
-## Create Components
-
-To make the code managable and easy to maintain, the global `@/components` will contain global components, such as rich text, various search components, packaged date components, etc. They can be shared across components. Besides, each page or module-specific business component is written under the current views. Such as: `@/views/article/components/LocalComponent.vue`. This separation greatly reduces maintenance costs.
-
-**Remember that the biggest benefit of splitting components is not shared code but maintainability!**
-
-## Create Style
-
-The page's style and components are the same. The global `@/style` writes a global common style. The style of each page is written under the current `views`. Please remember to add `scoped` or namespace to avoid global style pollution.
-
-```css
-<style>
-/* global styles */
-</style>
-
-<style scoped>
-/* local styles */
-.xxx-container{
-  /* name scoped */
-  xxx
-}
-</style>
-```

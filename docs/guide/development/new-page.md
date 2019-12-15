@@ -1,9 +1,9 @@
 # Create New Page
 
-If you are familiar with the `vue-router` then it will be very simple.
+This document describes how to create a new page in laravue. If you are familiar with the `vue-router` then it will be very simple.
 
 ## Add the route
-First add the route to the `@/router/index.js`. For example:
+Firstly, we have to add the route to the `@/router/index.js`. For example:
 
 **add a `foo` page**
 
@@ -50,7 +50,7 @@ Next, you have to add a route to the 'children' below it:
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo.png)
 
-Clicking on this menu will redirect to `/#/foo/index`, and blank page will show (since we haven't imported the view)
+Clicking on this menu will redirect to `/#/foo/index`, and blank page will show (since we haven't imported the view). And there is no icon or the submenu because no icon declared.
 <br/>
 
 :::tip
@@ -86,10 +86,6 @@ If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it
 ```
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo-bar.png)
-
-**The sidebar will show submenu `foo/bar` below menu `foo`.**
-
-Since we do not declare icon for submenu, there is no icon for `foo/bar` submenu. Clicking on submenu will show blank page, because no view is declared.
 
 <br/>
 
@@ -205,51 +201,3 @@ Now switching language between EN and VI will show corresponding text.
 :::tip
 You can see sample code here: [How to create new page](https://github.com/tuandm/laravue/compare/guide/how-to-add-new-page?expand=1)
 :::
-
-## Create Api
-
-Finally, under the [@/api](https://github.com/tuandm/laravue/blob/master/resources/js/api) folder, create the corresponding api service for this module.
-
-### RESTful API
-Laravue provides a convenient way to send RESTful requests from frontend to backend which returns [Laravel's Resources](https://laravel.com/docs/5.8/eloquent-resources) as results. `@/api/resources.js` offers simple actions for any resources, just provide URI. For example:
-
-```
-import Resource from '@/api/resource';
-const userResource = new Resource('users');
-...
-userResource
-  .update(userId, userObject)
-  .then(response => {
-    // handle response
-  })
-  .catch(error => {
-    console.log(error);
-  });
-```
-If you want to have more API for resources, just extend the base class and add your extra APIs. Example: [role api](https://github.com/tuandm/laravue/blob/master/resources/js/api/role.js)
-
-See the [Work with API](/guide/essentials/api.md) for more details.
-
-## Create Components
-
-To make the code managable and easy to maintain, the global `@/components` will contain global components, such as rich text, various search components, packaged date components, etc. They can be shared across components. Besides, each page or module-specific business component is written under the current views. Such as: `@/views/article/components/LocalComponent.vue`. This separation greatly reduces maintenance costs.
-
-**Remember that the biggest benefit of splitting components is not shared code but maintainability!**
-
-## Create Style
-
-The page's style and components are the same. The global `@/style` writes a global common style. The style of each page is written under the current `views`. Please remember to add `scoped` or namespace to avoid global style pollution.
-
-```css
-<style>
-/* global styles */
-</style>
-
-<style scoped>
-/* local styles */
-.xxx-container{
-  /* name scoped */
-  xxx
-}
-</style>
-```
