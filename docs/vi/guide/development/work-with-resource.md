@@ -1,15 +1,16 @@
-# Work with resource
+# Làm việc với resource
 
-In this guide, we will learn how to work with resource in Laravue with a simple example. 
+Trong tài liệu này, chúng ta sẽ tìm hiểu cách làm việc với resource trong Laravue thông qua một ví dụ đơn giản. 
 
-You may know that Laravue uses [Laravel Resources](https://laravel.com/docs/6.x/eloquent-resources) on backend and simple [RESTful Request by axios](https://github.com/tuandm/laravue/blob/master/resources/js/api/resource.js) in frontend. Now we are going to create new Resource show it in frontend.
+Bạn có thể đã biết Laravue sử dụng [Laravel Resources](https://laravel.com/docs/6.x/eloquent-resources) ở backend và [RESTful Request đơn giản với axios](https://github.com/tuandm/laravue/blob/master/resources/js/api/resource.js) ở frontend. Bây giờ chúng ta sẽ tạo một resource mới và hiển thị nó ở frontend.
 
 ## Getting started
-We will create a simple feature to manage categories.
+Chúng ta sẽ tạo một chức năng đơn giản để quản lý danh mục (category). Bạn có thể tạo các resource khác phức tạp hơn như news/blog/products v.v...
 
 ### Backend
 
 #### `categories` table
+Chúng ta sẽ bắt đầu từ database, cấu trúc của bảng `categories` như sau:
 
 | Column       | Type      | option                     | Description                                                                           |
 | ------------ | --------- | -------------------------- | ------------------------------------------------------------------------------------- |
@@ -21,11 +22,12 @@ We will create a simple feature to manage categories.
 | updated_at   | timestamp | DEFAULT CURRENT_TIMESTAMP  | Updated date                                                                          |
 
 #### Create migration
+Để tạo file migration, chúng ta dùng lệnh sau:
 ```
 php artisan make:migration create_categories_table
 ```
 
-Then XXXX_XX_XX_XXXXXX_create_categories_table file to change `up()` method as below
+Sau đó mở file XXXX_XX_XX_XXXXXX_create_categories_table.php file và thay đổi method `up()` như sau:
 ```php
     public function up()
     {
@@ -40,10 +42,10 @@ Then XXXX_XX_XX_XXXXXX_create_categories_table file to change `up()` method as b
     }
 ```
 
-Save that file, then run `php artisan migrate` to create this table.
+Save file, sau đó chạy lệnh `php artisan migrate` để tạo bảng `categories` trong database.
 
 #### Create resources
-We will create Model, Controller, Resource
+Tiếp theo chúng ta sẽ tạo Model, Controller, Resource cho category
 
 ```
 # Model
@@ -54,7 +56,7 @@ php artisan make:resource CategoryResource
 php artisan make:controller CategoryController --resource --model=Laravue\\Models\\Category
 ```
 
-Now we will have 3 new files: 
+Sau khi chạy các lệnh trên, chúng ta sẽ có thêm 3 file mới:
 ```
 app/Laravue/Models/Category.php
 app/Http/Controllers/CategoryController.php
@@ -62,11 +64,11 @@ app/Http/Resources/CategoryResource.php
 ```
 
 #### Create api resource
-We need to bind CategoryController to api, such as `api/category`, to do so we will open `routes/api.php` to add this line:
+Chúng ta sẽ cần phải khai báo CategoryController vào api request, ví dụ `api/category`, bằng cách mở file `routes/api.php` và thêm dòng sau:
 ```
     Route::apiResource('categories', 'CategoryController');
 ```
-Then we can double check by running `php artisan route:list`, it should show basic URIs for category
+Kiểm tra lại bằng cách chạy `php artisan route:list`, API requests cho category resource sẽ hiển thị giống như sau:
 
 ```
 +--------+-----------+------------------------------+---------------------+-------------------------------------------------------+----------------------------------+
@@ -79,9 +81,9 @@ Then we can double check by running `php artisan route:list`, it should show bas
 |        | GET|HEAD  | api/categories/{category}    | categories.show     | App\Http\Controllers\CategoryController@show          | api                              |
 ```
 
-Ok, now API calls are ready.
+Ok, đến bước này thì các API cần thiết đã sẵn sàng.
 
-Now we will modify the `CategoryController::index()` method to return list of categories.
+Chúng ta sẽ chỉnh sửa method `CategoryController::index()` để trả về danh sách các categories khi có API request đến `/api/categories`.
 
 ```php
 // File: app/Http/Controllers/PhotoController.php
@@ -94,7 +96,6 @@ use App\Laravue\Models\Category;
     }
 ```
 
-Now we can get all categories by sending request to `/api/categories`.
 ```js
 curl localhost:8000/api/categories
 
@@ -102,16 +103,15 @@ curl localhost:8000/api/categories
   "data": [] // Because there is no category in database
 }
 ```
-Yes, it works!
-You can create sample category data using [Database Seeding](https://laravel.com/docs/master/seeding) and try again
+Có vẻ category list API đã hoạt động, `"data": []` bởi vì chúng ta chứ tạo category nào trong hệ thống. Bạn có thể dùng [Database Seeding](https://laravel.com/docs/master/seeding) để tạo 1 số dummy category và test lại.
 
-Next step we setup frontend to show category list.
+Bước tiếp theo chúng ta sẽ qua frontend để hiển thị danh sách category.
 
 ### Frontend
 
-In [this guide](new-page.md), we already know how to create new page in Laravue with VueJS. We will follow that document to create a component for listing categories.
+Trong [hướng dẫn](new-page.md) này, chúng ta đã biết cách tạo một trang mới trong Laravue với VueJS. Chúng ta sẽ theo các bước trong tài liệu đó để tạo một component cho việc hiển thị danh sách category.
 
-New menu will be created in `Administrator`:
+Tạo menu mới trong `Sidebar -> Administrator`:
 ```js
 // File: resources/js/router/modules/admin.js
     {
@@ -124,14 +124,14 @@ New menu will be created in `Administrator`:
 
 ![](https://cdn.laravue.dev/category-menu.png)
 
-You can change your language files to change `categoryList` key to show the meaningful words instead.
+Bạn có thể thêm phần dịch vào file ngôn ngữ để hiển thị chữ nghĩa đúng đắn hơn (Xem thêm [I18n](new-page.md#i18n)).
 
-Ok, lets go to next step to list/create/edit/delete resource.
+Bước tiếp theo chúng ta sẽ tạo các chức năng list/create/edit/delete resource.
 
 ### List resources
 
 #### Component
-To list resource, we will create a component for Category list, and use `el-table` component to initialize a table with columns [ID, name, code, description]
+Để hiển thị danh sách resource, chúng ta sẽ tạo một component cho danh sách category và sử dụng `el-table` component để tạo một table element với các cột tương ứng cho các thuộc tính của category (ID, name, code, description).
 
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
@@ -177,14 +177,15 @@ export default {
 </script>
 ```
 
-- `list` variable to hold the category list.
+- Biến cục bộ `list` để giữ danh sách category.
 
-Great! Now we can see the category list page as below:
+Đến đây, khi chúng ta click vào Category menu thì một table trống sẽ được hiển thị như sau:
 
 ![](https://cdn.laravue.dev/category-list.png)
 
 #### Requests
-Next step we will send request to backend to get list of categories. To do so, we will use Resource object and bind to `categories` URI, then we will request to `/categories` when List component created. Please modify `List.vue` as below (inside `<script>...</script>` tag)
+Bước tiếp theo chúng ta sẽ gửi API request lên backend để lấy danh sách category. Để làm được điều này, chúng ta sẽ dùng Resource object và "kết nối" vào đường dẫn `/categories`. Sau đó chúng ta sẽ gọi tới `/categories` khi List component khởi tạo xong. 
+Mở file `resources/js/views/categories/List.vue` và chỉnh sửa như dưới đây (bên trong tag `<script>...</script>`)
 
 
 ```vue
@@ -213,12 +214,10 @@ export default {
 </script>
 ```
 
-With the above code, when component is created, the `getList()` method will be executed and request to server for gettting category list with `categoryResource.list({})`. After server returns real data, we will assign to the variable `list` for rendering.
-
-Now we can see all categories are listed. 
+Với đoạn code này, khi component khởi tạo xong, method `getList()` sẽ được gọi để thực thi `categorResource.list({})`, `categorResource.list({})` sẽ API request lên backend tại địa chỉ `/categories`. Sau khi backend trả về dữ liệu, chúng ta sẽ lưu lại vào biến `list` và hiển thị. Bạn có thể thêm category trực tiếp vào database để xem kết quả.
 
 #### Loading state
-Sometimes we want a loading icon will show before data is returned and displayed. `el-table` has a `loading` property to do this job. We will use it and change the JS code as below:
+Thường các ứng dụng SPA sẽ hiển thị một "loading" icon trong khi đợi kết quả từ server trả về. `el-table` có một thuộc tính `loading` để làm công việc này. Chúng ta sẽ sử dụng nó bằng cách chỉnh sửa code như sau:
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
 <el-table v-loading="loading" :data="list" border fit highlight-current-row>
@@ -232,7 +231,7 @@ export default {
   data() {
     return {
       list: [],
-      loading: true,
+      loading: true, // Ban đầu sẽ hiển thị loading icon
     };
   },
   created() {
@@ -243,25 +242,25 @@ export default {
       this.loading = true;
       const { data } = await categoryResource.list({});
       this.list = data;
-      this.loading = false;
+      this.loading = false; // Ẩn loading icon khi dữ liệu được load xong
     },
   },
 };
 </script>
 ```
 
-Now we can reload the page to see the loading state before category list showing.
+Reload lại page, chúng ta sẽ thấy loading icon hiển thị trước khi category list hiện ra.
 
 ### Create a resource
 
-Now we are going to create simple form to create Category resource. Because this form is simple, so we can show them all in the popup window. Let add some HTML code to the List component.
-- A button to show category form - when clicking to this button, `handleCreateForm` will be called to popup the category form.
-- A dialog contains category form
-- A category form with 2 fields and 2 buttons: 
-  + 1 textbox for category name
-  + 1 textarea for category description
-  + 1 button to cancel (hide the form)
-  + 1 button to send form to backend to create category resource - when clicking to this button, `handleSubmit()` method will be called.
+Tiếp theo chúng ta sẽ cùng nhau tạo một resource bằng cách build form đơn giản để khởi tạo các thuộc tính cần thiết cho category. Bởi vì category resource không có quá nhiều property (chỉ có name, code, description) nên chúng ta sẽ sử dụng popup form cho đơn giản. Chúng ta sẽ thêm đoạn HTML code để tạo các elements sau:
+- Một button để hiển thị category form khi được click vào - chúng ta sẽ có 1 event handle `handleCreateForm` để hiển thị category form.
+- Một dialog chứa category form
+- Một category form với 2 fields và 2 buttons: 
+  + 1 textbox cho category name
+  + 1 textarea cho category description
+  + 1 button để hủy thao tác (ẩn form)
+  + 1 button để gửi thông tin category từ form lên backend để tạo category resource - khi click vào button này, event handle `handleSubmit()` sẽ được gọi.
 
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
@@ -299,10 +298,11 @@ Now we are going to create simple form to create Category resource. Because this
 </template>
 ```
 
-Additionally, we will define 2 variables:
-- `categoryFormVisible`: To show/hide the category form. Clicking to Add button will turn this to `true`, and will be switched to `false` if Cancel button is clicked.
-- `currentCategory`: An object to hold data of new category. When the category form is shown, this object will be reset to default value `{name: '', description: ''}`
-And we will add 2 methods `handlesubmit()` and `handleCreateForm`. The JS code will be changed as follow:
+Ngoài ra, chúng ta sẽ thêm 2 biến:
+- `categoryFormVisible`: dùng để hiện/ẩn category form. Khi click vào "Add" button, giá trị biến này sẽ chuyển thành `true`, và sẽ chuyển lại về `false` khi Cancel button được click.
+- `currentCategory`: Dùng để chứa dữ liệu của category mới. Ngay trước khi category form được hiện ra, giá trị của biến này sẽ được reset về mặt định `{name: '', description: ''}`.
+
+Chúng ta sẽ có 2 methods `handleCreateForm` và `handlesubmit()` để handle click event trên 2 nút "Add" và "Submit". Chúng ta sẽ chỉnh sửa code JS như sau:
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
 <template>
@@ -335,16 +335,16 @@ export default {
 </script>
 ```
 
-We can reload the page and test clicking on buttons.
+Reload webpage, và kiểm tra các nút "Add", "Submit".
 
 ![](https://cdn.laravue.dev/category-add.png)
 
-Next, we will add code to process creating category. The happy case will be:
-1. Frontend get data from the form and send to `categories.store` route
-2. Backend receives data, do validating and process creating category, then return the result
-3. Frontend get result, reload the list and show notification
+Tiếp theo chúng ta sẽ thêm phần xử lý việc tạo category. Quy trình thông thường sẽ là:
+1. Frontend lấy dữ liệu từ form (đã bind data vào biến `currentCategory`) gửi lên `categories.store` route
+2. Backend nhận dữ liệu, kiểm tra dữ liệu và thực hiện tạo category, sau đó trả về kết quả
+3. Frontend nhận kết quả, cập nhật danh sách caegory và hiển thị thông báo.
 
-First, change `handleSubmit()` method on view file:
+Đầu tiên, chúng ta thay đổi method `handleSubmit()` ở view file:
 ```js
 // File: resources/js/views/categories/List.vue
 handleSubmit() {
@@ -369,7 +369,7 @@ handleSubmit() {
 },
 ```
 
-Then we need to update Category model to make some fields fillable
+Sau đó chúng ta sẽ cập nhật Category model để các thuộc tính `name`, `code`, `description` [fillable ](https://laravel.com/docs/5.8/eloquent#mass-assignment)
 
 ```php
 // File: app/Laravue/Models/Category.php
@@ -388,7 +388,7 @@ class Category extends Model
     ];
 }
 ```
-Next, change `CategoryController::store()` method to get data from request and insert new category to database.
+Tiếp theo, thay đổi method `CategoryController::store()` để lấy category data từ request và lưu vào database.
 
 ```php
 // File: app/Http/Controllers/CategoryController.php
@@ -407,7 +407,7 @@ public function store(Request $request)
         $params = $request->all();
         $category = Category::create([
             'name' => $params['name'],
-            'code' => strtolower($params['name']) . time(), // Just to make sure this value is unique
+            'code' => strtolower($params['name']) . time(), // Chỗ này tạo cái dữ liệu duy nhất cho trường code - chủ yếu là cho vui.
             'description' => $params['description'],
         ]);
         
@@ -417,11 +417,11 @@ public function store(Request $request)
 
 ```
 
-Now save all files, then try to add new category from the frontend. It should works.
+Save source code, kiểm tra lại bằng cách tạo category từ frontend, nhập dữ liệu, submit. Bạn sẽ thấy category mới được thêm vào danh sách sau khi submit.
 
 
 ### Delete resource
-To delete a resource, we need to have a button on each row. We will change file `List.vue` as follow:
+Để xóa một resource, chúng ta cần thêm nút xóa vào mỗi dòng category bằng cách thay đổi file `List.vue` như sau:
 
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
@@ -473,7 +473,7 @@ export default {
 </script>
 ```
 
-Then we will update `CategoryController::destroy()` to delete category
+Phía backend, chúng ta sẽ thay đổi method `CategoryController::destroy()` để xóa category
 
 ```php
 // File: app/Http/Controllers/CategoryController.php
@@ -489,15 +489,15 @@ public function destroy(Category $category)
 }
 ```
 
-Now we can delete a category by clicking "Delete" button on selected row.
+Reload website, category bây giờ có thể xóa được với nút "Delete".
 
 ### Update resource
 
-To update a resource, we need to add "Edit" button and load the category form with selected category when clicking on it. We will change the `List.vue` as follow:
-1. Change dialog and form to support updating category
-2. Make dialog's title dynamic - "Create new category" or "Edit category" depends on situation.
-3. Add `handleEditForm` to handle click event on "Edit" button.
-4. Change `handleSubmit()` to handle updating category
+Để thay đổi thông tin cho một resource, we cần thêm "Edit" button và hiển thị dữ liệu của category được chọn vào category form khi click vào nó. Chúng ta sẽ thay đổi file `List.vue` để làm các công việc sau:
+1. Thay đổi dialog và category form để hỗ trợ thêm việc chỉnh sửa thông tin category
+2. Tiêu đề của dialog cần được làm động: Ví dụ title sẽ là "Create new category" khi thêm mới category và "Edit category" khi thay đổi thông tin category.
+3. Thêm event handle `handleEditForm` để xử lý khi click vào "Edit" button.
+4. Thay đổi `handleSubmit()` để xử lý thêm phần thay đổi category
 
 ```vue
 <!-- File: resources/js/views/categories/List.vue -->
@@ -581,7 +581,7 @@ export default {
 </script>
 ```
 
-We also change the `CategoryController::update()` method to update category
+Phía backend, chúng ta cũng phải chỉnh sửa method `CategoryController::update()` để thay đổi thông tin category
 ```php
 // File: app/Http/Controllers/CategoryController.php
     public function update(Request $request, Category $category)
@@ -610,13 +610,13 @@ We also change the `CategoryController::update()` method to update category
     }
 ```
 
-Save all files, we are able to edit category now.
+Lưu tất cả các file đã chỉnh sửa, bây giờ chúng ta đã có thể thay đổi thông tin của 1 category.
 
 ### Notes
-1. The code we provided is just example, please ignore the business logic and validation if possible.
-2. You can go with your solution, just make sure that your code will be passed with linter.
-3. If your resource has complicated behaviour that the current Resource class could not resolve, you can extend from Resource class and add your logic (Example: https://github.com/tuandm/laravue/blob/master/resources/js/api/user.js)
-4. You can check sample code here: [How to work with resource](https://github.com/tuandm/laravue/commit/838aab5ada5667b5c79e4d7974bba7735bd02b1d)
+1. Trong tài liệu này, source code chỉ mang tính hướng dẫn nên không bao gồm phần kiểm tra lỗi và các logic phức tạp khác.
+2. Bạn hoàn toàn có thể dùng giải pháp của bạn, miễn là code của bạn phải tuân theo các [rules của linter](../advanced/coding-convention.md#javascript-vue-eslint).
+3. Nếu resource của bạn có nhiều xử lý phức tạp mà Resource class (@/api/resource.js) hiện tại không đáp ứng được, bạn có thể extend Resource class và thêm các logic riêng của bạn (Ví dụ: https://github.com/tuandm/laravue/blob/master/resources/js/api/user.js)
+4. Toàn bộ code ví dụ cho bài hướng dẫn này có thể tìm thấy ở: [How to work with resource](https://github.com/tuandm/laravue/commit/838aab5ada5667b5c79e4d7974bba7735bd02b1d)
 
 ### Conclusion
-Working with resource on Laravue is quite easy and convenient, all you need is to pair Laravel Resource on backend with RESTful request on frontend.
+Làm việc với resource ở Laravue tương đối dễ dàng và thuận tiện, hầu hết công việc mà bạn phải làm là kết nối (pair) Laravel Resource ở backend với RESTful request ở frontend.

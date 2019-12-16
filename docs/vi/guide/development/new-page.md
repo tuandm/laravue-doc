@@ -1,6 +1,6 @@
 # Tạo trang mới
 
-Nếu bạn đã quen thuộc với `vue-router` thì việc tạo một trang mới ở `laravue` khá là đơn giản.
+Trong tài liệu này, chúng ta sẽ tìm hiểu làm sao đễ tạo 1 page mới trong laravuel. Nếu bạn đã quen thuộc với `vue-router` thì việc tạo một trang mới ở `laravue` khá là đơn giản.
 
 ## Tạo route
 

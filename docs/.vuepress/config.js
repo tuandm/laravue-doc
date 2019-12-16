@@ -116,8 +116,8 @@ module.exports = {
               collapsable: true,
               children: [
                 "/vi/guide/development/new-page.md",
-                "/guide/development/work-with-resource.md",
-                "/guide/development/work-with-permission.md",
+                "/vi/guide/development/work-with-resource.md",
+                "/vi/guide/development/work-with-permission.md",
               ]
             },
             {

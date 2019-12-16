@@ -25,7 +25,7 @@ We will create a simple feature to manage categories.
 php artisan make:migration create_categories_table
 ```
 
-Then XXXX_XX_XX_XXXXXX_create_categories_table file to change `up()` method as below
+Then XXXX_XX_XX_XXXXXX_create_categories_table.php file to change `up()` method as below
 ```php
     public function up()
     {
@@ -213,7 +213,7 @@ export default {
 </script>
 ```
 
-With the above code, when component is created, the `getList()` method will be executed and request to server for gettting category list with `categoryResource.list({})`. After server returns real data, we will assign to the variable `list` for rendering.
+With the above code, when component is created, the `getList()` method will be executed and request to server for getting category list with `categoryResource.list({})`. After server returns real data, we will assign to the variable `list` for rendering.
 
 Now we can see all categories are listed. 
 
@@ -340,9 +340,9 @@ We can reload the page and test clicking on buttons.
 ![](https://cdn.laravue.dev/category-add.png)
 
 Next, we will add code to process creating category. The happy case will be:
-1. Frontend get data from the form and send to `categories.store` route
+1. Frontend gets data from the form and send to `categories.store` route
 2. Backend receives data, do validating and process creating category, then return the result
-3. Frontend get result, reload the list and show notification
+3. Frontend gets result, reload the list and show notification
 
 First, change `handleSubmit()` method on view file:
 ```js

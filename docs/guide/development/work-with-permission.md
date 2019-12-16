@@ -115,7 +115,7 @@ To do so, we will change `routes/api.php` and add these lines:
 # File: routes/api.php
 // All api requests to categories need "manage category" permission
 Route::apiResource('categories', 'CategoryController')->middleware('permission:manage category');
-// Listing category will require "view category" and "manage category"
+// Listing category will require "view category" or "manage category"
 Route::get('categories', 'CategoryController@index')->name('categories.index')->middleware('permission:view category|manage category');
 
 ```
@@ -154,6 +154,11 @@ All we need is to show Category menu in sidebar if user has "view category" or "
 
 #### Buttons
 Add/Edit/Delete buttons need to be hidden if user doesn't have "manage category" permission. We will add `v-permission` directive into `<el-button>`:
+
+:::tip note
+You can detail of directives `v-permission` hay `v-role` in [permissions guide](../essentials/permission.md).
+:::
+
 
 ```vue
 # File: resources/js/views/categories/List.vue
