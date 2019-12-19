@@ -66,7 +66,7 @@ Trong trường hợp bạn vẫn muốn hiển thị dạng menu cha-con khi ch
   name: 'foo',
   meta: {
     title: 'foo',
-    icon: 'star'
+    icon: 'star',
   },
   children: [
     { 

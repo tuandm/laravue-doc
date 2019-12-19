@@ -68,7 +68,7 @@ If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it
   name: 'foo',
   meta: {
     title: 'foo',
-    icon: 'star'
+    icon: 'star',
   },
   children: [
     { 

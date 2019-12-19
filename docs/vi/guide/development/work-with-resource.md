@@ -222,6 +222,7 @@ Thường các ứng dụng SPA sẽ hiển thị một "loading" icon trong khi
 <!-- File: resources/js/views/categories/List.vue -->
 <el-table v-loading="loading" :data="list" border fit highlight-current-row>
 ...
+</el-table>
 <script>
 import Resource from '@/api/resource';
 const categoryResource = new Resource('categories');
