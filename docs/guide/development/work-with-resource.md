@@ -84,7 +84,7 @@ Ok, now API calls are ready.
 Now we will modify the `CategoryController::index()` method to return list of categories.
 
 ```php
-// File: app/Http/Controllers/PhotoController.php
+// File: app/Http/Controllers/CategoryController.php
 use App\Http\Resources\CategoryResource;
 use App\Laravue\Models\Category;
 ...

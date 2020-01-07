@@ -86,7 +86,7 @@ Ok, đến bước này thì các API cần thiết đã sẵn sàng.
 Chúng ta sẽ chỉnh sửa method `CategoryController::index()` để trả về danh sách các categories khi có API request đến `/api/categories`.
 
 ```php
-// File: app/Http/Controllers/PhotoController.php
+// File: app/Http/Controllers/CategoryController.php
 use App\Http\Resources\CategoryResource;
 use App\Laravue\Models\Category;
 ...

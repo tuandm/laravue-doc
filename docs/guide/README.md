@@ -204,6 +204,25 @@ With current demo, the minified sizes are:
 After compress with nginx:
 ![](https://cp5.sgp1.digitaloceanspaces.com/zoro/laravue-cdn/js-sizes.png)
 
+### Docker
+```sh
+docker-compose up -d
+```
+Run database migration and seed within Docker container
+```sh
+# Get laravel docker container ID from containers list
+docker ps
+
+docker exec -it <container ID> php artisan migrate --seed 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+```
+
+`yarn` commands are also support inside docker container:
+```sh
+docker exec -it <container ID> yarn run watch 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+...
+```
 
 ## Contribution
 

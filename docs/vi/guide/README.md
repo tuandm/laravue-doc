@@ -205,6 +205,25 @@ Với bảng demo hiện tại, kích thước file js sau khi minifying:
 Và sau khi "nén" với nginx:
 ![](https://cp5.sgp1.digitaloceanspaces.com/zoro/laravue-cdn/js-sizes.png)
 
+### Docker
+```sh
+docker-compose up -d
+```
+Chạy database migration/seeding:
+```sh
+# Get laravel docker container ID from containers list
+docker ps
+
+docker exec -it <container ID> php artisan migrate --seed 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+```
+
+Bạn cũng có thể chạy các lệnh `yarn` bằng cách trên:
+```sh
+docker exec -it <container ID> yarn run watch 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+...
+```
 
 ## Đóng góp và cộng đồng
 
