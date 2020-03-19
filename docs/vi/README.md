@@ -30,8 +30,8 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Generate JWT secret key
-php artisan jwt:secret
+# Install passport
+php artisan passport:install
 
 # Install dependency
 yarn install

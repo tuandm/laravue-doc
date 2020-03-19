@@ -142,10 +142,10 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Generate JWT secret key
-php artisan jwt:secret
+# Install passport
+php artisan passport:install
 
-# Install dependency - we recommend using Yarn instead of NPM since we get errors while using NPM
+# Install dependency
 yarn install
 
 # Build for development
@@ -223,6 +223,8 @@ docker exec -it <container ID> yarn run watch
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ...
 ```
+
+Laravue can be accessed from http://localhost:8000. Please make sure that port is available or you have to change it on https://github.com/tuandm/laravue/blob/master/docker-compose.yml
 
 ## Contribution
 

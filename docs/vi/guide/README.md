@@ -142,8 +142,8 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Generate JWT secret key
-php artisan jwt:secret
+# Install passport
+php artisan passport:install
 
 # install dependency
 yarn install
@@ -224,6 +224,7 @@ docker exec -it <container ID> yarn run watch
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ...
 ```
+Port mặc định cho docker là 8000 (http://localhost:8000). Hãy chắc chắn rằng không có ứng dụng nào đang chiếm port này, hoặc bạn có thể thay đổi nó ở https://github.com/tuandm/laravue/blob/master/docker-compose.yml
 
 ## Đóng góp và cộng đồng
 
