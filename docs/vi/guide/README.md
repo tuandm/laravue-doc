@@ -142,14 +142,11 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Install passport
-php artisan passport:install
-
 # install dependency
-yarn install
+npm install
 
 # Build for development
-yarn run dev # or yarn run watch
+npm run dev # or npm run watch
 
 # Start local development server
 php artisan serve
@@ -174,7 +171,7 @@ Laravue đã cài đặt sẵn các components tiêu chuẩn, quản lý [state]
 
 ### Build for production
 ```
-yarn run production
+npm run production
 ```
 
 ### Thay đổi đường dẫn
@@ -183,13 +180,13 @@ Bạn có thể thay đổi đường dẫn cho Laravue dashboard bằng cách k
 ![Landing page](https://cdn.laravue.dev/landing-page.png)
 
 ::: warning
-Changing .env requires running `yarn run ...` again to be affected.
+Changing .env requires running `npm run ...` again to be affected.
 :::
 
 ### Kiểm tra kích thước build files
 Nếu bạn cảm thấy ứng dụng quá nặng (vendor.js, app.js quá lớn), bạn có thể kiểm tra lại bằng `webpack-bundle-analyzer` để optimize.
 ```
-yarn run report
+npm run report
 ```
 Sau khi chạy command ở trên, trình duyệt sẽ tự động mở lên ở địa chỉ http://127.0.0.1:8888 và hiện report về kích thước các module js đang sử dụng.
 
@@ -218,10 +215,10 @@ docker exec -it <container ID> php artisan migrate --seed
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ```
 
-Bạn cũng có thể chạy các lệnh `yarn` bằng cách trên:
+Bạn cũng có thể chạy các lệnh `npm` bằng cách trên:
 ```sh
-docker exec -it <container ID> yarn run watch 
-# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+docker exec -it <container ID> npm run watch 
+# Where <container ID> is the "laravel" container name, ex: src_laravel_1
 ...
 ```
 Port mặc định cho docker là 8000 (http://localhost:8000). Hãy chắc chắn rằng không có ứng dụng nào đang chiếm port này, hoặc bạn có thể thay đổi nó ở https://github.com/tuandm/laravue/blob/master/docker-compose.yml

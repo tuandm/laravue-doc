@@ -142,14 +142,11 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Install passport
-php artisan passport:install
-
 # Install dependency
-yarn install
+npm install
 
 # Build for development
-yarn run dev # or yarn run watch
+npm run dev # or npm run watch
 
 # Start local development server
 php artisan serve
@@ -172,7 +169,7 @@ Laravue has already setup for standard components, state management, i18n, globa
 
 ### Build for production
 ```
-yarn run production
+npm run production
 ```
 
 ### Change the path
@@ -181,13 +178,13 @@ Laravue can be easily moved to subfolder like `/admin` or `/administrator` by ch
 ![Landing page](https://cdn.laravue.dev/landing-page.png)
 
 ::: warning
-Changing .env requires running `yarn run ...` again to be affected.
+Changing .env requires running `npm run ...` again to be affected.
 :::
 
 ### Analyze the build file size
 If your build file is large, you can optimize your code by building and analyzing the size distribution of dependent modules using the `webpack-bundle-analyzer`.
 ```
-yarn run report
+npm run report
 ```
 After running you can see the specific size distribution at http://127.0.0.1:8888 (it will automatically open).
 
@@ -217,9 +214,9 @@ docker exec -it <container ID> php artisan migrate --seed
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ```
 
-`yarn` commands are also support inside docker container:
+`npm` commands are also support inside docker container:
 ```sh
-docker exec -it <container ID> yarn run watch 
+docker exec -it <container ID> npm run watch 
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ...
 ```

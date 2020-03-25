@@ -30,12 +30,9 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Install passport
-php artisan passport:install
-
 # Install dependency
-yarn install
+npm install
 
 # develop
-yarn run dev # or yarn run watch
+npm run dev # or npm run watch
 ```
