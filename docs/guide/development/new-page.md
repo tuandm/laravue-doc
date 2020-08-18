@@ -3,6 +3,7 @@
 This document describes how to create a new page in laravue. If you are familiar with the `vue-router` then it will be very simple.
 
 ## Add the route
+
 Firstly, we have to add the route to the `@/router/index.js`. For example:
 
 **add a `foo` page**
@@ -26,7 +27,8 @@ The below code will create a blank route based on `Layout`
 Laravue offers 2 icon set (IconFont and ElementUI). You can see all icons [here](https://laravue.dev/#/element-ui/icons), and document [here](/guide/advanced/icon.md)
 :::
 
-Next, you have to add a route to the 'children' below it: 
+Next, you have to add a route to the 'children' below it:
+
 ```js
 {
   path: '/foo',
@@ -68,16 +70,16 @@ If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it
   name: 'foo',
   meta: {
     title: 'foo',
-    icon: 'star',
+    icon: 'star', // Using SVG icon
   },
   children: [
-    { 
+    {
       path: 'index', // When clicking this submenu, it will redirect to /#/foo/index
-      name: 'foo', 
+      name: 'foo',
       meta: { title: 'foo' }, // foo submenu
     },
-    { 
-      path: 'bar', // When clicking this submenu, it will redirect to /#/foo/bar 
+    {
+      path: 'bar', // When clicking this submenu, it will redirect to /#/foo/bar
       name: 'bar',
       meta: { title: 'bar' }, // bar submenu
     },
@@ -86,6 +88,31 @@ If you want to ignore this behaviour, you can use `alwaysShow: true`, so that it
 ```
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo-bar.png)
+
+If you want to use ElementUI Icon for the menu, please use the icon class instead of svg name.
+
+```js
+  children: [
+    {
+      // a submenu code here
+    },
+    {
+     path: 'icons',
+     component: () => import('@/views/icons/index'),
+     name: 'Icons',
+     meta: {
+       title: 'icons',
+       icon: 'el-icon-info', // Use ElementUI icon like this
+       noCache: true
+       },
+    },
+    {
+      // a submenu code here
+    },
+  ],
+```
+
+![ElementUI icon on menu](../../content/elementui_icon_menu.png)
 
 <br/>
 
@@ -110,14 +137,14 @@ If components or utils are only used in this view, it's recommended to create a 
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/view-components.png)
 
-Lets create a `foo` folder in `views`, with 2 view files as below: 
+Lets create a `foo` folder in `views`, with 2 view files as below:
 
 ```bash
-├── app                        
-├── resources                  
-│   └── js                     
+├── app
+├── resources
+│   └── js
 │       └── views              // views
-│           └── foo            
+│           └── foo
 │               ├── Foo.vue    // Foo view
 │               └── Bar.vue    // Bar view
 ```
@@ -151,6 +178,7 @@ export default {
 ```
 
 Then we have to import this Foo component to route. Back to `@/router/index.js` to edit foo route
+
 ```js
 {
   path: '/foo',
@@ -196,6 +224,7 @@ export default {
     ...
     foo: 'Foo in VI',
 ```
+
 Now switching language between EN and VI will show corresponding text.
 
 :::tip

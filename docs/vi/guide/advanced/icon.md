@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`laravue` sử dụng 2 hệ thống icons - [Element-UI icons](https://element.eleme.io/#/en-US/component/icon) và [IconFont.cn](http://iconfont.cn). Bạn có thể xem ở [đây](https://laravue.dev/#/element-ui/icons) 
+`laravue` sử dụng 2 hệ thống icons - [Element-UI icons](https://element.eleme.io/#/en-US/component/icon) và [IconFont.cn](http://iconfont.cn). Bạn có thể xem ở [đây](https://laravue.dev/#/element-ui/icons)
 
 Nếu bạn không tìm thấy icons như mong muốn, bạn có thể tìm kiếm vài tải về từ trang [iconfont.cn](http://iconfont.cn/), xong rồi generate và sử dụng như các icon có sẵn. Bạn cũng có thể tìm kiếm svg icon ở các website khác, tải về rồi [thư mục này](https://github.com/tuandm/laravue/tree/master/resources/js/icons/svg).
 
@@ -16,14 +16,31 @@ Nếu bạn không tìm thấy icons như mong muốn, bạn có thể tìm ki�
 
 <br />
 
-## Hướng dẫn sử dụng
+## Hướng dẫn sử dụng IconFont
 
 ```js
 <svg-icon icon-class="password" /> // icon-class là tên của icon
 ```
 
-[Component](/feature/component/svg-icon.md)
+[SVG Component](/feature/component/svg-icon.md)
 
 ## Thay đổi màu
 
 Mặc định =`svg-icon` thừa kế màu từ parent `fill: currentColor;`. Bạn có thể thay đổi trực tiếp thuộc tính này ở component con, hoặc component cha (có tác dụng cho tất cả các component con) ở [`@/components/SvgIcon/index.vue`](https://github.com/tuandm/laravue/blob/master/resources/js/components/SvgIcon/index.vue)
+
+## Cách sử dụng Element UI icon
+
+Elemnt UI có cung cấp cho chúng ta một số icon cở bảni. Bạn có thể sử dụng như code mẫu bên dưới.
+
+```js
+<i class="el-icon-edit"></i>
+<i class="el-icon-share"></i>
+<i class="el-icon-delete"></i>
+<el-button type="primary" icon="el-icon-search">Search</el-button>
+```
+
+![Icon Usage](../../../content/icon-usage.png)
+
+## Thay đổi màu cho Element UI icon
+
+Bạn có thể thay đổi màu của các icon này dễ dàng bằng cách sử dụng CSS và thuộc tính `color` cho icon.

@@ -26,6 +26,7 @@ Laravue cung cấp 2 loại icon (IconFont và ElementUI). Bạn có thể xem t
 :::
 
 Tiếp theo, chúng ta phải thêm 1 route và `children`:
+
 ```js
 {
   path: '/foo',
@@ -69,13 +70,13 @@ Trong trường hợp bạn vẫn muốn hiển thị dạng menu cha-con khi ch
     icon: 'star',
   },
   children: [
-    { 
+    {
       path: 'index', // When clicking this submenu, it will redirect to /#/foo/index
-      name: 'foo', 
+      name: 'foo',
       meta: { title: 'foo' }, // foo submenu
     },
-    { 
-      path: 'bar', // When clicking this submenu, it will redirect to /#/foo/bar 
+    {
+      path: 'bar', // When clicking this submenu, it will redirect to /#/foo/bar
       name: 'bar',
       meta: { title: 'bar' }, // bar submenu
     },
@@ -84,6 +85,31 @@ Trong trường hợp bạn vẫn muốn hiển thị dạng menu cha-con khi ch
 ```
 
 ![](https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/foo-bar.png)
+
+Nếu bạn muốn dùng ElemetnUI icon cho menu thì bạn có thể sử dụng class name như bạn sử dụng icon thông thường.
+
+```js
+  children: [
+    {
+      // a submenu code here
+    },
+    {
+     path: 'icons',
+     component: () => import('@/views/icons/index'),
+     name: 'Icons',
+     meta: {
+       title: 'icons',
+       icon: 'el-icon-info', // Dùng ElementUI icon class như thế này
+       noCache: true
+       },
+    },
+    {
+      // a submenu code here
+    },
+  ],
+```
+
+![ElementUI icon on menu](../../../content/elementui_icon_menu.png)
 
 <br/>
 
@@ -108,11 +134,11 @@ Sau khi tạo route, chúng ta sẽ tiếp tục tạo file view ở thư mục 
 Chúng ta sẽ tạo thư mục `foo` trong `@views`, với 2 file như sau:
 
 ```bash
-├── app                        
-├── resources                  
-│   └── js                     
+├── app
+├── resources
+│   └── js
 │       └── views              // views
-│           └── foo            
+│           └── foo
 │               ├── Foo.vue    // Foo view
 │               └── Bar.vue    // Bar view
 ```
@@ -146,6 +172,7 @@ export default {
 ```
 
 Sau đó chúng ta sẽ khai báo Foo component với route bằng cách chỉnh sửa foo route trong `@/router/index.js`:
+
 ```js
 {
   path: '/foo',
@@ -191,6 +218,7 @@ export default {
     ...
     foo: 'Foo in VI',
 ```
+
 Bây giờ khi các bạn chuyển qua ngôn ngữ tiếng Việt, foo menu sẽ hiển thị là `Foo in VI`, tương tự `Foo` cho tiếng Anh.
 
 :::tip
