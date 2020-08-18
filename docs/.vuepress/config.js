@@ -177,7 +177,7 @@ function genAdvancedSidebar(type = '') {
   const mapArr = [
     '/guide/advanced/coding-convention.md',
     '/guide/advanced/git-hook.md',
-//    '/guide/advanced/lazy-loading.md',
+   '/guide/advanced/lazy-loading.md',
     '/guide/advanced/chart.md',
     '/guide/advanced/icon.md',
     // '/guide/advanced/theme.md',

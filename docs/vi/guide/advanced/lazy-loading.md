@@ -1,83 +1,81 @@
-# Lazy Loading Routes
+# Lazy Loading and Code Splitting
+## Code splitting
+Theo [tài liệu của webpack](https://webpack.js.org/guides/code-splitting/)
+> Code splitting là một trong những tính năng rất hữu ích của webpack cho phép chúng ta chia source code thành từng file để load cùng 1 lần. Tính năng được dùng để tạo các file với kích thước nhỏ và quản lý việc ưu tiên tải các tài nguyên. Nếu được sử dụng hợp lý, chức năng này có thể giúp cải thiện tốc độ tải trang web.
 
-When you package an application, the Javascript package becomes very large, affecting the page load. If we can split the components corresponding to different routes into different code blocks and then load the corresponding components when the route is accessed, this will be more efficient.
-
-Combining Vue's [async component feature](https://vuejs.org/v2/guide/components-dynamic-async.html#Async-Components) and webpack's [code splitting feature](https://webpack.js.org/guides/code-splitting/), it's trivially easy to lazy-load route components.
-
-```js
-const Foo = () => import('./Foo.vue')
+### Code splitting with Laravel-mix
+Laravel-mix hỗ trợ [code splitting](https://laravel-mix.com/docs/master/extract) bằng hàm `mix.extract()`, bạn có thể tìm thấy ở file [`webpack.mix.js`](https://github.com/tuandm/laravue/blob/master/webpack.mix.js):
+```
+mix
+  .js('resources/js/app.js', 'public/js')
+  .extract([
+    'vue',
+    'axios',
+    'vuex',
+    'vue-router',
+    'vue-i18n',
+    'element-ui',
+    'echarts',
+    'highlight.js',
+    'sortablejs',
+    'dropzone',
+    'xlsx',
+    'tui-editor',
+    'codemirror',
+  ])
 ```
 
-<br>
+Với setting này, file vendor.js (chủ yếu là các library ít khi thay đổi) sẽ được tạo ra và cache ở phía client (trình duyệt).
 
-**When you think your page's hot reload is slow, you need to look down ↓**
+## Lazy loading route
+Theo [tài liệu của Vue](https://router.vuejs.org/guide/advanced/lazy-loading.html)
+> Khi xây dựng ứng dụng với bundler (là trình quản lý các thư viện theo version, ở Laravue là npm/yarn), JavaScript code sẽ trở nên nặng nề và ảnh hưởng đến thời gian tải trang. Nếu chúng ta có thể tách các component ra các file nhỏ và tải nó khi component đó cần được hiển thị, thì sẽ tăng hiệu suất của ứng dụng.
 
-## Differentiating development and production environments
-
-**[This solution has been eliminated]**
-
-When you have more and more pages in your project, using `lazy-loading` in the development environment becomes less appropriate, and every change of code that triggers a hot update becomes very slow. Therefore, it is recommended to only use the lazy loading function in the build environment.
-
-**Development:**
-
-```js
-// vue-loader at least v13.0.0+
-module.exports = file => require('@/views/' + file + '.vue').default
+### Lazy loading route in Laravue
+Laravue đã hỗ trợ import động các component:
+```
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true,
+  },
 ```
 
-**Note here that this method only supports `vue-loader at least v13.0.0+`**[vue-element-admin/issues/231](https://github.com/PanJiaChen/vue-element-admin/issues/231)
-
-Production：
-
-```js
-module.exports = file => () => import('@/views/' + file + '.vue')
+đồng thời webpack cũng đã được cấu hình để tạo các chunks (file component riêng biệt)
 ```
-
-## Elimination reason
-
-Of course, there are some side effects of writing this way. due to
-
-> Every module that could potentially be requested on an import() call is included. For example, import(./locale/${language}.json) will cause every .json file in the ./locale directory to be bundled into the new chunk. At run time, when the variable language has been computed, any file like english.json or german.json will be available for consumption.
-
-::: tip
-The user can measure whether to adopt this method according to the business situation. If your project is not large and you can also accept the local development hot update speed. You can continue to use lazy loading to avoid this side effect in all environments.
-:::
-
-## New Plan
-
-Use `babel plugins` [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node).
-It only does one thing by converting all `import()` to `require()`, so that all asynchronous components can be import synchronously using this plugin. Combined with the babel environment variable [BABEL_ENV](https://babeljs.io/docs/usage/babelrc/#env-option), let it only work in the development environment, in the development environment will convert all import () into require ().
-
-This solution to solve the problem of repeated packaging before, while the invasiveness of the code is also very small, you usually write routing only need to follow the lazy loading method of the [official document](https://router.vuejs.org/guide/advanced/lazy-loading.html) routing on it, the other are handed to the handle of the cable, When you don't want to use this program, just remove it from Babel's plugins.
-
-**Code:**
-
-First add `BABEL_ENV` to `package.json`
-
-```json
-"dev": "cross-env BABEL_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
-```
-
-Then `.babelrc` can only include the `babel-plugin-dynamic-import-node` `plugins` and make it work only in the `development` mode.
-
-```json
-{
-  "env": {
-    "development": {
-      "plugins": ["dynamic-import-node"]
-    }
-  }
+module.exports = {
+...
+  output: {
+    filename: '[name].js',
+    chunkFilename: 'js/[name].[chunkhash:6].js',
+  },
+...
 }
 ```
 
-After that, you're done. Routing can be written as usual.
+Bằng cách này, các component sẽ được tạo ra thành các file js riêng biệt và chỉ được load khi user mở page chứa component đó
 
-```js
- { path: '/login', component: () => import('@/views/login/index')}
+Để cấu hình tên các chunk file (và các cấu hình khác), bạn có thể tham khảo thêm ở [đây](https://webpack.js.org/configuration/output/#outputchunkfilename)
+
+### Disable lazy loading
+Vì một số lý do nào đó bạn không muốn sử dụng lazy-loading, bạn có thể tắt nó đi bằng cách thêm `dynamic-import-node` vào file [`.babelrc`](https://github.com/tuandm/laravue/blob/master/.babelrc) > plugins
 ```
+  "plugins": [
+    "babel-plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    "babel-plugin-transform-vue-jsx",
+    "dynamic-import-node"
+  ]
+```  
 
-[Related code changes](https://github.com/PanJiaChen/vue-element-admin/pull/727)
-
-## Improve
-
-Webpack4 has been out, greatly improving the speed of packaging and compiling, and may not need to be so complicated afterwards. More page hot updates can be made quickly, completely eliminating the need for previously mentioned solutions.
+## Combining code splitting and lazy loading
+Khi chạy lệnh `npm run dev/watch/production`, bạn có thể thấy các file js được sinh ra (vendor.js, app.js, chunks...)
+```
+                          Asset       Size       Chunks
+                /js/manifest.js   3.02 KiB           11  [emitted] 
+                 js/8.354d7a.js   10.8 KiB            8  [emitted] 
+                 js/9.6c5c36.js   26.8 KiB            9  [emitted] 
+                      js/app.js   1.81 MiB           10  [emitted]   /js/app
+                   js/vendor.js   4.43 MiB  0, 1, 3, 12  [emitted]   /js/vendor
+```

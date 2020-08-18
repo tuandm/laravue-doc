@@ -193,10 +193,9 @@ After running you can see the specific size distribution at http://127.0.0.1:888
 
 With current demo, the minified sizes are:
 ```
-      /css/app.css   215 KiB       0  [emitted]         /js/app
-        /js/app.js   2.9 MiB       0  [emitted]  [big]  /js/app
-   /js/manifest.js  1.46 KiB       1  [emitted]         /js/manifest
-     /js/vendor.js  4.17 MiB       2  [emitted]  [big]  /js/vendor
+       /js/app.js   1.81 MiB       0  [emitted]  [big]  /js/app
+   /js/manifest.js  3.02 KiB       1  [emitted]         /js/manifest
+     /js/vendor.js  4.43 MiB       2  [emitted]  [big]  /js/vendor
 ```
 After compress with nginx:
 ![](https://cp5.sgp1.digitaloceanspaces.com/zoro/laravue-cdn/js-sizes.png)
