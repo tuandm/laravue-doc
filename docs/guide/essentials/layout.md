@@ -121,4 +121,4 @@ Code：[@/views/articles](https://github.com/tuandm/laravue/tree/master/resource
 
 ## Mobile
 
-The `element-ui` is officially designed for a desktop-side UI library, and for the complex project like enterprise backend application, it is impossible to meet the user experiences in both desktop and mobile. In this project, we are trying to make it works on mobile with the simple responsive layout. You can modify for your mobile version.
+The `element-ui` is officially designed for a desktop-side UI library, and for the complex project like enterprise backend application, it is impossible to meet the user experiences in both desktop and mobile. In this project, we are trying to make it work on mobile with the simple responsive layout. You can modify for your mobile version.
