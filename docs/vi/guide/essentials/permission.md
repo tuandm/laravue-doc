@@ -1,4 +1,4 @@
-# Roles and Permissions
+# Roles và Permissions
 <!---
 Roles and permission have been introduced in this article [Laravue part 2 - Permissions and Roles](https://dev.to/tuandm/laravue-part-2-acl-authentication-permissions-and-roles-49fe-temp-slug-7192660?preview=9ab5016c9f635b4d2fbf501b9aa55fc4b932c74e05d0d2a31a377384dc536c4b90754b534601c6ccb1cc23aa281b279073040c1eb2a2004b96760f04).
 -->
