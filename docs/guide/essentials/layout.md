@@ -65,7 +65,7 @@ If you don't get familiar with `vue-router`, Please refer to [official document]
 ::: tip Code
 [@/layout/components/AppMain](https://github.com/tuandm/laravue/blob/master/resources/js/layout/components/AppMain.vue)
 :::
-`<app-main>` uses `<router-view>` to render the content which is returned from the main component registering in route item. `<router-view>` is put inside `<keep-alive>` in order to be cacheable. Please check [router and navigration](router-and-nav.md) for more details.
+`<app-main>` uses `<router-view>` to render the content which is returned from the main component registering in route item. `<router-view>` is put inside `<keep-alive>` in order to be cacheable. Please check [router and navigation](router-and-nav.md) for more details.
 
 The `transition` defines the switching animation between pages, you can modify the transition animation according to your own needs.
 
