@@ -269,7 +269,7 @@ Now we are going to create simple form to create Category resource. Because this
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleCreate">
+      <el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleCreateForm">
         {{ $t('table.add') }}
       </el-button>
     </div>
